@@ -13,6 +13,10 @@
     <servlet-name>Test</servlet-name>
     <servlet-class>test.TestServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Interest</servlet-name>
+    <servlet-class>main.InterestServlet</servlet-class>
+  </servlet>
 
   
 </web-app>

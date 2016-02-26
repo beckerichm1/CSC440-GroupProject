@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +16,17 @@ import org.json.*;
 public class InterestServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		  {
+			System.out.println("Beginning the retrieval of interests.");
+			ArrayList<String> interests = database.Interest.getAllInterests();
 			
-			response.getWriter().out.println(json);
+			JSONArray ar = new JSONArray(interests);
+			String json = ar.toString();
+			
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+			//System.out.println(json);
+			//System.out.println(json.toString());
+			System.out.println("Finished getting interests.");
 		  }  
 }

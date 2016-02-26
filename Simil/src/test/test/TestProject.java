@@ -3,13 +3,6 @@ package test;
 import java.sql.*;
 
 public class TestProject {
-	// public boolean insert
-
-	// Need inserts for rating, user
-
-	// user(username, about, first, last, email, birth, join, locat, type,
-	// settings, outRate, inRate, pw)
-
 	public static void main(String[] args) {
 		String url = "jdbc:mysql://localhost:3306/simul_db";
 		String user = "manatee";
