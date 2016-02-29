@@ -13,7 +13,7 @@ import org.json.*;
 
 
 @WebServlet("/InterestServlet")
-public class InterestServlet extends HttpServlet {
+public class InterestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		  {
 			System.out.println("Beginning the retrieval of interests.");
