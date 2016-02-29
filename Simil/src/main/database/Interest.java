@@ -7,7 +7,7 @@ public class Interest {
 	// This will need to be changed to exclude interests the user already has
 		public static ArrayList<String> getAllInterests() {
 			ArrayList<String> interests = new ArrayList<>();
-			String url = "jdbc:mysql://localhost:3306/simul_db";
+			String url = "jdbc:mysql://54.86.80.232:3306/simul_db";
 			String user = "manatee";
 			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 			System.out.println("Attempting to make a connection...");

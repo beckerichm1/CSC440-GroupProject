@@ -7,6 +7,21 @@
 <title>Simil</title>
 </head>
 <body>
-    <h1>Welcome to Simil!</h1>
+    <div id ="homeWrapper">
+	    <div id="homeDiv">
+	        <h1>Welcome to Simil!</h1>
+	    </div>
+	    <div id="loginForm">
+	       <form action="#insertLoginAction" method="post">
+	           <h3>Log In</h3>
+	           <input type="text" name="username" placeholder="username" required>
+	           <br>
+               <input type="password" name="password" placeholder="password" required>
+               <br>
+               <input type="submit">
+               
+	       </form>
+	    </div>
+    </div>
 </body>
 </html>
