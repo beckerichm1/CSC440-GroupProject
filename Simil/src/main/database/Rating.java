@@ -7,6 +7,10 @@ import java.sql.ResultSet;
 
 public class Rating {
 	public boolean insertRating(){
+		String city = "";
+		String state = "";
+		String zip = "";
+		String country = "";
 		if(existingLocation(city, state, zip, country))
 			return true;
 		String url = "jdbc:mysql://localhost:3306/simul_db";
@@ -29,7 +33,7 @@ public class Rating {
 	}
 	
 	// TODO: Pass this all values, or the ID?
-	public boolean deleteLocation(????????????????){
+	public boolean deleteLocation(String city, String state, String zip, String country){
 		String url = "jdbc:mysql://localhost:3306/simul_db";
 		String user = "manatee";
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
