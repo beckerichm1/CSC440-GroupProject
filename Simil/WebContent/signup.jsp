@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<scripttype="text/javascript" src="/Simil/supp/js/Simil.js"></script>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -12,7 +13,7 @@
             <h1>Sign Up</h1>
         </div>
         <div id="signUpForm">
-            <form action="#insertSignUpAction" method="post">
+            <form onsubmit="signUp()" method="post">
                 <div class="formElement">
 	               <label>First Name </label>
 	               <input type="text" name="fName" required>
@@ -74,9 +75,27 @@
 	               <br>
 	            </div>
 	               <input type="submit">
-	               
            </form>
         </div>
     </div>
 </body>
 </html>
+
+<script>
+	function signUp(){
+		// validate
+		if(!validateSignUpForm())
+			return false;
+		// Make the ajax call to create account
+		var url = "/Simil/SignUpController";
+		$.ajax({
+			url: url,
+			type: "POST",
+			data: {},
+			success: function(data){},
+			error: function(){
+	        	alert('error');
+	        }
+		});
+	}
+</script>

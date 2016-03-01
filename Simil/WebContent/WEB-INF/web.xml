@@ -17,6 +17,13 @@
     <servlet-name>Interest</servlet-name>
     <servlet-class>main.InterestServlet</servlet-class>
   </servlet>
-
+  <servlet>
+    <servlet-name>Panel</servlet-name>
+    <servlet-class>main.PanelServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Panel</servlet-name>
+  	<url-pattern>/Simil/PanelServlet</url-pattern>
+  </servlet-mapping>
   
 </web-app>
