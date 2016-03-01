@@ -89,10 +89,10 @@
 			url: url,
 			type: "POST",
 			data: {"userName": username, "fName": fname, "lName": lname, "email": email, "birth": dob, "pw": pass1},
-			success: function(data){<%if(request.getSession().getAttribute("username") != null)
+			success: function(){<%if(request.getSession().getAttribute("username") != null)
 				response.sendRedirect("/Simil");%>},
-			error: function(){
-	        	alert('error');
+			error: function(err){
+	        	console.log(err);
 	        }
 		});
 	}
@@ -108,8 +108,8 @@
 	    var username = document.forms[0].elements[5].value;
 	    var pass1 = document.forms[0].elements[6].value;
 	    var pass2 = document.forms[0].elements[7].value;
-	    console.log(fname + " " + lname + " " + dob + " " + email);
-
+	    /* console.log(fname + " " + lname + " " + dob + " " + email);
+ */
 	    /* var q1 = document.forms[0].elements["secQuestion1"].value;
 	    var a1 = document.forms[0].elements["secAnswer1"].value;
 	    var q2 = document.forms[0].elements["secQuestion2"].value;

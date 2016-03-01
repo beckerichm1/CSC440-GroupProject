@@ -59,12 +59,15 @@ function login(){
     $.ajax({
     	type: "POST",
         url: url,
+        datatype: 'text/html',
         data: {"username": username, "password": password},
         success: function(data){
+        	console.log(data);
+        },
+        error: function(data){
+            console.log(data);
+            
         }
-        /* error: function(){
-            alert('error'); 
-        }*/
     });
     
 }
