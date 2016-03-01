@@ -1,33 +1,28 @@
 package controllers;
-import java.io.IOException;
-import javax.servlet.ServletException;
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.PrintWriter;
+import javax.servlet.http.HttpSession;
 
-@WebServlet("/Simil/LoginController")
+@WebServlet("/LoginController")
 public class LoginController extends HttpServlet { 
-  protected void doPost(HttpServletRequest request, 
-      HttpServletResponse response) throws ServletException, IOException 
-  {
-    // reading the user input
-    String color= request.getParameter("color");    
-    PrintWriter out = response.getWriter();
-    out.println (
-      "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\n" +
-      "<html> \n" +
-        "<head> \n" +
-          "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"> \n" +
-          "<title> My first jsp  </title> \n" +
-        "</head> \n" +
-        "<body> \n" +
-          "<font size=\"12px\" color=\"" + color + "\">" +
-            "Hello World" +
-          "</font> \n" +
-        "</body> \n" +
-      "</html>" 
-    );  
-  }  
+	@Override
+	public void doPost(HttpServletRequest request,
+			HttpServletResponse response)
+		  {
+
+		    String username = request.getParameter("username");
+		    String password = request.getParameter("password");
+		    
+		    // Get the session - if no session exists create one
+		    HttpSession session = request.getSession(true);
+		    // Set some attribute values to the session
+		    // In this case user and password from the request and client
+		    session.setAttribute("username", username);
+		    //session.setAttribute("password", password);
+
+		}
 }

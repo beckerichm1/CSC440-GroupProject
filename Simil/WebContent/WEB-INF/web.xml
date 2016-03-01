@@ -22,5 +22,5 @@
     <servlet-class>main.controllers.LoginController</servlet-class>
   </servlet>
 
-  
+
 </web-app>
