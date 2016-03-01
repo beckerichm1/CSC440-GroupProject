@@ -11,7 +11,7 @@ public class Interest {
 			String user = "manatee";
 			String pass = "Th3_hug3M4n4t33_str1k3s_BacK";
 			System.out.println("Attempting to make a connection...");
-			try{//mysql-connector-java-5.1.38-bin
+			try{
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = (Connection) DriverManager.getConnection(url, user, pass);
 				System.out.println("Connection has been made.");
