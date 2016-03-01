@@ -87,4 +87,25 @@ public class Panel_Account {
 			}
 			return accounts;
 		}
+
+		public static boolean insertPanelAccounts(String username, String[] array) {
+			String url = "jdbc:mysql://localhost:3306/simul_db";
+			String user = "manatee";
+			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection(url, user, pass);
+				for(int i = 0; i < array.length; i++){
+					String query = "INSERT INTO Panel_Account (userName, dateJoined) VALUES (?, ?);";
+					PreparedStatement stmt = conn.prepareStatement(query);
+					stmt.setString(1, username);
+					stmt.setString(2, array[i]);
+					stmt.executeUpdate(query);
+				}
+			} catch (Exception ex) {
+				System.out.println(ex);
+				return false;
+			}
+			return true;
+		}
 }

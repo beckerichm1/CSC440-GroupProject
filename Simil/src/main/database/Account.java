@@ -17,7 +17,7 @@ public class Account {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String query = "INSERT INTO Account (userName, fName, lName, email, birthday, joined, userType, password, location)"
+			String query = "INSERT INTO User (userName, fName, lName, email, birthday, joined, userType, password, location)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			System.out.println("User name: " + userName + " " + fName + " " + lName + " " + email + " " + birth);

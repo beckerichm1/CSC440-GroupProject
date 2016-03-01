@@ -12,7 +12,7 @@ import org.json.*;
 
 @SuppressWarnings("serial")
 @WebServlet("/UserHomeServlet")
-public class UserHomeServlet extends HttpServlet {
+public class UserHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		  {
 			System.out.println("Beginning the retrieval of user home info.");
