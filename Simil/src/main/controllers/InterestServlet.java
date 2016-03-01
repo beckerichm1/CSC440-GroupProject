@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.json.*;
 
-
 @SuppressWarnings("serial")
 @WebServlet("/InterestServlet")
 public class InterestServlet extends HttpServlet {

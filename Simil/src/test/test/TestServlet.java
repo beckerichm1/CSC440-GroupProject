@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 
 @WebServlet("/TestServlet")
 public class TestServlet extends HttpServlet { 
-  protected void doGet(HttpServletRequest request, 
+  protected void doPost(HttpServletRequest request, 
       HttpServletResponse response) throws ServletException, IOException 
   {
     // reading the user input

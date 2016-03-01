@@ -15,7 +15,11 @@
   </servlet>
   <servlet>
     <servlet-name>Interest</servlet-name>
-    <servlet-class>main.InterestServlet</servlet-class>
+    <servlet-class>main.controllers.InterestServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>main.controllers.LoginController</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Panel</servlet-name>
@@ -25,5 +29,5 @@
     <servlet-name>Panel</servlet-name>
   	<url-pattern>/Simil/PanelServlet</url-pattern>
   </servlet-mapping>
-  
+
 </web-app>
