@@ -13,6 +13,7 @@ public class Location {
 		String user = "manatee";
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		try(Connection conn = DriverManager.getConnection(url, user, pass)){
+			Class.forName("com.mysql.jdbc.Driver");
 			String query = "INSERT INTO Location (city, state, zip, country) VALUES(?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, city);

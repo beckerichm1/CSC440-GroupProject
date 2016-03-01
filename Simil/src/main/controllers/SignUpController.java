@@ -16,10 +16,10 @@ public class SignUpController extends HttpServlet {
 	@SuppressWarnings("deprecation")
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 		  {
-			Enumeration<String> names = request.getAttributeNames();
 			System.out.println("Beginning the insert of new user.");
-			database.Account.insertAccount(names.nextElement(), names.nextElement(), names.nextElement(),
-					names.nextElement(), (java.sql.Date) new Date(names.nextElement()), names.nextElement());
-			System.out.println("Finished inserting user.");
+			System.out.println(request.getParameter("birth"));
+			database.Account.insertAccount((String)request.getParameter("userName"), (String)request.getParameter("fName"), 
+					(String)request.getParameter("lName"), (String)request.getParameter("email"), 
+					request.getParameter("birth"), (String)request.getParameter("pw"));
 		  }  
 }

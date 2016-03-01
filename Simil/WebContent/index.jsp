@@ -37,6 +37,10 @@
                <br>
                <input type="submit" value="submit">
 	       </form>
+	       
+	       <br>
+	       <br>
+	       <a href="signup.jsp">Sign Up</a>
 	    </div>
     </div>
 </body>

@@ -14,10 +14,13 @@ public class Account {
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar cal = Calendar.getInstance();
-		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
-			String query = "INSERT INTO Account (userName, fName, lName, email, birthday, joined, userType, password)"
-					+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String query = "INSERT INTO Account (userName, fName, lName, email, birthday, joined, userType, password, location)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
+			System.out.println("User name: " + userName + " " + fName + " " + lName + " " + email + " " + birth);
 			stmt.setString(1, userName);
 			stmt.setString(2, fName);
 			stmt.setString(3, lName);
@@ -26,6 +29,8 @@ public class Account {
 			stmt.setString(6, dateFormat.format(cal.getTime()));
 			stmt.setString(7, "BASIC");
 			stmt.setString(8, pw);
+			stmt.setInt(9, 0);
+			System.out.println(stmt.toString());
 			stmt.executeUpdate(query);
 		} catch (Exception ex) {
 			System.out.println(ex);
