@@ -2,7 +2,13 @@ SIMIL -- Issue Log
 -----------------------------------------
 =================Bugs====================
 -----------------------------------------
-
+- Min and max restrictions on Date of Birth in signup form.	
+- Adding interests, check to see if already belong to the user.
+	- Unless we only show interests to which the user doesn't yet belong.
+	- For now, we override any preexisting interests.
+- Similar stuff needs to be done for all database inserts.
+	- Check for member panels etc.
+- Location is currently hardcoded, as it's a required foreign key
 
 
 
@@ -10,3 +16,4 @@ SIMIL -- Issue Log
 ================Issues===================
 -----------------------------------------
 - Need to move from client-side to server-side or ajax form validation (required fields)
+- Validate user is not already logged in before visiting the signup page.

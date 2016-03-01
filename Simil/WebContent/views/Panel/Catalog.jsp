@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button onclick="getPanels()">Show All Panels</button>
 <div id="orderedList" style="columns:5 50px; -moz-columns:5 50px; -webkit-columns:5 50px">
     <ul id="panelList" style="list-style:none">
     	    
@@ -20,6 +19,10 @@
 </html>
 
 <script>
+$( document ).ready(function() {
+    getPanels();
+});
+
 function getPanels(){
 	var url = "/Simil/PanelServlet";
 	$.ajax({
@@ -41,5 +44,21 @@ function populatePanels(data){
 		var entry = "<li><input type = 'checkbox' value = '" + name + "'><div>" + name + "/n" + desc + "</div></li>";
 		$div.append(entry);
 	}
+}
+
+function joinPanels(){
+	var data = { 'panels[]' : []};
+	$(":checked").each(function() {
+	  data['panels[]'].push($(this).val());
+	});
+	$.ajax({
+		url: "/Simil/PanelController",
+		type: "POST",
+		data: data,
+		success: function(){return true;},
+		error: function(){
+        	alert('error');
+        }
+	});
 }
 </script>

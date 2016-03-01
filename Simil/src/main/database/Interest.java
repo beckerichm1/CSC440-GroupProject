@@ -9,7 +9,7 @@ public class Interest {
 			ArrayList<String> interests = new ArrayList<>();
 			String url = "jdbc:mysql://localhost:3306/simul_db";
 			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_BacK";
+			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 			System.out.println("Attempting to make a connection...");
 			try{
 				Class.forName("com.mysql.jdbc.Driver");
@@ -60,6 +60,30 @@ public class Interest {
 			String query = "DELETE FROM Interest WHERE interestName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, interest);
+			stmt.executeUpdate(query);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return false;
+		}
+		return true;
+	}
+
+
+	public static boolean addInterests(String username, String[] interestsArray) {
+		String url = "jdbc:mysql://localhost:3306/simul_db";
+		String user = "manatee";
+		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
+		try {
+			String interests = "";
+			for(int i = 0; i < interestsArray.length; i++){
+				interests += (interestsArray[i] + "_");
+			}
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String query = "UPDATE User SET interests = ? WHERE userName = ?;";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, interests);
+			stmt.setString(2, username);
 			stmt.executeUpdate(query);
 		} catch (Exception ex) {
 			System.out.println(ex);

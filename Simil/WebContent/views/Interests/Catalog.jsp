@@ -7,21 +7,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Interests Catalog</title>
 </head>
 <body>
-<button onclick="getInterests()">Show All Interests</button>
+<h1>Select your interests!</h1>
 <div id="orderedList" style="columns:5 50px; -moz-columns:5 50px; -webkit-columns:5 50px">
     <ul id="interestList" style="list-style:none">
     	    
     </ul>
 </div>
+<button onClick="chooseInterests()">Continue</button>
 </body>
 </html>
 
 <script>
+$( document ).ready(function() {
+    getInterests();
+});
+
 function getInterests(){
-	var url = "/Simil/InterestServlet";
+	var url = "/Simil/InterestController";
 	$.ajax({
 		url: url,
 		datatype: 'json',
@@ -39,8 +44,23 @@ function populateInterests(data){
 	console.log(y + " " + z);
 	for(var x = 0; x < data.length; x++){
 		var entry = "<li><input type ='checkbox' value='" + data[x] + "'>" + data[x] + "</li>";
-/* 		var entry = "<li>" + data[x] + "</li><li>" + data[x + y] + "</li><li>" + data[x + z] + "</li>";
- */		$div.append(entry);
+		$div.append(entry);
 	}
+}
+
+function chooseInterests(){
+	var data = { 'interests[]' : []};
+	$(":checked").each(function() {
+	  data['interests[]'].push($(this).val());
+	});
+	$.ajax({
+		url: "/Simil/InterestController",
+		type: "POST",
+		data: data,
+		success: function(){return true;},
+		error: function(){
+        	alert('error');
+        }
+	});
 }
 </script>
