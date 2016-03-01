@@ -13,7 +13,7 @@ public class PanelAccountController {
 		System.out.println("Beginning to join panels.");
 		String[] array = request.getParameterValues("panels");
 		// Insert to Panel_Account
-		database.Panel_Account.insertPanelAccounts((String) request.getSession().getAttribute("username"), array)
+		database.Panel_Account.insertPanelAccounts((String) request.getSession().getAttribute("username"), array);
 		System.out.println("Finished joining panels.");
 	}
 }

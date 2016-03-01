@@ -2,7 +2,10 @@ package database;
 
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Panel_Account {
 		// panel_account(panelID, user, dateJoined, contrib, upvote)
@@ -92,14 +95,18 @@ public class Panel_Account {
 			String url = "jdbc:mysql://localhost:3306/simul_db";
 			String user = "manatee";
 			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			Calendar cal = Calendar.getInstance();
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				Connection conn = DriverManager.getConnection(url, user, pass);
 				for(int i = 0; i < array.length; i++){
-					String query = "INSERT INTO Panel_Account (userName, dateJoined) VALUES (?, ?);";
+					String query = "INSERT INTO Panel_Account (panelID, userName, dateJoined)"
+							+ " VALUES (?, ?, ?);";
 					PreparedStatement stmt = conn.prepareStatement(query);
-					stmt.setString(1, username);
-					stmt.setString(2, array[i]);
+					stmt.setString(1, array[i]);
+					stmt.setString(2, username);
+					stmt.setString(3, dateFormat.format(cal.getTime()));
 					stmt.executeUpdate(query);
 				}
 			} catch (Exception ex) {
