@@ -1,0 +1,113 @@
+
+
+body {  background-image: url(background.gif);
+	background-color:#a0a0a0;
+	color: #1s;
+	font-family: Verdana, Arial, sans-serif;}
+
+#header{background-color: #3b5998;
+	color:#000000;
+	text-align:center;
+	margin:0;}
+
+h2 {	text-transform: uppercase;
+	background-color: #f7f7f7;
+	color: #663300;
+	font-size: 1.2em;
+	border-bottom: 1px solid #000000;
+	padding: 5px 0 0 5px;
+	margin-right: 20px;
+	clear: left;}
+	
+h4{
+	color: #3b5998;
+}
+	
+
+#nav { text-align: left;
+	float: left;
+	width: 170px;
+	text-align:left;
+	padding-top: 10px;}
+#nav a { text-decoration: none;
+	padding-bottom: 15px;}
+#nav a:link{color: #3b5998;}
+#nav a:visited{color:#5b59b8;}
+#nav a:hover{color:#7b5998;}
+#nav ul{list-style-type:none;}
+
+#nav2 { 
+	float: right;
+	width: 150px;
+	
+	padding-top: 10px;}
+	
+#nav2 a { text-decoration: none;
+	padding-bottom: 15px;}
+	
+#nav2 a:link{color: #3b5998;}
+#nav2 a:visited{color:#5b59b8;}
+#nav2 a:hover{color:#7b5998;}
+#nav2 ul{list-style-type:none;}
+	
+
+
+
+
+#footer {background-color: #3b5998;
+	   color:#000000;
+	   font-size:.60em;
+	   font-style: italic;
+	   text-align: center;
+	   padding: 20px 0px 20px 0px;
+	   clear: both;}
+#footer a:link{color:#ffffff;}
+#footer a:visited{color:#7b59d8;}
+#footer a:hover{color:#7b5998;}
+
+#content{padding: 10px 20px 30px 20px;
+	 margin-left: 200px;
+	 margin-right: 150px;
+	 background-color:#cacaca;
+	 color: #000000;}
+
+.details{padding-left: 20%;
+	 padding-right:20%;}	
+
+#wrapper {background-color: #f7f7f7;
+	  min-width: 700px;
+	  box-shadow: 3px 3px;
+	  margin-left: auto;
+	  margin-right: auto;
+	  width:80%
+	}
+
+img { border-style:none;
+	}
+.floatright{	float: right;
+	    	padding-left: 20px;}
+
+.floatleft{ float: left;
+	    padding: 0 20px 20px 0;}
+
+.clearleft{ clear: left;}
+
+
+table {width: 75%;
+	margin:auto;}
+
+td, th{padding: 10px}
+
+tr:nth-of-type(odd) {background-color: #ccaa66;}
+
+
+label{float: left;
+	text-align: right;
+	width: 120px;
+	padding-right: 10px;}
+
+input{display: block;
+	margin-bottom: 20px;}
+
+textarea{display:block;
+	margin-bottom: 20px;}
