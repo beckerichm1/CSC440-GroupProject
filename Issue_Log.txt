@@ -9,6 +9,7 @@ SIMIL -- Issue Log
 - Similar stuff needs to be done for all database inserts.
 	- Check for member panels etc.
 - Location is currently hardcoded, as it's a required foreign key
+- empty interests or panels causes errors in personal page query
 
 
 

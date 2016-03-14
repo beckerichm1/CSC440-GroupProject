@@ -78,13 +78,18 @@ public class Interest {
 			for(int i = 0; i < interestsArray.length; i++){
 				interests += (interestsArray[i] + "_");
 			}
+
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String query = "UPDATE User SET interests = ? WHERE userName = ?;";
+			//set col1name = concat(ifnull(col1name,""), 'a,b,c');
+			//String query = "UPDATE User SET interests = ? WHERE userName = ?;";
+			String query = "UPDATE User SET interests = concat(interests, ?) WHERE userName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, interests);
 			stmt.setString(2, username);
-			stmt.executeUpdate(query);
+			System.out.println(stmt);
+
+			stmt.executeUpdate();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;

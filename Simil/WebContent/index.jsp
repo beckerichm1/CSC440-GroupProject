@@ -49,12 +49,7 @@
 function login(){
     var username = $("#username").val();
     var password = $("#password").val();
-    //var username = document.getElementsByName("username");
-    //var password = document.getElementsByName("password");
-	console.log("IM IN DARN IT");
     var url = "/Simil/LoginController";
-    console.log(username);
-    console.log(password);
     //var rdr_url = "views/Interests/Catalog.jsp";
     $.ajax({
     	type: "POST",

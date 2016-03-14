@@ -21,9 +21,10 @@
         <title>Simil</title>
     </head> 
     <body>      
-        <h1>Welcome, <%= session.getAttribute("username") %></h1>
-        <form action="../TestServlet">            
-             <a href="Settings.jsp">Settings</a>
+        <h1>Welcome, <%= session.getAttribute("username") %></h1>  
+             <a href="views/Interests/Catalog.jsp">Interests</a>
+             <br>
+             <a href="views/Panel/Catalog.jsp">Panels</a>
              <br>
              <div class='section'>
                 <h4>My Panels:</h4>
@@ -37,7 +38,6 @@
 	               <ul id="interest-list"></ul>
 	             </div>   
              </div>                   
-        </form>     
         <form action="/Simil/LogoutController" method="POST">
              <button type="submit" value="Logout">Logout</button>
         </form>
@@ -56,14 +56,15 @@
 	});
 	
 	function displayInfo(data){
-		var $interests = $("#interest-list");
-		var $panels = $("panel-list");
-		for(var x = 0; i < data[0].length; x++){
-			var entry = "<li>" + data[0][x] + "</li>/n"
+		var $interests = $('#interest-list');
+		var $panels = $('#panel-list');
+
+		for(var x = 0; x < data[0].length; x++){
+	         var entry = "<li>" + data[0][x] + "</li>";
 			$interests.append(entry);
 		}
 		for(var i = 0; i < data[1].length; i++){
-			var entry = "<li>" + data[1][i] + "</li>/n"
+			var entry = "<li>" + data[1][i] + "</li>";
 			$panels.append(entry);
 		}
 	}

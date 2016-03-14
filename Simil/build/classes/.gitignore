@@ -1,2 +1,4 @@
-/database/
 /controllers/
+/database/
+/test/
+/utility/

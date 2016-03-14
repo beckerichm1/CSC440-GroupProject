@@ -46,12 +46,16 @@ public class Account {
 		String url = "jdbc:mysql://localhost:3306/simul_db";
 		String user = "manatee";
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
-			String query = "SELECT panelName, interests FROM Panel p JOIN Panel_Account pa JOIN User u"
+		try {
+			System.out.println("in the db account java");
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String query = "SELECT panelName, interests FROM Panel p JOIN Panel_Account pa JOIN User u WHERE"
 					+ " p.panelID = pa.panelID AND pa.username = u.username AND u.username = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			ResultSet rs = stmt.executeQuery(query);
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
 			boolean firstSet = true;
 			String interests = "";
 			while (rs.next()) {

@@ -49,18 +49,26 @@ function populateInterests(data){
 }
 
 function chooseInterests(){
-	var data = { 'interests[]' : []};
+	var interests =new Array();// { 'interests[]' : []};
+	var i = 0;
 	$(":checked").each(function() {
-	  data['interests[]'].push($(this).val());
+	//$("input[name='interests[]']:checked").each(function(){
+	  //interests.push($(this.value));
+	  interests.push($(this).val());
+	  console.log(interests[0]);
+	  i++;
 	});
+	
+	var json = JSON.stringify(interests);
 	$.ajax({
 		url: "/Simil/InterestController",
 		type: "POST",
-		data: data,
+		data: {interests:interests},
+		dataType: 'json',
 		success: function(){return true;},
-		error: function(){
+		/* error: function(){
         	alert('error');
-        }
+        } */
 	});
 }
 </script>
