@@ -6,18 +6,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import utility.SimilConnection;
+
 public class Account {
 	// friend(user1, user2)
 	public static boolean insertAccount(String userName, String fName, String lName, String email, Date birth, String pw) {
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar cal = Calendar.getInstance();
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
-
+			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO user (userName, fName, lName, email, birthday, joined, userType, password, location)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -32,6 +29,7 @@ public class Account {
 			stmt.setString(8, pw);
 			stmt.setInt(9, 1);
 			stmt.executeUpdate();
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
@@ -43,13 +41,8 @@ public class Account {
 	// and the rest of the entries being the user's panels
 	public static ArrayList<String> getAccountDetails(String userName) {
 		ArrayList<String> accountInfo = new ArrayList<>();
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		try {
-			System.out.println("in the db account java");
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
+			Connection conn = SimilConnection.connect();
 
 			// get interests
 			String query = "select interests from User where userName = ?";			
@@ -84,12 +77,8 @@ public class Account {
 
 	public static String getPass(String userName) {
 		String userPass= "";
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
+			Connection conn = SimilConnection.connect();
 			String query = "SELECT password FROM user WHERE userName = ? ;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
@@ -97,7 +86,7 @@ public class Account {
 			while (rs.next()) {
 				userPass = rs.getString("password");
 			}
-
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
@@ -106,17 +95,14 @@ public class Account {
 	
 	public static String getAccountType(String userName){
 		String accountType = "";
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection(url, user, pass);
+			Connection conn = SimilConnection.connect();
 			String query = "SELECT userType FROM User WHERE userName = ? ;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			ResultSet rs = stmt.executeQuery();
 			accountType = rs.getString("userType");
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

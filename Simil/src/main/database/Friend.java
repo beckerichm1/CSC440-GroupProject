@@ -3,19 +3,19 @@ package database;
 import java.sql.*;
 import java.util.ArrayList;
 
+import utility.SimilConnection;
+
 public class Friend {
 	// friend(user1, user2)
 	public boolean insertFriend(String user1, String user2) {
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
-			Class.forName("com.mysql.jdbc.Driver");
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Friend VALUES(?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, user1);
 			stmt.setString(2, user2);
 			stmt.executeUpdate(query);
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
@@ -24,10 +24,8 @@ public class Friend {
 	}
 
 	public boolean deleteFriend(String user1, String user2) {
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Friend WHERE userName1 = ? AND userName2 = ? OR"
 					+ "userName2 = ? AND userName1 = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -36,6 +34,7 @@ public class Friend {
 			stmt.setString(3, user1);
 			stmt.setString(4, user2);
 			stmt.executeUpdate(query);
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
@@ -45,10 +44,8 @@ public class Friend {
 
 	public ArrayList<String> getAllFriends(String userName) {
 		ArrayList<String> friends = new ArrayList<>();
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "SELECT * FROM Friend WHERE userName1 = ? OR userName2 = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
@@ -65,6 +62,7 @@ public class Friend {
 				if (!user2.equals(userName))
 					friends.add(user2);
 			}
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
