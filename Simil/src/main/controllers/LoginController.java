@@ -19,11 +19,14 @@ public class LoginController extends HttpServlet {
 			    String password = request.getParameter("password");
 			    String temp = database.Account.getPass(username);
 			    if((temp).equals(password)){
+			    	//get AccountType
+			    	String accountType = database.Account.getAccountType(username);
 				    // Get the session - if no session exists create one
 				    HttpSession session = request.getSession(true);
 				    // Set some attribute values to the session
-				    // In this case user and password from the request and client
+				    // In this case user and account type from the request and client
 				    session.setAttribute("username", username);
+				    session.setAttribute("accountType", accountType);
 				    //session.setAttribute("password", password);
 				    response.setHeader("Access-Control-Allow-Origin", "*");
 				    response.setContentType("text/html;charset=UTF-8");
