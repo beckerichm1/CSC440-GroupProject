@@ -38,7 +38,7 @@ public class Account {
 		}
 		return true;
 	}
-	
+
 	// Returns an arraylist of string with the first entry being a string of interests
 	// and the rest of the entries being the user's panels
 	public static ArrayList<String> getAccountDetails(String userName) {
@@ -50,24 +50,31 @@ public class Account {
 			System.out.println("in the db account java");
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(url, user, pass);
-			String query = "SELECT panelName, interests FROM Panel p JOIN Panel_Account pa JOIN User u WHERE"
-					+ " p.panelID = pa.panelID AND pa.username = u.username AND u.username = ?;";
+
+			// get interests
+			String query = "select interests from User where userName = ?";			
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
-			boolean firstSet = true;
 			String interests = "";
+			rs.next();
+			// Only get interests once, as they repeat
+			interests = rs.getString("interests");
+			accountInfo.add(interests);
+
+
+			// get panels
+			query = "select panelName from Panel p JOIN Panel_Account pa where "
+					+ "pa.panelID = p.panelID AND pa.userName = ?";			
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			System.out.println(stmt);
+			rs = stmt.executeQuery();
 			while (rs.next()) {
-				// Only get interests once, as they repeat
-				if(firstSet){
-					interests = rs.getString("interests");
-					accountInfo.add(interests);
-					firstSet = false;
-				}
-				String panel = rs.getString("panelName");
-				accountInfo.add(panel);
+				accountInfo.add(rs.getString("panelName"));
 			}
+
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
@@ -88,13 +95,32 @@ public class Account {
 			stmt.setString(1, userName);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-					userPass = rs.getString("password");
-				}
-	
-			} catch (Exception ex) {
+				userPass = rs.getString("password");
+			}
+
+		} catch (Exception ex) {
 			System.out.println(ex);
 		}
 		return userPass;
+	}
+	
+	public static String getAccountType(String userName){
+		String accountType = "";
+		String url = "jdbc:mysql://localhost:3306/simul_db";
+		String user = "manatee";
+		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection(url, user, pass);
+			String query = "SELECT userType FROM User WHERE userName = ? ;";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			ResultSet rs = stmt.executeQuery();
+			accountType = rs.getString("userType");
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return accountType;
 	}
 }
 
