@@ -1,4 +1,4 @@
-/.gitignore
-/controllers/
+/test/
 /database/
+/controllers/
 /utility/

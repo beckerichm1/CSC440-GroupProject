@@ -24,14 +24,16 @@
         <h1>Welcome, <%= session.getAttribute("username") %></h1>  
              <a href="views/Interests/Catalog.jsp">Interests</a>
              <br>
-             <%
+             <%-- <%
+             //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
 	            if (request.getSession().getAttribute("accountType").equals("Administrator")) { 
 	          %>
 	          <a href="#adminMenu">Administrator Tools</a>
+              <br>
 	          <%
 	            }
 	           %>
-             <br>
+ --%>
              <a href="views/Panel/Catalog.jsp">Panels</a>
              <br>
              <div class='section'>

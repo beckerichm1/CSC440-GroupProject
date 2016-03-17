@@ -26,6 +26,7 @@ public class SignUpController extends HttpServlet {
 
 			System.out.println("Beginning to hash the pw");
 			String tempPass = request.getParameter("pw");
+			System.out.println(tempPass);
 			PHasher hash = new PHasher(tempPass);
 			// Send the pass to the database
 			String pass = hash.hash(hash.getSalt());

@@ -1,11 +1,15 @@
 package database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import utility.PHasher;
 import utility.SimilConnection;
 
 public class Account {
@@ -43,7 +47,7 @@ public class Account {
 	// interests
 	// and the rest of the entries being the user's panels
 	public static ArrayList<String> getAccountDetails(String userName) {
-		ArrayList<String> accountInfo = new ArrayList<>();
+		ArrayList<String> accountInfo = new ArrayList<String>();
 		try {
 			Connection conn = SimilConnection.connect();
 
@@ -51,28 +55,33 @@ public class Account {
 			String query = "select interests from User where userName = ?";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 			String interests = "";
 			rs.next();
 			// Only get interests once, as they repeat
 			interests = rs.getString("interests");
-			accountInfo.add(interests);
+			if(!interests.equals("null"))
+				accountInfo.add(interests);
+			
+			//System.out.println(accountInfo);
 
 			// get panels
 			query = "select panelName from Panel p JOIN Panel_Account pa where "
 					+ "pa.panelID = p.panelID AND pa.userName = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			System.out.println(stmt);
 			rs = stmt.executeQuery();
+			String panel;
 			while (rs.next()) {
-				accountInfo.add(rs.getString("panelName"));
+				panel = rs.getString("panelName");
+				if(!panel.equals("null"))
+					accountInfo.add(panel);
 			}
 
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+		System.out.println(accountInfo);
 		return accountInfo;
 	}
 
@@ -102,11 +111,14 @@ public class Account {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			ResultSet rs = stmt.executeQuery();
-			accountType = rs.getString("userType");
+			while (rs.next()) {
+				accountType = rs.getString("userType");
+			}
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+		System.out.println("MY ACCOUNT:" + accountType);
 		return accountType;
 	}
 }

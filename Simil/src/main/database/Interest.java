@@ -68,7 +68,7 @@ public class Interest {
 				interests += (interestsArray[i] + "_");
 			}
 			Connection conn = SimilConnection.connect();
-			String query = "UPDATE User SET interests = concat(interests, ?) WHERE userName = ?;";
+			String query = "UPDATE User SET interests = concat(IFNULL(interests,''), ?) WHERE userName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, interests);
 			stmt.setString(2, username);
