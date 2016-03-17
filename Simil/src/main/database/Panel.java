@@ -13,7 +13,7 @@ public class Panel {
 
 	public static ArrayList<String[]> getAllPanels() {
 		ArrayList<String[]> panels = new ArrayList<>();
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			System.out.println("Connection has been made.");
 			Statement stmt = (Statement) conn.createStatement();
@@ -35,11 +35,11 @@ public class Panel {
 		}
 		return panels;
 	}
-	
+
 	// panel(ID, panelName, desc, related, moderators, creator)
-	public boolean insertPanel(String panelName, String panelDescription, 
-			String relatedPanels, String panelModerators, String panelCreator){
-		try{
+	public boolean insertPanel(String panelName, String panelDescription, String relatedPanels, String panelModerators,
+			String panelCreator) {
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Panel "
 					+ "(panelName, panelDescription, relatedPanels, panelModerators, panelCreator)"
@@ -52,24 +52,22 @@ public class Panel {
 			stmt.setString(5, panelCreator);
 			stmt.execute(query);
 			conn.close();
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
 		}
 		return true;
 	}
-	
+
 	// TODO: Pass this all values, or the ID?
-	public boolean deleteLocation(){
-		try{
+	public boolean deleteLocation() {
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Panel WHERE ....";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.execute(query);
 			conn.close();
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
 		}

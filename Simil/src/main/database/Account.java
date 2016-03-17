@@ -10,7 +10,8 @@ import utility.SimilConnection;
 
 public class Account {
 	// friend(user1, user2)
-	public static boolean insertAccount(String userName, String fName, String lName, String email, Date birth, String pw) {
+	public static boolean insertAccount(String userName, String fName, String lName, String email, Date birth,
+			String pw) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Calendar cal = Calendar.getInstance();
 		try {
@@ -18,7 +19,8 @@ public class Account {
 			String query = "INSERT INTO user (userName, fName, lName, email, birthday, joined, userType, password, location)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
-			//System.out.println("User name: " + userName + " " + fName + " " + lName + " " + email + " " + birth);
+			// System.out.println("User name: " + userName + " " + fName + " " +
+			// lName + " " + email + " " + birth);
 			stmt.setString(1, userName);
 			stmt.setString(2, fName);
 			stmt.setString(3, lName);
@@ -37,7 +39,8 @@ public class Account {
 		return true;
 	}
 
-	// Returns an arraylist of string with the first entry being a string of interests
+	// Returns an arraylist of string with the first entry being a string of
+	// interests
 	// and the rest of the entries being the user's panels
 	public static ArrayList<String> getAccountDetails(String userName) {
 		ArrayList<String> accountInfo = new ArrayList<>();
@@ -45,7 +48,7 @@ public class Account {
 			Connection conn = SimilConnection.connect();
 
 			// get interests
-			String query = "select interests from User where userName = ?";			
+			String query = "select interests from User where userName = ?";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			System.out.println(stmt);
@@ -56,10 +59,9 @@ public class Account {
 			interests = rs.getString("interests");
 			accountInfo.add(interests);
 
-
 			// get panels
 			query = "select panelName from Panel p JOIN Panel_Account pa where "
-					+ "pa.panelID = p.panelID AND pa.userName = ?";			
+					+ "pa.panelID = p.panelID AND pa.userName = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			System.out.println(stmt);
@@ -74,9 +76,8 @@ public class Account {
 		return accountInfo;
 	}
 
-
 	public static String getPass(String userName) {
-		String userPass= "";
+		String userPass = "";
 		try {
 			Connection conn = SimilConnection.connect();
 			String query = "SELECT password FROM user WHERE userName = ? ;";
@@ -92,8 +93,8 @@ public class Account {
 		}
 		return userPass;
 	}
-	
-	public static String getAccountType(String userName){
+
+	public static String getAccountType(String userName) {
 		String accountType = "";
 		try {
 			Connection conn = SimilConnection.connect();
@@ -109,4 +110,3 @@ public class Account {
 		return accountType;
 	}
 }
-

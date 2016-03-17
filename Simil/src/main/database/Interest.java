@@ -7,33 +7,32 @@ import utility.SimilConnection;
 
 public class Interest {
 	// This will need to be changed to exclude interests the user already has
-		public static ArrayList<String> getAllInterests() {
-			ArrayList<String> interests = new ArrayList<>();
-			System.out.println("Attempting to make a connection...");
-			try{
-				Connection conn = SimilConnection.connect();
-				System.out.println("Connection has been made.");
-				Statement stmt = (Statement) conn.createStatement();
-				String showInterests = "SELECT * FROM Interest;";
-				ResultSet rs = stmt.executeQuery(showInterests);
-				while (rs.next()) {
-					String name = rs.getString("interestName");
-					interests.add(name);
-					//System.out.println("Interested User " + name);
-				}
-				System.out.println("Finished getting interests.");
-				conn.close();
-			} catch (Exception ex) {
-				System.out.println("Connection failed...");
-				System.out.println(ex);
+	public static ArrayList<String> getAllInterests() {
+		ArrayList<String> interests = new ArrayList<>();
+		System.out.println("Attempting to make a connection...");
+		try {
+			Connection conn = SimilConnection.connect();
+			System.out.println("Connection has been made.");
+			Statement stmt = (Statement) conn.createStatement();
+			String showInterests = "SELECT * FROM Interest;";
+			ResultSet rs = stmt.executeQuery(showInterests);
+			while (rs.next()) {
+				String name = rs.getString("interestName");
+				interests.add(name);
+				// System.out.println("Interested User " + name);
 			}
-			return interests;
+			System.out.println("Finished getting interests.");
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println("Connection failed...");
+			System.out.println(ex);
 		}
-	
-	
+		return interests;
+	}
+
 	// friend(user1, user2)
-	public boolean insertInterest(String interest) {		
-		try{
+	public boolean insertInterest(String interest) {
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Interest VALUES(?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -48,7 +47,7 @@ public class Interest {
 	}
 
 	public boolean deleteInterest(String interest) {
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Interest WHERE interestName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -62,11 +61,10 @@ public class Interest {
 		return true;
 	}
 
-
 	public static boolean addInterests(String username, String[] interestsArray) {
 		try {
 			String interests = "";
-			for(int i = 0; i < interestsArray.length; i++){
+			for (int i = 0; i < interestsArray.length; i++) {
 				interests += (interestsArray[i] + "_");
 			}
 			Connection conn = SimilConnection.connect();
@@ -83,6 +81,5 @@ public class Interest {
 		}
 		return true;
 	}
-	
-	
+
 }
