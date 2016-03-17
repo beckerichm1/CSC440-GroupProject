@@ -7,17 +7,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import utility.SimilConnection;
+
 public class Panel {
 
 	public static ArrayList<String[]> getAllPanels() {
 		ArrayList<String[]> panels = new ArrayList<>();
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		System.out.println("Attempting to make a connection...");
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = (Connection) DriverManager.getConnection(url, user, pass);
+			Connection conn = SimilConnection.connect();
 			System.out.println("Connection has been made.");
 			Statement stmt = (Statement) conn.createStatement();
 			String showPanels = "SELECT * FROM Panel;";
@@ -31,6 +28,7 @@ public class Panel {
 				panels.add(panel);
 			}
 			System.out.println("Finished getting panels.");
+			conn.close();
 		} catch (Exception ex) {
 			System.out.println("Connection failed...");
 			System.out.println(ex);
@@ -41,10 +39,8 @@ public class Panel {
 	// panel(ID, panelName, desc, related, moderators, creator)
 	public boolean insertPanel(String panelName, String panelDescription, 
 			String relatedPanels, String panelModerators, String panelCreator){
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try(Connection conn = DriverManager.getConnection(url, user, pass)){
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Panel "
 					+ "(panelName, panelDescription, relatedPanels, panelModerators, panelCreator)"
 					+ " VALUES(?, ?, ?, ?, ?);";
@@ -55,6 +51,7 @@ public class Panel {
 			stmt.setString(4, panelModerators);
 			stmt.setString(5, panelCreator);
 			stmt.execute(query);
+			conn.close();
 		}
 		catch(Exception ex){
 			System.out.println(ex);
@@ -65,13 +62,12 @@ public class Panel {
 	
 	// TODO: Pass this all values, or the ID?
 	public boolean deleteLocation(){
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try(Connection conn = DriverManager.getConnection(url, user, pass)){
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Panel WHERE ....";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.execute(query);
+			conn.close();
 		}
 		catch(Exception ex){
 			System.out.println(ex);

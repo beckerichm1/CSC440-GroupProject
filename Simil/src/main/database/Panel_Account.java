@@ -7,13 +7,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import utility.SimilConnection;
+
 public class Panel_Account {
 		// panel_account(panelID, user, dateJoined, contrib, upvote)
 		public boolean insertPanel_Account(int panelID, String userName, String dateJoined, int contribution, int upVote){
-			String url = "jdbc:mysql://localhost:3306/simul_db";
-			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-			try(Connection conn = DriverManager.getConnection(url, user, pass)){
+			try{
+				Connection conn = SimilConnection.connect();
 				Class.forName("com.mysql.jdbc.Driver");
 				String query = "INSERT INTO Panel_Account VALUES(?, ?, ?, ?, ?);";
 				PreparedStatement stmt = conn.prepareStatement(query);
@@ -23,6 +23,7 @@ public class Panel_Account {
 				stmt.setInt(4, contribution);
 				stmt.setInt(5, upVote);
 				stmt.executeUpdate(query);
+				conn.close();
 			}
 			catch(Exception ex){
 				System.out.println(ex);
@@ -32,15 +33,14 @@ public class Panel_Account {
 		}
 		
 		public boolean deletePanel_Account(int panelID, String userName){
-			String url = "jdbc:mysql://localhost:3306/simul_db";
-			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-			try(Connection conn = DriverManager.getConnection(url, user, pass)){
+			try{
+				Connection conn = SimilConnection.connect();
 				String query = "DELETE FROM panel_account where panelID = ? AND userName = ?;";
 				PreparedStatement stmt = conn.prepareStatement(query);
 				stmt.setInt(1, panelID);
 				stmt.setString(2, userName);
 				stmt.executeUpdate(query);
+				conn.close();
 			}
 			catch(Exception ex){
 				System.out.println(ex);
@@ -53,10 +53,8 @@ public class Panel_Account {
 		// TODO: Would ideally return what we need, just panels perhaps.
 		public ArrayList<Integer> getAllPanelsFromAccount(String userName){
 			ArrayList<Integer> panels = new ArrayList<>();
-			String url = "jdbc:mysql://localhost:3306/simul_db";
-			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-			try(Connection conn = DriverManager.getConnection(url, user, pass)){
+			try{
+				Connection conn = SimilConnection.connect();
 				String query = "SELECT panelID FROM panel_account WHERE userName1 = ?;";
 				PreparedStatement stmt = conn.prepareStatement(query);
 				stmt.setString(1, userName);
@@ -64,6 +62,7 @@ public class Panel_Account {
 				while(rs.next()){
 					panels.add(rs.getInt("panelID"));
 				}
+				conn.close();
 			}
 			catch(Exception ex){
 				System.out.println(ex);
@@ -73,10 +72,8 @@ public class Panel_Account {
 		
 		public ArrayList<String> getAllAccountsFromPanel(int panelID){
 			ArrayList<String> accounts = new ArrayList<>();
-			String url = "jdbc:mysql://localhost:3306/simul_db";
-			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-			try(Connection conn = DriverManager.getConnection(url, user, pass)){
+			try{
+				Connection conn = SimilConnection.connect();
 				String query = "SELECT userName FROM panel_account WHERE panelID = ?;";
 				PreparedStatement stmt = conn.prepareStatement(query);
 				stmt.setInt(1, panelID);
@@ -84,6 +81,7 @@ public class Panel_Account {
 				while(rs.next()){
 					accounts.add(rs.getString("userName"));
 				}
+				conn.close();
 			}
 			catch(Exception ex){
 				System.out.println(ex);
@@ -92,14 +90,10 @@ public class Panel_Account {
 		}
 
 		public static boolean insertPanelAccounts(String username, String[] array) {
-			String url = "jdbc:mysql://localhost:3306/simul_db";
-			String user = "manatee";
-			String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			Calendar cal = Calendar.getInstance();
 			try {
-				Class.forName("com.mysql.jdbc.Driver");
-				Connection conn = DriverManager.getConnection(url, user, pass);
+				Connection conn = SimilConnection.connect();
 				for(int i = 0; i < array.length; i++){
 					String query = "INSERT INTO Panel_Account (panelID, userName, dateJoined)"
 							+ " VALUES (?, ?, ?);";

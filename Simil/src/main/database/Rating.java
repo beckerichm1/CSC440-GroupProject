@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import utility.SimilConnection;
+
 public class Rating {
 	public boolean insertRating(){
 		String city = "";
@@ -13,10 +15,8 @@ public class Rating {
 		String country = "";
 		if(existingLocation(city, state, zip, country))
 			return true;
-		String url = "jdbc:mysql://localhost:3306/simul_db";
-		String user = "manatee";
-		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try(Connection conn = DriverManager.getConnection(url, user, pass)){
+		try{
+			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Location (city, state, zip, country) VALUES(?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, city);
@@ -24,6 +24,7 @@ public class Rating {
 			stmt.setString(3, zip);
 			stmt.setString(4, country);
 			stmt.execute(query);
+			conn.close();
 		}
 		catch(Exception ex){
 			System.out.println(ex);
