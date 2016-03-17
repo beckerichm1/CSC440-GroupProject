@@ -8,14 +8,14 @@ import java.sql.ResultSet;
 import utility.SimilConnection;
 
 public class Rating {
-	public boolean insertRating(){
+	public boolean insertRating() {
 		String city = "";
 		String state = "";
 		String zip = "";
 		String country = "";
-		if(existingLocation(city, state, zip, country))
+		if (existingLocation(city, state, zip, country))
 			return true;
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Location (city, state, zip, country) VALUES(?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -25,37 +25,35 @@ public class Rating {
 			stmt.setString(4, country);
 			stmt.execute(query);
 			conn.close();
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
 		}
 		return true;
 	}
-	
+
 	// TODO: Pass this all values, or the ID?
-	public boolean deleteLocation(String city, String state, String zip, String country){
+	public boolean deleteLocation(String city, String state, String zip, String country) {
 		String url = "jdbc:mysql://localhost:3306/simul_db";
 		String user = "manatee";
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try(Connection conn = DriverManager.getConnection(url, user, pass)){
+		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
 			String query = "DELETE FROM Location WHERE ....";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.execute(query);
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
 		}
 		return true;
 	}
-	
-	public boolean existingLocation(String city, String state, String zip, String country){
+
+	public boolean existingLocation(String city, String state, String zip, String country) {
 		String url = "jdbc:mysql://localhost:3306/simul_db";
 		String user = "manatee";
 		String pass = "Th3_hug3M4n4t33_str1k3s_4gA1N";
-		try(Connection conn = DriverManager.getConnection(url, user, pass)){
-			//SELECT EXISTS(SELECT 1 FROM location WHERE locationID = 5)
+		try (Connection conn = DriverManager.getConnection(url, user, pass)) {
+			// SELECT EXISTS(SELECT 1 FROM location WHERE locationID = 5)
 			String query = "SELECT EXISTS(SELECT 1 FROM location WHERE"
 					+ "city = ? AND state = ? AND zip = ? AND country = ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -65,10 +63,9 @@ public class Rating {
 			stmt.setString(4, country);
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
-			if(rs.getInt(1) == 1)
+			if (rs.getInt(1) == 1)
 				return true;
-		}
-		catch(Exception ex){
+		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;
 		}

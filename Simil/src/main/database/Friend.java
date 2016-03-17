@@ -8,7 +8,7 @@ import utility.SimilConnection;
 public class Friend {
 	// friend(user1, user2)
 	public boolean insertFriend(String user1, String user2) {
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Friend VALUES(?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -24,7 +24,7 @@ public class Friend {
 	}
 
 	public boolean deleteFriend(String user1, String user2) {
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Friend WHERE userName1 = ? AND userName2 = ? OR"
 					+ "userName2 = ? AND userName1 = ?;";
@@ -44,7 +44,7 @@ public class Friend {
 
 	public ArrayList<String> getAllFriends(String userName) {
 		ArrayList<String> friends = new ArrayList<>();
-		try{
+		try {
 			Connection conn = SimilConnection.connect();
 			String query = "SELECT * FROM Friend WHERE userName1 = ? OR userName2 = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);

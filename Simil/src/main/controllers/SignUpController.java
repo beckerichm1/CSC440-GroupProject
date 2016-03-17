@@ -13,12 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import utility.PHasher;
 
-
 @SuppressWarnings("serial")
 @WebServlet("/SignUpController")
 public class SignUpController extends HttpServlet {
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
-	{
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 		Date parsed;
 		try {
@@ -30,14 +29,14 @@ public class SignUpController extends HttpServlet {
 			PHasher hash = new PHasher(tempPass);
 			// Send the pass to the database
 			String pass = hash.hash(hash.getSalt());
-			
+
 			System.out.println("Beginning the insert of new user.");
-			database.Account.insertAccount((String)request.getParameter("userName"), (String)request.getParameter("fName"), 
-					(String)request.getParameter("lName"), (String)request.getParameter("email"), 
-					birth, pass);
+			database.Account.insertAccount((String) request.getParameter("userName"),
+					(String) request.getParameter("fName"), (String) request.getParameter("lName"),
+					(String) request.getParameter("email"), birth, pass);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}  
+	}
 }
