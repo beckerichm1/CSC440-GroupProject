@@ -1,13 +1,14 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONObject;
 
 import utility.PHasher;
 
@@ -34,10 +35,15 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("username", username);
 				session.setAttribute("accountType", accountType);
 				// session.setAttribute("password", password);
-				response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setContentType("text/html;charset=UTF-8");
-				response.getWriter().write("Success");
+				//response.setHeader("Access-Control-Allow-Origin", "*");
+				response.setContentType("json");
+				response.setStatus(response.SC_ACCEPTED);
 				response.sendRedirect("/Simil/views/Home/UserHome.jsp");
+				
+			}
+			else{
+				response.sendRedirect("/Simil");
+				//Need to send invalid password message with it
 				
 			}
 		} catch (IOException e) {

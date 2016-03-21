@@ -4,39 +4,39 @@
 <script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <html>
 <head>
+ <%
+           try{
+               if (request.getSession().getAttribute("username") == null) {
+               }
+               else{
+       %>
+               <jsp:forward page="views/Home/UserHome.jsp" />
+
+       <%     
+               }
+           }
+           catch(Exception e){
+           e.printStackTrace();
+           }
+       %>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link type="text/css" href="/Simil/supp/css/simil.css">
 <title>Simil</title>
 </head>
 <body>
     <div id ="homeWrapper">
-    <%
-	    try{
-	        if (request.getSession().getAttribute("username") == null) {
-	        }
-	        else{
-    %>
-            <jsp:forward page="views/Home/UserHome.jsp" />
-	        	  <!--  System.out.println("OUTSIDE");
-	        	   System.out.println(request.getSession().getAttribute("username")); -->
-    <%	   
-	        }
-	    }
-	    catch(Exception e){
-	    e.printStackTrace();
-	    }
-    %>
 	    <div id="homeDiv">
 	        <h1>Welcome to Simil!</h1>
 	    </div>
 	    <div id="loginForm">
-	       <form onsubmit="login()" method="POST">
+	       <form action="/Simil/LoginController" onsubmit="return login()" method="POST">
 	           <h3>Log In</h3>
 	           <input type="text" id="username" name="username" placeholder="username" required>
 	           <br>
                <input type="password" id="password" name="password" placeholder="password" required>
                <br>
-               <input type="submit" value="submit">
+               <button type="submit" value="Log In">Log In</button>
 	       </form>
 	       
 	       <br>
@@ -55,16 +55,17 @@ function login(){
     $.ajax({
     	type: "POST",
         url: url,
-        datatype: 'text/html',
+        datatype: 'json',
         data: {"username": username, "password": password},
         success: function(data){
-        	console.log(data);
+        	//console.log(data);
         },
         error: function(data){
-            console.log(data);
+            //console.log(data);
             
         }
     });
+
     
 }
 </script>

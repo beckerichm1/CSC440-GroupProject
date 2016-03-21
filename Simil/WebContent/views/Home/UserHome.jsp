@@ -22,9 +22,9 @@
     </head> 
     <body>      
         <h1>Welcome, <%= session.getAttribute("username") %></h1>  
-             <a href="views/Interests/Catalog.jsp">Interests</a>
+             <a href="/Simil/views/Interests/Catalog.jsp">Interests</a>
              <br>
-             <%-- <%
+             <%
              //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
 	            if (request.getSession().getAttribute("accountType").equals("Administrator")) { 
 	          %>
@@ -33,8 +33,8 @@
 	          <%
 	            }
 	           %>
- --%>
-             <a href="views/Panel/Catalog.jsp">Panels</a>
+
+             <a href="/Simil/views/Panel/Catalog.jsp">Panels</a>
              <br>
              <div class='section'>
                 <h4>My Panels:</h4>

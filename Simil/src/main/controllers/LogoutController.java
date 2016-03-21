@@ -17,7 +17,7 @@ public class LogoutController extends HttpServlet {
 		session.invalidate();
 		System.out.println(session.toString());
 		try {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/Simil");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

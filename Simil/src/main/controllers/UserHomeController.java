@@ -27,8 +27,8 @@ public class UserHomeController extends HttpServlet {
 		JSONArray interests;
 		String[] interestsArray = {};
 		JSONArray panels;
-		System.out.println("SIZE" + accountInfo.size());
-		System.out.println("AC INF: " + accountInfo);
+		//System.out.println("SIZE" + accountInfo.size());
+		//System.out.println("AC INF: " + accountInfo);
 		if (accountInfo.size() <= 0){
 			interests = new JSONArray();
 			panels = new JSONArray();
