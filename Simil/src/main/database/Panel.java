@@ -14,7 +14,6 @@ public class Panel {
 		ArrayList<String[]> panels = new ArrayList<>();
 		try {
 			Connection conn = SimilConnection.connect();
-			System.out.println("Connection has been made.");
 			Statement stmt = (Statement) conn.createStatement();
 			String showPanels = "SELECT * FROM Panel;";
 			ResultSet rs = stmt.executeQuery(showPanels);
@@ -26,10 +25,8 @@ public class Panel {
 				panel[1] = desc;
 				panels.add(panel);
 			}
-			System.out.println("Finished getting panels.");
 			conn.close();
 		} catch (Exception ex) {
-			System.out.println("Connection failed...");
 			System.out.println(ex);
 		}
 		return panels;
@@ -92,23 +89,21 @@ public class Panel {
 			}
 			conn.close();
 		}catch (Exception ex) {
-			System.out.println("Connection failed...");
 			System.out.println(ex);
 		}
 		return panels;
 	}
 
 	public static ArrayList<String[]> getNonUserPanels(String userName){
-		String query = "SELECT * FROM( select pa.panelID  from panel_account pa "
+		String query = "SELECT panelName, panelDesc FROM( select pa.panelID  from panel_account pa "
 				+ "WHERE pa.userName = ?) AS A RIGHT JOIN(select * from panel p)"
 				+ "AS B ON A.panelID = B.panelID WHERE A.panelID is null;";
 		ArrayList<String[]> panels = new ArrayList<>();
 		try{
 			Connection conn = SimilConnection.connect();
-			System.out.println("Connection has been made.");
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String[] panel = new String[2];
 				String name = rs.getString("panelName");
@@ -117,11 +112,10 @@ public class Panel {
 				panel[1] = desc;
 				panels.add(panel);
 			}
-			System.out.println("Finished getting panels.");
 			conn.close();
 		} catch (Exception ex) {
-			System.out.println("Connection failed...");
-			System.out.println(ex);
+			ex.printStackTrace();
+			//System.out.println(ex);
 		}
 		return panels;
 	}

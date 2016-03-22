@@ -31,8 +31,8 @@
             <div id="logo">Simil!</div>
         </div>
 	    <div class="formBox">
-	       
-	       <form action="/Simil/LoginController" onsubmit="return login()" method="POST">
+	       <!-- Changing onsubmit from return login() to just login() -->
+	       <form action="/Simil/LoginController" onsubmit="login()" method="POST">
 	           <h3>Sign In</h3>
 	           
 	           <input type="text" id="username" name="username" placeholder="username" required>

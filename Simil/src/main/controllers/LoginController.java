@@ -21,7 +21,6 @@ public class LoginController extends HttpServlet {
 			// Compare the given pw and pw from db using PHasher methods
 			PHasher hash = new PHasher(givenPass);
 			String storedPass = database.Account.getPass(username);
-			
 			if (hash.match(storedPass, givenPass)) {
 				String accountType = database.Account.getAccountType(username);
 				// if((storedPass).equals(givenPass)){

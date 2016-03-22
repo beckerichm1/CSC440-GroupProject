@@ -17,23 +17,28 @@ public class InterestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Beginning the retrieval of interests.");
-		
+
 		// Get all interests available
 		ArrayList<String> allInterests = database.Interest.getAllInterests();
-		
-		
+		ArrayList<String> interests = new ArrayList<>();
+
 		// Get interests the user already has
 		String tempUserInterests = database.Interest.getUserInterests(
 				(String) request.getSession().getAttribute("username"));
 		// Parse the user interests into an arraylist
-		List<String> userInterests = new ArrayList<String>(Arrays.asList(tempUserInterests.split("_")));
-		ArrayList<String> interests = new ArrayList<>();
-		// Get an arraylist of all interests the user doesn't yet have.
-		for(int i = 0; i < allInterests.size(); i++){
-			if(!userInterests.contains(allInterests.get(i)))
-				interests.add(allInterests.get(i));
+		if(tempUserInterests != null){
+			List<String> userInterests = new ArrayList<String>(Arrays.asList(tempUserInterests.split("_")));
+			interests = new ArrayList<>();
+			// Get an arraylist of all interests the user doesn't yet have.
+			for(int i = 0; i < allInterests.size(); i++){
+				if(!userInterests.contains(allInterests.get(i)))
+					interests.add(allInterests.get(i));
+			}
 		}
-		
+		else{
+			interests = allInterests;
+		}
+
 		// Store these interests in a JSONArray object to be returned to the view.
 		JSONArray ar = new JSONArray(interests);
 		String json = ar.toString();
