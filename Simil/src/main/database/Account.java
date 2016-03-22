@@ -77,6 +77,7 @@ public class Account {
 				if(!panel.equals("null"))
 					accountInfo.add(panel);
 			}
+			accountInfo.addAll(Panel.getUserPanels(userName));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

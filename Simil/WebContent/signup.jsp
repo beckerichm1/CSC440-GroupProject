@@ -78,7 +78,7 @@
 	               <input type="submit">
            </form>
         </div>
-        <a href="javascript:goBack()">Go Back</a>
+        <a href="/Simil">Go Back</a>
     </div>
 </body>
 </html>
@@ -99,9 +99,6 @@
 		});
 	}
 	
-	function goBack() {
-	    window.history.back();
-	}
 	
 	
 	function validateSignUpForm() {
