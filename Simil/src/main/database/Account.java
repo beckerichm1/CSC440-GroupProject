@@ -63,21 +63,7 @@ public class Account {
 			if(!interests.equals("null"))
 				accountInfo.add(interests);
 			
-			//System.out.println(accountInfo);
-
-			// get panels
-			query = "select panelName from Panel p JOIN Panel_Account pa where "
-					+ "pa.panelID = p.panelID AND pa.userName = ?";
-			stmt = conn.prepareStatement(query);
-			stmt.setString(1, userName);
-			rs = stmt.executeQuery();
-			String panel;
-			while (rs.next()) {
-				panel = rs.getString("panelName");
-				if(!panel.equals("null"))
-					accountInfo.add(panel);
-			}
-
+			accountInfo.addAll(Panel.getUserPanels(userName));
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}

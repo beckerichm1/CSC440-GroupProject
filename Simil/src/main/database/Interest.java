@@ -81,5 +81,26 @@ public class Interest {
 		}
 		return true;
 	}
+	
+	public static String getUserInterests(String userName) {
+		String interests = "";
+		try{
+			Connection conn = SimilConnection.connect();
+			// get interests
+			String query = "select interests from User where userName = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			// Only get interests once, as they repeat
+			interests = rs.getString("interests");
+			conn.close();
+		}catch(Exception ex){
+			System.out.println(ex);;
+			return null;
+		}
+		return interests;
+	}
 
 }
