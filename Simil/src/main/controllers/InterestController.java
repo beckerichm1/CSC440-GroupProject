@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,8 +21,21 @@ public class InterestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Beginning the retrieval of interests.");
-		ArrayList<String> interests = database.Interest.getAllInterests();
-
+		// Get all interests available
+		ArrayList<String> allInterests = database.Interest.getAllInterests();
+		// Get interests the user already has
+		String tempUserInterests = database.Interest.getUserInterests(
+				(String) request.getSession().getAttribute("username"));
+		// Parse the user interests into an arraylist
+		List<String> userInterests = new ArrayList<String>(Arrays.asList(tempUserInterests.split("_")));
+		ArrayList<String> interests = new ArrayList<>();
+		// Get an arraylist of all interests the user doesn't yet have.
+		for(int i = 0; i < allInterests.size(); i++){
+			if(!userInterests.contains(allInterests.get(i)))
+				interests.add(allInterests.get(i));
+		}
+		
+		// Store these interests in a JSONArray object to be returned to the view.
 		JSONArray ar = new JSONArray(interests);
 		String json = ar.toString();
 

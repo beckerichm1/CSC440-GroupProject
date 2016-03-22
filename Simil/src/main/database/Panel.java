@@ -60,7 +60,7 @@ public class Panel {
 	}
 
 	// TODO: Pass this all values, or the ID?
-	public boolean deleteLocation() {
+	public boolean deletePanel() {
 		try {
 			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM Panel WHERE ....";
@@ -72,5 +72,30 @@ public class Panel {
 			return false;
 		}
 		return true;
+	}
+
+	public static ArrayList<String> getUserPanels(String userName) {
+		ArrayList<String> panels = new ArrayList<>();
+		try {
+			String query = "";
+			Connection conn = SimilConnection.connect();
+			// get panels
+			query = "select panelName from Panel p JOIN Panel_Account pa where "
+					+ "pa.panelID = p.panelID AND pa.userName = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			ResultSet rs = stmt.executeQuery();
+			String panel;
+			while (rs.next()) {
+				panel = rs.getString("panelName");
+				if(!panel.equals("null"))
+					panels.add(panel);
+			}
+			conn.close();
+		}catch (Exception ex) {
+			System.out.println("Connection failed...");
+			System.out.println(ex);
+		}
+		return panels;
 	}
 }

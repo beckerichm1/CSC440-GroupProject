@@ -15,8 +15,15 @@ public class PanelController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Beginning the retrieval of panels.");
-		ArrayList<String[]> panels = database.Panel.getAllPanels();
-
+		ArrayList<String[]> allPanels = database.Panel.getAllPanels();
+		ArrayList<String> tempUserPanels = database.Panel.getUserPanels(
+				(String) request.getSession().getAttribute("username"));
+		
+		ArrayList<String[]> panels = new ArrayList<>();
+		for(int i = 0; i < allPanels.size(); i++){
+			if(!tempUserPanels.contains(allPanels.get(i)[0]))
+				panels.add(allPanels.get(i));
+		}
 		// Turn the 2d array into a JSONArray of JSONArrays
 		JSONArray ar = new JSONArray();
 		for (int i = 0; i < panels.size(); i++) {
