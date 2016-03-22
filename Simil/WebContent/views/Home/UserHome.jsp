@@ -34,7 +34,7 @@
 	            }
 	           %>
 
-             <a href="/Simil/views/Panel/Catalog.jsp">Panels</a>
+             <a href="/Simil/views/Panels/Catalog.jsp">Panels</a>
              <br>
              <div class='section'>
                 <h4>My Panels:</h4>

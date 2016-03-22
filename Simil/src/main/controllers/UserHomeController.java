@@ -23,12 +23,9 @@ public class UserHomeController extends HttpServlet {
 		// The rest of the entries are the user's panels
 		// Parse the interests and put them into a jsonarray, then send back a
 		// 2d jsonarray
-		//System.out.println(accountInfo);
 		JSONArray interests;
 		String[] interestsArray = {};
 		JSONArray panels;
-		//System.out.println("SIZE" + accountInfo.size());
-		//System.out.println("AC INF: " + accountInfo);
 		if (accountInfo.size() <= 0){
 			interests = new JSONArray();
 			panels = new JSONArray();

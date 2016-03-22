@@ -60,14 +60,26 @@ public class Account {
 			rs.next();
 			// Only get interests once, as they repeat
 			interests = rs.getString("interests");
-			if(!interests.equals("null"))
+			if(interests != null)
 				accountInfo.add(interests);
 			
-			accountInfo.addAll(Panel.getUserPanels(userName));
+			//System.out.println(accountInfo);
+
+			// get panels
+			query = "select panelName from Panel p JOIN Panel_Account pa where "
+					+ "pa.panelID = p.panelID AND pa.userName = ?";
+			stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			rs = stmt.executeQuery();
+			String panel;
+			while (rs.next()) {
+				panel = rs.getString("panelName");
+				if(!panel.equals("null"))
+					accountInfo.add(panel);
+			}
 		} catch (Exception ex) {
-			System.out.println(ex);
+			ex.printStackTrace();
 		}
-		System.out.println(accountInfo);
 		return accountInfo;
 	}
 

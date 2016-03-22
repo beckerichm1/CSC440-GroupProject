@@ -30,9 +30,6 @@ public class SignUpController extends HttpServlet {
 			PHasher hash = new PHasher(tempPass);
 			// Send the pass to the database
 			String pass = hash.hash(hash.getSalt());
-
-			System.out.println(tempPass);
-			System.out.println(pass);
 			
 			System.out.println("Beginning the insert of new user.");
 			database.Account.insertAccount((String) request.getParameter("userName"),
