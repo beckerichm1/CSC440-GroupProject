@@ -64,8 +64,7 @@ function login(){
         	//console.log(data);
         },
         error: function(data){
-            //console.log(data);
-            
+            alert("Couldn't log in. \nCheck your username and password.")
         }
     });
 

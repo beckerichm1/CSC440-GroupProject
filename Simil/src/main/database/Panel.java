@@ -98,4 +98,32 @@ public class Panel {
 		}
 		return panels;
 	}
+
+	public static ArrayList<String[]> getNonUserPanels(String userName){
+		String query = "SELECT * FROM( select pa.panelID  from panel_account pa "
+				+ "WHERE pa.userName = ?) AS A RIGHT JOIN(select * from panel p)"
+				+ "AS B ON A.panelID = B.panelID WHERE A.panelID is null;";
+		ArrayList<String[]> panels = new ArrayList<>();
+		try{
+			Connection conn = SimilConnection.connect();
+			System.out.println("Connection has been made.");
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				String[] panel = new String[2];
+				String name = rs.getString("panelName");
+				String desc = rs.getString("panelDesc");
+				panel[0] = name;
+				panel[1] = desc;
+				panels.add(panel);
+			}
+			System.out.println("Finished getting panels.");
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println("Connection failed...");
+			System.out.println(ex);
+		}
+		return panels;
+	}
 }
