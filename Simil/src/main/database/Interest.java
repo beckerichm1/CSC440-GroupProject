@@ -9,22 +9,17 @@ public class Interest {
 	// This will need to be changed to exclude interests the user already has
 	public static ArrayList<String> getAllInterests() {
 		ArrayList<String> interests = new ArrayList<>();
-		System.out.println("Attempting to make a connection...");
 		try {
 			Connection conn = SimilConnection.connect();
-			System.out.println("Connection has been made.");
 			Statement stmt = (Statement) conn.createStatement();
 			String showInterests = "SELECT * FROM Interest;";
 			ResultSet rs = stmt.executeQuery(showInterests);
 			while (rs.next()) {
 				String name = rs.getString("interestName");
 				interests.add(name);
-				// System.out.println("Interested User " + name);
 			}
-			System.out.println("Finished getting interests.");
 			conn.close();
 		} catch (Exception ex) {
-			System.out.println("Connection failed...");
 			System.out.println(ex);
 		}
 		return interests;
@@ -72,7 +67,6 @@ public class Interest {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, interests);
 			stmt.setString(2, username);
-			System.out.println(stmt);
 			stmt.executeUpdate();
 			conn.close();
 		} catch (Exception ex) {
@@ -90,7 +84,6 @@ public class Interest {
 			String query = "select interests from User where userName = ?";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			System.out.println(stmt);
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			// Only get interests once, as they repeat

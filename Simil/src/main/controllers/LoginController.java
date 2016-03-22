@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import utility.PHasher;
 @SuppressWarnings("serial")
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
+	@SuppressWarnings("static-access")
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
@@ -21,7 +21,6 @@ public class LoginController extends HttpServlet {
 			// Compare the given pw and pw from db using PHasher methods
 			PHasher hash = new PHasher(givenPass);
 			String storedPass = database.Account.getPass(username);
-			
 			if (hash.match(storedPass, givenPass)) {
 				String accountType = database.Account.getAccountType(username);
 				// if((storedPass).equals(givenPass)){
