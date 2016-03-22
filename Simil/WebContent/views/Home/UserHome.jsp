@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"  
     pageEncoding="ISO-8859-1"%>
-    <script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
     <%
         try{
             if (request.getSession().getAttribute("username") == null) {
@@ -17,6 +16,7 @@
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
+        <script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Simil</title>
     </head> 
@@ -28,7 +28,7 @@
              //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
 	            if (request.getSession().getAttribute("accountType").equals("Administrator")) { 
 	          %>
-	          <a href="#adminMenu">Administrator Tools</a>
+	          <a href="/Simil/views/Dashboard/AdministratorTools.jsp">Administrator Tools</a>
               <br>
 	          <%
 	            }

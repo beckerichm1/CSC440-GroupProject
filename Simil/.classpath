@@ -12,5 +12,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/Jarrod/Desktop/School/Spring 2016/CSC 440/Project/Simil/CSC440-GroupProject-Hue_Manatees/lib/bcprov-jdk15on-154.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Jarrod/Desktop/School/Spring 2016/CSC 440/Project/Simil/CSC440-GroupProject-Hue_Manatees/lib/json-20160212.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Jarrod/Desktop/School/Spring 2016/CSC 440/Project/Simil/CSC440-GroupProject-Hue_Manatees/lib/mysql-connector-java-5.1.38-bin.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

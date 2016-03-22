@@ -38,4 +38,31 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/Simil/Home</url-pattern>
   </servlet-mapping>
+  
+  <!-- Missing login -->
+  <error-page>
+    <error-code>401</error-code>
+    <location>/general-error.html</location>
+</error-page>
+<error-page>
+    <!-- Forbidden directory listing -->
+    <error-code>403</error-code>
+    <location>/403.jsp</location>
+</error-page>
+<error-page>
+    <!-- Missing resource -->
+    <error-code>404</error-code>
+    <location>/404.jsp</location>
+</error-page>
+<error-page>
+    <!-- Uncaught exception -->
+    <error-code>500</error-code>
+    <location>/general-error.html</location>
+</error-page>
+<error-page>
+    <!-- Unsupported servlet method -->
+    <error-code>503</error-code>
+    <location>/general-error.html</location>
+</error-page>
+  
 </web-app>

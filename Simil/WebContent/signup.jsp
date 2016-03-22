@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <html>
 <head>
+<script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
 <title>Simil</title>
 </head>
 <body>
     <div id ="wrapper">
         <div id="headerText">
             <h1>Sign Up</h1>
-        </div>
+        </div>        
         <div id="signUpForm">
             <form onsubmit="validateSignUpForm()" method="post">
                 <div class="formElement">
@@ -77,6 +78,7 @@
 	               <input type="submit">
            </form>
         </div>
+        <a href="javascript:goBack()">Go Back</a>
     </div>
 </body>
 </html>
@@ -96,6 +98,11 @@
 	        }
 		});
 	}
+	
+	function goBack() {
+	    window.history.back();
+	}
+	
 	
 	function validateSignUpForm() {
 		var alertBool = false;

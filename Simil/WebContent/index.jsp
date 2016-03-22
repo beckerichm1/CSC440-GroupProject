@@ -21,28 +21,31 @@
        %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link type="text/css" href="/Simil/supp/css/simil.css">
+<link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
+
 <title>Simil</title>
 </head>
 <body>
     <div id ="homeWrapper">
 	    <div id="homeDiv">
-	        <h1>Welcome to Simil!</h1>
-	    </div>
-	    <div id="loginForm">
+            <div id="logo">Simil!</div>
+        </div>
+	    <div class="formBox">
+	       
 	       <form action="/Simil/LoginController" onsubmit="return login()" method="POST">
-	           <h3>Log In</h3>
+	           <h3>Sign In</h3>
+	           
 	           <input type="text" id="username" name="username" placeholder="username" required>
 	           <br>
                <input type="password" id="password" name="password" placeholder="password" required>
                <br>
-               <button type="submit" value="Log In">Log In</button>
+               <button type="submit" value="Log In" class = "button">Log In</button>
 	       </form>
 	       
-	       <br>
-	       <br>
-	       <a href="signup.jsp">Sign Up</a>
-	    </div>
+        </div>
+	    <br>
+	    <br>
+	    <a href="signup.jsp">Sign Up</a>
     </div>
 </body>
 </html>
