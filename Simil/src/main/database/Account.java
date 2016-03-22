@@ -60,7 +60,7 @@ public class Account {
 			rs.next();
 			// Only get interests once, as they repeat
 			interests = rs.getString("interests");
-			if(!interests.equals("null"))
+			if(interests != null)
 				accountInfo.add(interests);
 			
 			//System.out.println(accountInfo);
@@ -77,11 +77,9 @@ public class Account {
 				if(!panel.equals("null"))
 					accountInfo.add(panel);
 			}
-
 		} catch (Exception ex) {
-			System.out.println(ex);
+			ex.printStackTrace();
 		}
-		System.out.println(accountInfo);
 		return accountInfo;
 	}
 

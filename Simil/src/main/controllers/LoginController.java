@@ -24,9 +24,8 @@ public class LoginController extends HttpServlet {
 			// Compare the given pw and pw from db using PHasher methods
 			PHasher hash = new PHasher(givenPass);
 			String storedPass = database.Account.getPass(username);
-			// String givenPass = hash.encrypt(hash.getSalt());
 			
-			if (storedPass.equals(givenPass) /*hash.match(storedPass, givenPass)*/) {
+			if (hash.match(storedPass, givenPass)) {
 				String accountType = database.Account.getAccountType(username);
 				// if((storedPass).equals(givenPass)){
 				// Get the session - if no session exists create one
