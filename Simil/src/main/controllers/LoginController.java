@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,7 @@ import utility.PHasher;
 @SuppressWarnings("serial")
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
+	@SuppressWarnings("static-access")
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {

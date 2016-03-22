@@ -61,7 +61,7 @@ function login(){
         datatype: 'json',
         data: {"username": username, "password": password},
         success: function(data){
-        	//console.log(data);
+        	console.log(data);
         },
         error: function(data){
             alert("Couldn't log in. \nCheck your username and password.")

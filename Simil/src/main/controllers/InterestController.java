@@ -1,18 +1,14 @@
 package controllers;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.json.*;
 
 @SuppressWarnings("serial")
@@ -21,8 +17,11 @@ public class InterestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("Beginning the retrieval of interests.");
+		
 		// Get all interests available
 		ArrayList<String> allInterests = database.Interest.getAllInterests();
+		
+		
 		// Get interests the user already has
 		String tempUserInterests = database.Interest.getUserInterests(
 				(String) request.getSession().getAttribute("username"));
@@ -49,8 +48,6 @@ public class InterestController extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("Beginning to add interests.");
 		String[] array = request.getParameterValues("interests[]");
-		ArrayList<String> interests = new ArrayList<>();
-
 		database.Interest.addInterests((String) request.getSession().getAttribute("username"), array);
 		System.out.println("Finished adding interests.");
 	}
