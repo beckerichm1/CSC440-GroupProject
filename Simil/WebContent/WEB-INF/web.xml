@@ -30,6 +30,8 @@
     <servlet-name>Panel</servlet-name>
     <servlet-class>main.PanelServlet</servlet-class>
   </servlet>
+  
+  
   <servlet-mapping>
     <servlet-name>Panel</servlet-name>
     <url-pattern>/Simil/PanelServlet</url-pattern>
@@ -38,6 +40,12 @@
     <servlet-name>Home</servlet-name>
     <url-pattern>/Simil/Home</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Simil/Login</url-pattern>
+</servlet-mapping>
+  
+  
   
   <!-- Missing login -->
   <error-page>

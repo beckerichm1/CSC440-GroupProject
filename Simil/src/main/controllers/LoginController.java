@@ -11,13 +11,11 @@ import utility.PHasher;
 @SuppressWarnings("serial")
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
-	@SuppressWarnings("static-access")
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) {
+	public void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
 			String username = request.getParameter("username");
 			String givenPass = request.getParameter("password");
-
 			// Compare the given pw and pw from db using PHasher methods
 			PHasher hash = new PHasher(givenPass);
 			String storedPass = database.Account.getPass(username);
@@ -31,13 +29,18 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("accountType", accountType);
 				// session.setAttribute("password", password);
 				//response.setHeader("Access-Control-Allow-Origin", "*");
-				response.setContentType("json");
-				response.setStatus(response.SC_ACCEPTED);
-				response.sendRedirect("/Simil/views/Home/UserHome.jsp");
+				//response.setContentType("json");
+				//response.setStatus(response.SC_ACCEPTED);
+				//response.sendRedirect("/Simil/views/Home/UserHome.jsp");
 				
+				System.out.println("I AM DONE HERE");
 			}
 			else{
-				response.sendRedirect("/Simil");
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+				response.setStatus(400);
+				response.setContentType("text/plain");
+				response.getWriter().print("NOPE");
+				//response.sendRedirect("/Simil");
 				//Need to send invalid password message with it
 				
 			}

@@ -13,38 +13,44 @@ html{
 }
 body {  /* background-image: url(background.gif); */
 	/* background-color:#a0a0a0;*/
-	color:#7A9985;
+	color:#6f907b;
 	font-family: 'Arimo';
+	height:100%;
+	margin:0px;
+	padding:0px;
 	}
-
-#wrapper{
-	background-color:#7A9985;  
-}
 #homeWrapper{
 	border-radius: 10px;
 	position: absolute;
 	top:-10px;
 	left: 10%;
 	right: 10%;
-	background-color:#7A9985;
+	background-color:#6f907b;
 	text-align:center;
 	min-height:475px;
 	
 }
 #logo{
-color:#F0F0D8; 
+    color:#F0F0D8; 
 	/*color:#F7906D; */
 	/*color:#D04248;*/
 	/*color:#FDCF6C;*/
 	
     font-family: 'Damion';   
-    font-size:150px;
+    font-size:45px;
 }
 #header{
 	background-color: #3b5998;
 	color:#000000;
 	text-align:center;
 	margin:0;}
+	
+label.error{
+	display:none;
+	float: none;
+	color: #A62A2A;
+	font-size: 12px;
+}
 
 h2 {	text-transform: uppercase;
 	background-color: #f7f7f7;
@@ -60,12 +66,41 @@ h4{
 }
 	
 
-#nav { text-align: left;
+#nav { 
+	height:64px;
+	text-align: left;
 	float: left;
-	width: 170px;
-	text-align:left;
-	padding-top: 10px;}
-#nav a { text-decoration: none;
+	text-align:left;   
+	background-color:#6f907b;
+	display:block;
+	width:100%;
+	vertical-align:middle;
+	
+	}
+	
+#nav li{
+	display:block;
+	
+}
+#linkContainer{
+	display:inline-block;
+/* 	position:absolute;
+	margin-top:10px; */
+	
+}
+	
+div#logoDiv{
+	display:inline-block;
+	padding-left: 10px;
+}
+
+#logoSpan{
+	color:#F0F0D8; 
+}
+
+
+#nav a { 
+	text-decoration: none;
 	padding-bottom: 15px;}
 #nav a:link{color: #3b5998;}
 #nav a:visited{color:#5b59b8;}
@@ -87,9 +122,6 @@ h4{
 #nav2 ul{list-style-type:none;}
 	
 
-
-
-
 #footer {background-color: #3b5998;
 	   color:#000000;
 	   font-size:.60em;
@@ -101,22 +133,50 @@ h4{
 #footer a:visited{color:#7b59d8;}
 #footer a:hover{color:#7b5998;}
 
-#content{padding: 10px 20px 30px 20px;
-	 margin-left: 200px;
-	 margin-right: 150px;
-	 background-color:#cacaca;
-	 color: #000000;}
+
+#sideMenu{
+    position: absolute;
+    width: 150px;
+    left:-140px;
+    top: 64px;
+    background-color: black;
+    
+}
+#sideMenu ul{
+	list-style-type:none;
+}
+#sideMenu a{
+    
+}
+#sideMenu{
+    
+}
+
 
 .details{padding-left: 20%;
 	 padding-right:20%;}	
 
-#wrapper {background-color: #f7f7f7;
-	  min-width: 700px;
-	  box-shadow: 3px 3px;
-	  margin-left: auto;
-	  margin-right: auto;
-	  width:80%
+#wrapper {
+	top:0px;
+	left:0px;
+	position:relative;
+    width:100%;
+    margin:0px;
+    background-color:#D8D8C0;
+    min-width: 700px;
+    /* box-shadow: 3px 3px; */
+    margin-left: auto;
+    margin-right: auto;
+    width:100%
 	}
+#content{
+	overflow:hidden;
+	position:relative;
+	display:inline-block;  
+    padding: 10px 20px 30px 20px;
+    margin-right: 150px;
+	width:90%;
+}
 
 img { border-style:none;
 	}
@@ -147,12 +207,22 @@ input{display: inline;
 
 textarea{display:block;
 	margin-bottom: 20px;}
-	
+
+.homeLink{
+	margin-bottom:3px ;
+}
+a.homeLink:visited{
+	color:#6f907b;
+}
+.homeHeader{
+	margin:12px 0 10px 0;
+}
 .button {
-    background-color: #7A9985; /* Green */
+    background-color: #6f907b; /* Green */
     border: none;
     color: white;
-    padding: 10px 32px;
+    padding: 3px 50px;
+    border-radius:2px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -164,7 +234,6 @@ textarea{display:block;
     background-color:#D8D8C0;
 	display:inline-block;
 	width:200px;
-	height: 200px;
 	margin:auto;
 }
 .box{
@@ -173,25 +242,31 @@ textarea{display:block;
     margin:auto;
 }
 
+.inputHolder{
+	margin:0px 0px 10px 0px;
+	padding:0px;
+}
+
 input {
   border-radius:5px;
   margin: 5px;
   padding: 5px 2px;
-  border: solid 1px #7A9985;
+  border: solid 1px #6f907b;
   transition: box-shadow 0.3s, border 0.3s;
 }
 input:focus,
 input.focus {
-    border: solid 1px #7A9985;
-    box-shadow: 0 0 5px 1px #7A9985;
+    border: solid 1px #6f907b;
+    box-shadow: 0 0 5px 1px #6f907b;
+border-color    
     }
     
 input[type="submit"] {
   border-radius:0px;
   
 }
-input[type="submit]:focus,
-input[type="submit].focus {
-    border: solid 1px #7A9985;
-    box-shadow: 0 0 5px 1px #7A9985;
+input[type="submit"]:focus,
+input[type="submit"].focus {
+    border: solid 1px #6f907b;
+    box-shadow: 0 0 5px 1px #6f907b;
     }
