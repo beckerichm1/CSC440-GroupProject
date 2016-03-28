@@ -136,10 +136,14 @@ div#logoDiv{
 
 #sideMenu{
     position: absolute;
-    width: 150px;
-    left:-140px;
+    width: 160px;
+    left:-145px;
     top: 64px;
-    background-color: black;
+    height:100%;
+    z-index:1;
+    background-color: #bc5a5a;
+    box-shadow: 0px -2px 15px #888888;
+    
     
 }
 #sideMenu ul{
@@ -175,6 +179,7 @@ div#logoDiv{
 	display:inline-block;  
     padding: 10px 20px 30px 20px;
     margin-right: 150px;
+    margin-left:15px;
 	width:90%;
 }
 
@@ -197,22 +202,33 @@ td, th{padding: 10px}
 tr:nth-of-type(odd) {background-color: #ccaa66;}
 
 
-label{float: left;
+label{
+	margin:9px 0px;
+	display:inline-block;
+	float: left;
 	text-align: right;
 	width: 120px;
 	padding-right: 10px;}
 
-input{display: inline;
+input{
+	display: inline;
 	margin-bottom: 20px;}
 
 textarea{display:block;
 	margin-bottom: 20px;}
 
-.homeLink{
-	margin-bottom:3px ;
+.link{
+	margin-bottom:3px;
 }
-a.homeLink:visited{
+.link2{
+	color:#F0F0D8;
+	margin-bottom:5px;
+}
+a.link:visited{
 	color:#6f907b;
+}
+a.link2:visited{
+	color:#F0F0D8;
 }
 .homeHeader{
 	margin:12px 0 10px 0;
@@ -230,11 +246,21 @@ a.homeLink:visited{
 }
 
 .formBox{
-	border-radius:5px;
+    border-radius:5px;
     background-color:#D8D8C0;
-	display:inline-block;
-	width:200px;
-	margin:auto;
+    display:inline-block;
+    width:200px;
+    margin:auto;
+}
+.formBox2{
+    border-radius:5px;
+    background-color:#D8D8C0;
+    display:inline-block;
+    width:200px;
+    margin:auto;
+}
+.formElement{
+	display:flex;
 }
 .box{
 	background-color:#D8D8C0;
@@ -270,3 +296,21 @@ input[type="submit"].focus {
     border: solid 1px #6f907b;
     box-shadow: 0 0 5px 1px #6f907b;
     }
+p.requiredForm{
+	display:inline-block;
+	margin:0px;
+	padding:0px;
+	
+}
+.centerDiv{
+	width:80%;
+	margin: auto;
+	text-align:center;
+	color: #F0F0D8;
+	background-color: #6f907b;
+	border-radius: 5px;
+}
+#signUpForm{
+	width:400px;
+	display:inline-block;  
+}

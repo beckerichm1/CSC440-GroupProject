@@ -44,7 +44,7 @@
 	               <button type="submit" value="Log In" class = "button">Log In</button>
                </div>
 	       </form>
-        <div class="homeLink">
+        <div class="link">
             <a class="homeLink" href="signup.jsp">Sign Up</a>          
         </div>
         </div>

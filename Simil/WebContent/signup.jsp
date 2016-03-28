@@ -20,67 +20,75 @@
 </head>
 <body>
 	<div id="wrapper">
-		<div id="headerText">
-			<h1>Sign Up</h1>
+	<div id="nav">
+            <div id="logoDiv">
+                <a id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
+            </div>
+
+        </div>
+        <div id="content">
+			<div class="centerDiv">
+				<div id="signUpForm">
+				<div id="headerText">
+					<h1>Sign Up</h1>
+				</div>
+					<form onsubmit="validateSignUpForm()" method="post">
+						<div class="formElement">
+							<label>First Name: </label> <input type="text" name="fName" required/><p class = "requiredForm">*</p>
+						</div>
+						<div class="formElement">
+							<label>Last Name: </label> <input type="text" name="lName" required/><p class = "requiredForm">*</p>
+						</div>
+						<div class="formElement">
+							<label>Date of Birth: </label> <input type="text" name="dob" 
+							id="datepicker" required/><p class = "requiredForm">*</p>
+						</div>
+						<div class="formElement">
+							<label>Email: </label> <input type="email" name="email" required/><p class = "requiredForm">*</p>
+						</div>
+						<div class="formElement">
+							<label>Alternate Email: </label> <input type="text"
+								name="alt_email"> 
+						</div>
+						<div class="formElement">
+							<label>Username: </label> <input type="text" name="username"
+								required/><p class = "requiredForm">*</p> 
+						</div>
+						<div class="formElement">
+							<label>Password: </label> <input type="password" name="pass1"
+								required/><p class = "requiredForm">*</p>
+						</div>
+						<div class="formElement">
+							<label>Verify Password: </label> <input type="password"
+								name="pass2" required/><p class = "requiredForm">*</p>
+						</div>
+						<!-- div class="formElement">
+			               <label>Security Question 1: </label>
+			               <input type="text" name="secQuestion1" required>
+			               <br>
+			            </div>
+		                <div class="formElement">
+			               <label>Security Answer 1: </label>
+			               <input type="text" name="secAnswer1" required>
+			               <br>
+			            </div>
+		                <div class="formElement">
+			               <label>Security Question 2: </label>
+			               <input type="text" name="secQuestion2" required>
+			               <br>
+		                </div>
+		                <div class="formElement">
+			               <label>Security Answer 2: </label>
+			               <input type="text" name="secAnswer2" required>
+			               <br>
+			            </div-->
+						<input type="submit">
+					</form>
+				</div>
+				<br>
+				<a class="link2" href="/Simil">Go Back</a>
+			</div>
 		</div>
-		<div id="signUpForm">
-			<form onsubmit="validateSignUpForm()" method="post">
-				<div class="formElement">
-					<label>First Name </label> <input type="text" name="fName" required>
-					<br>
-				</div>
-				<div class="formElement">
-					<label>Last Name: </label> <input type="text" name="lName" required>
-					<br>
-				</div>
-				<div class="formElement">
-					<label>Date of Birth: </label> <input type="text" name="dob" 
-					id="datepicker" required> <br>
-				</div>
-				<div class="formElement">
-					<label>Email: </label> <input type="email" name="email" required>
-					<br>
-				</div>
-				<div class="formElement">
-					<label>Alternate Email (optional): </label> <input type="text"
-						name="alt_email"> <br>
-				</div>
-				<div class="formElement">
-					<label>Username: </label> <input type="text" name="username"
-						required> <br>
-				</div>
-				<div class="formElement">
-					<label>Password: </label> <input type="password" name="pass1"
-						required> <br>
-				</div>
-				<div class="formElement">
-					<label>Verify Password: </label> <input type="password"
-						name="pass2" required> <br>
-				</div>
-				<!-- div class="formElement">
-	               <label>Security Question 1: </label>
-	               <input type="text" name="secQuestion1" required>
-	               <br>
-	            </div>
-                <div class="formElement">
-	               <label>Security Answer 1: </label>
-	               <input type="text" name="secAnswer1" required>
-	               <br>
-	            </div>
-                <div class="formElement">
-	               <label>Security Question 2: </label>
-	               <input type="text" name="secQuestion2" required>
-	               <br>
-                </div>
-                <div class="formElement">
-	               <label>Security Answer 2: </label>
-	               <input type="text" name="secAnswer2" required>
-	               <br>
-	            </div-->
-				<input type="submit">
-			</form>
-		</div>
-		<a href="/Simil">Go Back</a>
 	</div>
 </body>
 </html>

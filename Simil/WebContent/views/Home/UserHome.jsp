@@ -96,4 +96,19 @@
 			$panels.append(entry);
 		}
 	}
+	
+	
+	$(function(){
+		var expanded = false;
+		$('#sideMenu').click(function(){
+			if (!expanded){
+				  $(this).animate({'left' : '0px'}, {duration : 200});
+			      expanded = true;
+			}
+			else{
+			    $(this).animate({'left' : '-145px'}, {duration: 200});
+			    expanded = false;
+			}
+		});
+	});
 </script>
