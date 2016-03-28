@@ -52,8 +52,6 @@ function chooseInterests(){
 	var interests =new Array();// { 'interests[]' : []};
 	var i = 0;
 	$(":checked").each(function() {
-	//$("input[name='interests[]']:checked").each(function(){
-	  //interests.push($(this.value));
 	  interests.push($(this).val());
 	  console.log(interests[0]);
 	  i++;
@@ -65,10 +63,10 @@ function chooseInterests(){
 		type: "POST",
 		data: {interests:interests},
 		dataType: 'json',
-		success: function(){return true;},
-		/* error: function(){
-        	alert('error');
-        } */
+		success: function(){location.reload();},
+		error: function(err){
+        	console.log("Error adding interests: " + err);
+        }
 	});
 }
 </script>
