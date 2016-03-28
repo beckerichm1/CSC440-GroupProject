@@ -33,9 +33,10 @@ public class Panel {
 	}
 
 	// panel(ID, panelName, desc, related, moderators, creator)
-	public boolean insertPanel(String panelName, String panelDescription, String relatedPanels, String panelModerators,
+	public static boolean insertPanel(String panelName, String panelDescription, String relatedPanels, String panelModerators,
 			String panelCreator) {
 		try {
+			// TODO: Check to see if panel exists before inserting, or catch the exception...
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Panel "
 					+ "(panelName, panelDescription, relatedPanels, panelModerators, panelCreator)"
@@ -56,6 +57,7 @@ public class Panel {
 	}
 
 	// TODO: Pass this all values, or the ID?
+	// TODO: Either delete all Panel_Accounts as well, or delete and update/cascade dependencies
 	public boolean deletePanel() {
 		try {
 			Connection conn = SimilConnection.connect();
@@ -95,7 +97,7 @@ public class Panel {
 	}
 
 	public static ArrayList<String[]> getNonUserPanels(String userName){
-		String query = "SELECT panelName, panelDesc FROM( select pa.panelID  from panel_account pa "
+		String query = "SELECT pa.panelID, panelName, panelDesc FROM( select pa.panelID  from panel_account pa "
 				+ "WHERE pa.userName = ?) AS A RIGHT JOIN(select * from panel p)"
 				+ "AS B ON A.panelID = B.panelID WHERE A.panelID is null;";
 		ArrayList<String[]> panels = new ArrayList<>();
@@ -105,11 +107,13 @@ public class Panel {
 			stmt.setString(1, userName);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String[] panel = new String[2];
+				String[] panel = new String[3];
+				String id = rs.getString("panelID");
 				String name = rs.getString("panelName");
 				String desc = rs.getString("panelDesc");
-				panel[0] = name;
-				panel[1] = desc;
+				panel[0] = id;
+				panel[1] = name;
+				panel[2] = desc;
 				panels.add(panel);
 			}
 			conn.close();

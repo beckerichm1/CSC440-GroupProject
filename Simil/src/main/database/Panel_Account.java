@@ -10,8 +10,10 @@ import utility.SimilConnection;
 
 public class Panel_Account {
 	// panel_account(panelID, user, dateJoined, contrib, upvote)
-	public boolean insertPanel_Account(int panelID, String userName, String dateJoined, int contribution, int upVote) {
+	public boolean insertPanel_Account(int panelID, String userName, String dateJoined/*, int contribution, int upVote*/) {
 		try {
+			int contribution = 0;
+			int upVote = 0;
 			Connection conn = SimilConnection.connect();
 			Class.forName("com.mysql.jdbc.Driver");
 			String query = "INSERT INTO Panel_Account VALUES(?, ?, ?, ?, ?);";
@@ -90,7 +92,8 @@ public class Panel_Account {
 		try {
 			Connection conn = SimilConnection.connect();
 			for (int i = 0; i < array.length; i++) {
-				String query = "INSERT INTO Panel_Account (panelID, userName, dateJoined)" + " VALUES (?, ?, ?);";
+				String query = "INSERT INTO Panel_Account (panelID, userName, dateJoined)" 
+								+ " VALUES (?, ?, ?);";
 				PreparedStatement stmt = conn.prepareStatement(query);
 				stmt.setString(1, array[i]);
 				stmt.setString(2, username);
