@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
+	<%	// begin admin authentication
+        if ((request.getSession().getAttribute("username") != null)) {            	
+	         if(request.getSession().getAttribute("accountType").equals("Administrator")){
+    %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,76 +13,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
 <title>Simil</title>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script>
-  $(function() {
-    $( "#datepicker" ).datepicker({ minDate: -36500, maxDate: "-13Y" });
-  });
-  </script>
   
 </head>
 <body>
 	<div id="wrapper">
 		<div id="headerText">
-			<h1>Sign Up</h1>
+			<h1>Add a Panel</h1>
 		</div>
-		<div id="signUpForm">
-			<form onsubmit="validateSignUpForm()" method="post">
+		<div id="newPanelForm">
+			<form onsubmit="validatePanelForm()" method="post">
 				<div class="formElement">
-					<label>First Name: </label> <input type="text" name="fName" required>
+					<label>Panel Name: </label> <input type="text" name="name" required>
 					<br>
 				</div>
 				<div class="formElement">
-					<label>Last Name: </label> <input type="text" name="lName" required>
+					<label>Panel Description: </label> <input type="text" name="description" required>
 					<br>
 				</div>
-				<div class="formElement">
-					<label>Date of Birth: </label> <input type="text" name="dob" 
-					id="datepicker" required> <br>
-				</div>
-				<div class="formElement">
-					<label>Email: </label> <input type="email" name="email" required>
-					<br>
-				</div>
-				<div class="formElement">
-					<label>Alternate Email (optional): </label> <input type="text"
-						name="alt_email"> <br>
-				</div>
-				<div class="formElement">
-					<label>Username: </label> <input type="text" name="username"
-						required> <br>
-				</div>
-				<div class="formElement">
-					<label>Password: </label> <input type="password" name="pass1"
-						required> <br>
-				</div>
-				<div class="formElement">
-					<label>Verify Password: </label> <input type="password"
-						name="pass2" required> <br>
-				</div>
-				<!-- div class="formElement">
-	               <label>Security Question 1: </label>
-	               <input type="text" name="secQuestion1" required>
-	               <br>
-	            </div>
-                <div class="formElement">
-	               <label>Security Answer 1: </label>
-	               <input type="text" name="secAnswer1" required>
-	               <br>
-	            </div>
-                <div class="formElement">
-	               <label>Security Question 2: </label>
-	               <input type="text" name="secQuestion2" required>
-	               <br>
-                </div>
-                <div class="formElement">
-	               <label>Security Answer 2: </label>
-	               <input type="text" name="secAnswer2" required>
-	               <br>
-	            </div-->
+				<!-- Check boxes for related panels and panel moderators -->
+				<!-- These can be optional, have at least one mod, the creator, by default -->
 				<input type="submit">
 			</form>
 		</div>
@@ -86,7 +41,7 @@
 </html>
 
 <script>
-	function signUp(username, fname, lname, email, dob, pass1){
+	function signUp(name, description, related, moderators){
 		// Make the ajax call to create account
 		var url = "/Simil/SignUpController";
 		$.ajax({
@@ -163,3 +118,14 @@
 		signUp(username, fname, lname, email, dob, pass1);
 	}
 </script>
+
+<%	// End the admin authentication
+	}
+	else{
+	     response.sendError(403, "Forbidden" );
+	}
+}
+else{
+    response.sendError(403, "Forbidden" );
+}
+%>

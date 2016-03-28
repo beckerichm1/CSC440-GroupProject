@@ -39,4 +39,14 @@ public class PanelController extends HttpServlet {
 		response.getWriter().write(json);
 		System.out.println("Finished getting panels.");
 	}
+	
+	/*
+	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("Beginning to add interests.");
+		String[] array = request.getParameterValues("interests[]");
+		database.Interest.addInterests((String) request.getSession().getAttribute("username"), array);
+		System.out.println("Finished adding interests.");
+	}
+	*/
 }

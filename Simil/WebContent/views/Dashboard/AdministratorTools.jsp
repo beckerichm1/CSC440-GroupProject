@@ -17,6 +17,9 @@
 </head>
 <body>
     <h1>ADMIN TOOLS</h1>
+    
+    <!-- Link to add/remove panels -->
+    
 </body>
 </html>
 <%
