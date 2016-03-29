@@ -17,7 +17,10 @@ public class PanelController extends HttpServlet {
 		// Get the param for all panels
 		String param = request.getParameter("param");
 		ArrayList<String[]> panels = new ArrayList<>();
-		if(!param.equals("all"))
+		if(param.equals("one")){
+			
+		}
+		else if(!param.equals("all"))
 			panels = database.Panel.getNonUserPanels((String) request.getSession().getAttribute("username"));
 		else
 			panels = database.Panel.getAllPanels();
