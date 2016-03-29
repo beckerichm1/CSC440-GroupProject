@@ -18,11 +18,13 @@ public class Panel {
 			String showPanels = "SELECT * FROM Panel;";
 			ResultSet rs = stmt.executeQuery(showPanels);
 			while (rs.next()) {
-				String[] panel = new String[2];
+				String[] panel = new String[3];
+				String id = rs.getString("panelID");
 				String name = rs.getString("panelName");
 				String desc = rs.getString("panelDesc");
-				panel[0] = name;
-				panel[1] = desc;
+				panel[0] = id;
+				panel[1] = name;
+				panel[2] = desc;
 				panels.add(panel);
 			}
 			conn.close();
@@ -33,13 +35,13 @@ public class Panel {
 	}
 
 	// panel(ID, panelName, desc, related, moderators, creator)
-	public static boolean insertPanel(String panelName, String panelDescription, String relatedPanels, String panelModerators,
-			String panelCreator) {
+	public static boolean insertPanel(String panelName, String panelDescription, 
+			String relatedPanels, String panelModerators, String panelCreator) {
 		try {
 			// TODO: Check to see if panel exists before inserting, or catch the exception...
 			Connection conn = SimilConnection.connect();
 			String query = "INSERT INTO Panel "
-					+ "(panelName, panelDescription, relatedPanels, panelModerators, panelCreator)"
+					+ "(panelName, panelDesc, relatedPanels, panelModerators, panelCreator)"
 					+ " VALUES(?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, panelName);
@@ -47,7 +49,7 @@ public class Panel {
 			stmt.setString(3, relatedPanels);
 			stmt.setString(4, panelModerators);
 			stmt.setString(5, panelCreator);
-			stmt.execute(query);
+			stmt.execute();
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -105,7 +107,6 @@ public class Panel {
 			Connection conn = SimilConnection.connect();
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
-			System.out.println(stmt.toString());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String[] panel = new String[3];

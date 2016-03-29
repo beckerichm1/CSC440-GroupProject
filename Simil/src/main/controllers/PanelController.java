@@ -14,10 +14,8 @@ import org.json.*;
 public class PanelController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Beginning the retrieval of panels.");
 		// Get the param for all panels
 		String param = request.getParameter("param");
-		System.out.println("The parameter passed to the panel controller was: " + param);
 		ArrayList<String[]> panels = new ArrayList<>();
 		if(!param.equals("all"))
 			panels = database.Panel.getNonUserPanels((String) request.getSession().getAttribute("username"));
@@ -30,17 +28,15 @@ public class PanelController extends HttpServlet {
 			ar.put(a);
 		}
 		String json = ar.toString();
-		System.out.println(json);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
-		System.out.println("Finished getting panels.");
 	}
 	
 	
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Beginning to add panels.");
+		System.out.println("Beginning to insert new panel.");
 		String param = request.getParameter("name");
 		String[] array;
 		if(param == null || param == ""){
@@ -56,7 +52,6 @@ public class PanelController extends HttpServlet {
 			String creator = request.getParameter((String) request.getSession().getAttribute("username"));
 			database.Panel.insertPanel(name, desc, rel, mods, creator);
 		}
-		System.out.println("Finished adding interests.");
 	}
 	
 }

@@ -14,47 +14,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
 <title>Simil</title>
-
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script>
-	$(function() {
-		$("#accordion").accordion();
-	});
-</script>
-
 </head>
 <body>
 	<div id="wrapper">
-		<div id="headerText">
-			<h1>Add a Panel</h1>
+		<div id="content">
+			<div class="centerDiv">
+				<div id="headerText">
+					<h1>Add a Panel</h1>
+				</div>
+				<div id="newPanelForm">
+					<form onsubmit="validatePanelForm()" method="post">
+						<div class="formElement">
+							<label>Panel Name: </label> <input type="text" name="name"
+								required> <br>
+						</div>
+						<div class="formElement">
+							<label>Panel Description: </label> <input type="text"
+								name="description" required> <br>
+						</div>
+						<!-- Check boxes for related panels and panel moderators -->
+						<div class="formElement">
+							<label>Related Panels: </label>
+							<select name="related" id="related" multiple>
+								
+							</select>
+						</div>
+						<input type="submit">
+					</form>
+				</div>
+				<a href="/Simil">Go Back</a>
+			</div>
 		</div>
-		<div id="newPanelForm">
-			<form onsubmit="validatePanelForm()" method="post">
-				<div class="formElement">
-					<label>Panel Name: </label> <input type="text" name="name" required>
-					<br>
-				</div>
-				<div class="formElement">
-					<label>Panel Description: </label> <input type="text"
-						name="description" required> <br>
-				</div>
-				<!-- Check boxes for related panels and panel moderators -->
-				<div id="accordion">
-					<h3>Related Panels</h3>
-					<div id="orderedList"
-						style="columns: 5 50px; -moz-columns: 5 50px; -webkit-columns: 5 50px">
-						<ul id="panelList" style="list-style: none">
-
-						</ul>
-					</div>
-				</div>
-				<input type="submit">
-			</form>
-		</div>
-		<a href="/Simil">Go Back</a>
 	</div>
 </body>
 </html>
@@ -88,11 +78,14 @@
 
 	function getPanels() {
 		// Pass in a piece of data so it knows to get all panels?
+		console.log("Getting panels");
 		var url = "/Simil/PanelServlet";
 		$.ajax({
 			url : url,
 			datatype : 'json',
-			data: {"param": 'all'},
+			data : {
+				"param" : 'all'
+			},
 			success : function(data) {
 				populatePanels(data)
 			},
@@ -103,24 +96,25 @@
 	}
 
 	function populatePanels(data) {
-		var $div = $('#panelList');
+		console.log("populating panels");
+		var $div = $('#related');
 		for (var i = 0; i < data.length; i++) {
-			console.log(data[i]);
-			var name = data[i][0];
-			var desc = data[i][1];
-			var entry = "<li><input type = 'checkbox' value = '" + name + "'><div>"
-					+ name + "/n" + desc + "</div></li>";
+			var id = data[i][0]
+			var name = data[i][1];
+			//var desc = data[i][2];
+			var entry = '<option value="' + id + '">' + name + '</option>';
 			$div.append(entry);
 		}
 	}
 
 	function getRelatedPanels() {
-		var panels[];
+		var panels = [];
 		$(":checked").each(function() {
 			panels.push($(this).val());
-		});	//name, description, related, moderators
-		addPanel(document.forms[0].elements[0].value, document.forms[0].elements[1].value,
-				panels, document.forms[0].elements[3].value);
+		}); //name, description, related, moderators
+		addPanel(document.forms[0].elements[0].value,
+				document.forms[0].elements[1].value, panels,
+				document.forms[0].elements[3].value);
 	}
 
 	function validatePanelForm() {
@@ -139,14 +133,10 @@
 			message += "Panel Description is a required field.\n";
 			alertBool = true;
 		}
-		/* if (related == null || related == "") {
-			message += "Birth Date is a required field.\n";
-			alertBool = true;
-		} */
 		if (mods == null || mods == "") {
 			// Set current user as default mod if none selected
 			// Might have to do something different here, to make mods an array?
-			mods = request.getSession().getAttribute("username");
+			mods = "<%=request.getSession().getAttribute("username")%>";
 		}
 		if (alertBool) {
 			alert(message);
