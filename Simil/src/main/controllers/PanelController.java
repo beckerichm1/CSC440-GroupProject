@@ -19,13 +19,11 @@ public class PanelController extends HttpServlet {
 		ArrayList<String[]> panels = new ArrayList<>();
 		System.out.println("Getting panel details");
 		if(param.equals("one")){
-			System.out.println("Getting id: ");
 			String id = request.getParameter("id");
-			System.out.println(id);
 			panels = database.Panel.getPanelDetail(id);
 			// put the panel into a json object and send it through
-			JSONObject obj = new JSONObject(panels.get(0));
-			String json = obj.toString();
+			JSONArray ar = new JSONArray(panels.get(0));
+			String json = ar.toString();
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(json);

@@ -135,7 +135,7 @@ public class Panel {
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String[] panel = new String[3];
+				String[] panel = new String[5];
 				String name = rs.getString("panelName");
 				String desc = rs.getString("panelDesc");
 				String related = rs.getString("relatedPanels");
@@ -146,6 +146,7 @@ public class Panel {
 				panel[3] = related;
 				panel[4] = mods;
 				panels.add(panel);
+				System.out.println("PanelID = " + panel[0]);
 			}
 			conn.close();
 		} catch (Exception ex) {
