@@ -11,7 +11,13 @@
 
 <script>
 	$(document).ready(function() {
-		getPanelDetails(${param.id});
+		var id = ${param.id};
+		console.log("This panelID is: " + id);
+		var panelDetails = getPanelDetails(id);
+		var panelMembers = getPanelMembers(id);
+		console.log("Panel details: " + panelDetails);
+		console.log("Panel members: " + panelMembers);
+		// TODO: Do stuff with the vars stored...
 	});
 
 	function getPanelDetails(id) {
@@ -25,12 +31,28 @@
 				id : id
 			},
 			success : function(data) {
-				generatePage(data)
+				return data;
 			},
 			error : function() {
 				alert('error');
 			}
 		});
+	}
+	
+	function getPanelMembers(id){
+		var url = "/Simil/PanelAccountController";
+		$.ajax({
+			url: url,
+			datatype : 'json',
+			type: "GET",
+			data : {id : id},
+			success : function(data) {
+				return data;
+			},
+			error : function() {
+				alert('error');
+			}
+		})
 	}
 
 	function generatePage(data) {
