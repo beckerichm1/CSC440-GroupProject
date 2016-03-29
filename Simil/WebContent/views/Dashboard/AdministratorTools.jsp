@@ -20,6 +20,7 @@
     
     <!-- Link to add/remove panels -->
     
+    
 </body>
 </html>
 <%
