@@ -65,6 +65,7 @@ function chooseInterests(){
 		dataType: 'json',
 		success: function(){location.reload();},
 		error: function(err){
+        	location.reload();
         	console.log("Error adding interests: " + err);
         }
 	});

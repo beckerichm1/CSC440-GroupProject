@@ -97,7 +97,7 @@ public class Panel {
 	}
 
 	public static ArrayList<String[]> getNonUserPanels(String userName){
-		String query = "SELECT pa.panelID, panelName, panelDesc FROM( select pa.panelID  from panel_account pa "
+		String query = "SELECT A.panelID, panelName, panelDesc FROM( select pa.panelID  from panel_account pa "
 				+ "WHERE pa.userName = ?) AS A RIGHT JOIN(select * from panel p)"
 				+ "AS B ON A.panelID = B.panelID WHERE A.panelID is null;";
 		ArrayList<String[]> panels = new ArrayList<>();
@@ -105,6 +105,7 @@ public class Panel {
 			Connection conn = SimilConnection.connect();
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
+			System.out.println(stmt.toString());
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String[] panel = new String[3];
