@@ -17,8 +17,19 @@ public class PanelController extends HttpServlet {
 		// Get the param for all panels
 		String param = request.getParameter("param");
 		ArrayList<String[]> panels = new ArrayList<>();
+		System.out.println("Getting panel details");
 		if(param.equals("one")){
-			
+			System.out.println("Getting id: ");
+			String id = request.getParameter("id");
+			System.out.println(id);
+			panels = database.Panel.getPanelDetail(id);
+			// put the panel into a json object and send it through
+			JSONObject obj = new JSONObject(panels.get(0));
+			String json = obj.toString();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+			return;
 		}
 		else if(!param.equals("all"))
 			panels = database.Panel.getNonUserPanels((String) request.getSession().getAttribute("username"));

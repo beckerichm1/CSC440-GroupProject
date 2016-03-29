@@ -125,4 +125,32 @@ public class Panel {
 		}
 		return panels;
 	}
+
+	public static ArrayList<String[]> getPanelDetail(String id) {
+		ArrayList<String[]> panels = new ArrayList<>();
+		try {
+			Connection conn = SimilConnection.connect();
+			String showPanels = "SELECT * FROM Panel WHERE panelID = ?;";
+			PreparedStatement stmt = conn.prepareStatement(showPanels);
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String[] panel = new String[3];
+				String name = rs.getString("panelName");
+				String desc = rs.getString("panelDesc");
+				String related = rs.getString("relatedPanels");
+				String mods = rs.getString("panelModerators");
+				panel[0] = id;
+				panel[1] = name;
+				panel[2] = desc;
+				panel[3] = related;
+				panel[4] = mods;
+				panels.add(panel);
+			}
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return panels;
+	}
 }
