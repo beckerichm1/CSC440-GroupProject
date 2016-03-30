@@ -2,15 +2,15 @@ package controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
-@WebServlet("/PanelAccountController")
+@WebServlet("/PanelAccountServlet")
 public class PanelAccountController {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,6 +24,7 @@ public class PanelAccountController {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
 		String id = request.getParameter("id");
+		System.out.println("Getting panelaccounts with id: " + id);
 		ArrayList<String> users = database.Panel_Account.getAllAccountsFromPanel(id);
 		JSONArray ar = new JSONArray(users);
 		String json = ar.toString();

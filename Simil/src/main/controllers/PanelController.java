@@ -27,6 +27,7 @@ public class PanelController extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(json);
+			System.out.println("Returning from getting Panel Details");
 			return;
 		}
 		else if(!param.equals("all"))

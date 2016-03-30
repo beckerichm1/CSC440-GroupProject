@@ -13,11 +13,10 @@
 	$(document).ready(function() {
 		var id = ${param.id};
 		console.log("This panelID is: " + id);
-		var panelDetails = getPanelDetails(id);
-		var panelMembers = getPanelMembers(id);
+		getPanelDetails(id);
+		getPanelMembers(id);
 		console.log("Panel details: " + panelDetails);
 		console.log("Panel members: " + panelMembers);
-		// TODO: Do stuff with the vars stored...
 	});
 
 	function getPanelDetails(id) {
@@ -31,7 +30,8 @@
 				id : id
 			},
 			success : function(data) {
-				return data;
+				console.log("getPanelDetails succeeded. Returning data.");
+				fillPanelDetails(data);
 			},
 			error : function() {
 				alert('error');
@@ -47,14 +47,23 @@
 			type: "GET",
 			data : {id : id},
 			success : function(data) {
-				return data;
+				console.log("getPanelMembers succeeded. Returning data.");
+				fillPanelMembers(data);
 			},
 			error : function() {
 				alert('error');
 			}
 		})
 	}
-
+	
+	function fillPanelDetails(data){
+		console.log("PanelDetails Data is: " + data);
+	}
+	
+	function fillPanelMembers(data){
+		console.log("PanelMembers Data is: " + data);
+	}
+	
 	function generatePage(data) {
 		console.log("Data is: " + data);
 		console.log("Data[0] is: " + data[0]);
