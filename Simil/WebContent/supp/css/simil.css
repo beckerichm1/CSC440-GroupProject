@@ -43,7 +43,12 @@ body {  /* background-image: url(background.gif); */
 	background-color: #3b5998;
 	color:#000000;
 	text-align:center;
-	margin:0;}
+	margin:0;
+}
+
+#headerText{
+	text-align:center;
+}
 	
 label.error{
 	display:none;
@@ -309,6 +314,21 @@ p.requiredForm{
 	color: #F0F0D8;
 	background-color: #6f907b;
 	border-radius: 5px;
+}
+.checkDiv{
+    width:80%;
+    margin: auto;
+    color: #F0F0D8;
+    background-color: #6f907b;
+    border-radius: 5px;
+}
+div.checkElement li input[type="checkbox"]{
+	display:none;
+}
+.orderedList{
+    columns: 5 50px;
+    -moz-columns: 5 50px;
+    -webkit-columns: 5 50px;
 }
 #signUpForm{
 	width:400px;
