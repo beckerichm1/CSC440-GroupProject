@@ -44,8 +44,8 @@
 		$.ajax({
 			url: url,
 			datatype : 'json',
-			type: "GET",
-			data : {id : id},
+			type: "POST",
+			data : {id : id, param: "members"},
 			success : function(data) {
 				console.log("getPanelMembers succeeded. Returning data.");
 				fillPanelMembers(data);
