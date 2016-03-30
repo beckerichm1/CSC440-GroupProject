@@ -10,25 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONArray;
 
+@SuppressWarnings("serial")
 @WebServlet("/PanelAccountServlet")
-public class PanelAccountController {
+public class PanelAccountController extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		// Try getting the members in panel
-		String param = request.getParameter("param");
-		if(param.equals("members")){
-			String id = request.getParameter("id");
-			System.out.println("Getting panelaccounts with id: " + id);
-			ArrayList<String> users = database.Panel_Account.getAllAccountsFromPanel(id);
-			JSONArray ar = new JSONArray(users);
-			String json = ar.toString();
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(json);
-			return;
-		}
-		
 		System.out.println("Beginning to join panels.");
 		String[] array = request.getParameterValues("panels");
 		// Insert to Panel_Account 
@@ -36,8 +22,8 @@ public class PanelAccountController {
 		System.out.println("Finished joining panels.");
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException{
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		System.out.println("Getting panelaccounts with id: " + id);
 		ArrayList<String> users = database.Panel_Account.getAllAccountsFromPanel(id);

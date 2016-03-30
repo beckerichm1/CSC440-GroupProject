@@ -78,11 +78,11 @@
   <servlet-mapping>
     <servlet-name>Login</servlet-name>
     <url-pattern>/Simil/Login</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>PanelAccount</servlet-name>
     <url-pattern>/Simil/PanelAccountServlet</url-pattern>
-</servlet-mapping>
+  </servlet-mapping>
   
   
   

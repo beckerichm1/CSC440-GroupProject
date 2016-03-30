@@ -15,8 +15,6 @@
 		console.log("This panelID is: " + id);
 		getPanelDetails(id);
 		getPanelMembers(id);
-		console.log("Panel details: " + panelDetails);
-		console.log("Panel members: " + panelMembers);
 	});
 
 	function getPanelDetails(id) {
@@ -39,19 +37,19 @@
 		});
 	}
 	
-	function getPanelMembers(id){
-		var url = "/Simil/PanelAccountController";
+	function getPanelMembers(id){	// Might be causing problems, PanelAccountServlet vs Controller
+		var url = "/Simil/PanelAccountServlet";
 		$.ajax({
 			url: url,
 			datatype : 'json',
-			type: "POST",
-			data : {id : id, param: "members"},
+			type: "GET",
+			data : {id : id},
 			success : function(data) {
 				console.log("getPanelMembers succeeded. Returning data.");
 				fillPanelMembers(data);
 			},
 			error : function() {
-				alert('error');
+				alert('Error getting panel members...');
 			}
 		})
 	}

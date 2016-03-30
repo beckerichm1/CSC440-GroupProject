@@ -13,7 +13,7 @@
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script>
   $(function() {
-    $( "#datepicker" ).datepicker({ minDate: -36500, maxDate: "-13Y" });
+    $( "#datepicker" ).datepicker({ minDate: -36500, maxDate: "-13Y", changeMonth: true, changeYear: true });
   });
   </script>
   
