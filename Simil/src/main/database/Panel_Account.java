@@ -68,14 +68,14 @@ public class Panel_Account {
 		return panels;
 	}
 
-	public ArrayList<String> getAllAccountsFromPanel(int panelID) {
+	public static ArrayList<String> getAllAccountsFromPanel(String panelID) {
 		ArrayList<String> accounts = new ArrayList<>();
 		try {
 			Connection conn = SimilConnection.connect();
 			String query = "SELECT userName FROM panel_account WHERE panelID = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
-			stmt.setInt(1, panelID);
-			ResultSet rs = stmt.executeQuery(query);
+			stmt.setString(1, panelID);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				accounts.add(rs.getString("userName"));
 			}
