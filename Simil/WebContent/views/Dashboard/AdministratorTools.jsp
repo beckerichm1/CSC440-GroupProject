@@ -44,7 +44,7 @@
 
             <div id="content">
                 <h1>ADMINISTRATOR TOOLS</h1>            
-
+                <a href='/Simil/views/Panels/Add.jsp'>Create Panel</a>
             </div>
         
     </div>

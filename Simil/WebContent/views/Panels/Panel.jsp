@@ -116,8 +116,7 @@
 		descDiv.append("<p id='panelDescription'>" + data[2] + "</p>");
 		
 		console.log("PanelDetails Data is: " + data);
-		
-		div
+
 	}
 	
 	function fillPanelMembers(data){
