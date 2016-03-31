@@ -25,7 +25,7 @@
 		                <div id="headerText">
 		                    <h1>Recover Password</h1>
 		                </div>
-		                <form onsubmit="validateSignUpForm()" method="post">
+		                <form onsubmit="submit()" method="post">
 		                  <div class="formElement">
 		                      <label class="formLabel">Username: </label> <input type="text" name="fName" required/><p class = "requiredForm">*</p>
 		                  </div>
