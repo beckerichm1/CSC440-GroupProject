@@ -61,6 +61,7 @@
 			url : url,
 			type : "POST",
 			data : {
+				"postType":"add",
 				"name" : name,
 				"description" : description,
 				"related" : related,

@@ -48,7 +48,16 @@
         </div>
 
             <div id="content">
+
                 <div id="panelHead">
+                    <%
+                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
+                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
+                    %>
+                     <li><a href="javascript:removePanel()">Delete this Panel</a></li>
+                    <%
+                        }
+                    %>
                     <div id="panelName"></div>
                     <div id="panelDescription"></div>
                 </div>
@@ -136,6 +145,27 @@
 	}
 </script>
 <script>
+
+    function removePanel(){
+    	var id = ${param.id};
+    	var url = "/Simil/PanelServlet";
+        $.ajax({
+            url: url,
+            datatype : 'json',
+            type: "POST",
+            data : {
+            	postType:"delete",
+            	id : id
+            },
+            success : function(data) {
+                console.log("Panel Deleted");
+                fillPanelMembers(data);
+            },
+            error : function() {
+                alert('Error deleting panel...');
+            }
+        })
+    }
     
     $(function(){
         var expanded = false;
