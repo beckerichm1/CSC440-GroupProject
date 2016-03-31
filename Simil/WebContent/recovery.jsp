@@ -41,7 +41,22 @@
                 
             </div>
             </div>
-        
     </div>
 </body>
 </html>
+
+<script>
+function submit(username, email){
+	// Make the ajax call to create account
+	var url = "/Simil/LoginController";
+	$.ajax({
+		url: url,
+		type: "POST",
+		data: {param: "recover", "userName": username, "email": email},
+		success: function(){<%response.sendRedirect("/Simil");%>},
+		error: function(err){
+        	console.log(err);
+        }
+	});
+}
+</script>
