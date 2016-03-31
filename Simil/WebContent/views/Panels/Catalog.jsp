@@ -15,12 +15,16 @@
 <body>
 	<div id="wrapper">
 		<div id="content">
-			<div id="orderedList"
-				style="columns: 5 50px; -moz-columns: 5 50px; -webkit-columns: 5 50px">
-				<ul id="panelList" style="list-style: none">
-
-				</ul>
-			</div>
+            <div class="checkDiv">
+                <div id="headerText">
+                    <h1>Panels!</h1>
+                </div>
+                <div class="orderedList">
+                    <div class="noselect" id="panelList" ><!-- ul id="interestList" style="list-style: none" -->
+    
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </body>
@@ -37,7 +41,7 @@
 			url : url,
 			datatype : 'json',
 			data : {
-				param : 'some'
+				param : 'all'
 			},
 			success : function(data) {
 				populatePanels(data)
@@ -57,8 +61,14 @@
 			var id = data[i][0];
 			var name = data[i][1];
 			var desc = data[i][2];
-			var entry = "<li><input type = 'checkbox' value = '" + id + "'><div>"
+		
+			/* var entry = "<li><input type = 'checkbox' value = '" + id + "'><div>"
 					+ name + "\n" + desc + "</div></li>";
+			 */
+			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + id + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
+					
+			/* <div class='checkElement'><input type='checkbox' name='interests' value='" + data[x] + "' id='"+ x +"'/>"+
+		    "<label class='checkLabel' for='" + x +"'>"+ data[x] + "</label></div> */
 			$div.append(entry);
 		}
 	}

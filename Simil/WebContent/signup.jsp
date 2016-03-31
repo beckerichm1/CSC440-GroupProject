@@ -34,32 +34,32 @@
 				</div>
 					<form onsubmit="validateSignUpForm()" method="post">
 						<div class="formElement">
-							<label>First Name: </label> <input type="text" name="fName" required/><p class = "requiredForm">*</p>
+							<label class="formLabel">First Name: </label> <input type="text" name="fName" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label>Last Name: </label> <input type="text" name="lName" required/><p class = "requiredForm">*</p>
+							<label class="formLabel">Last Name: </label> <input type="text" name="lName" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label>Date of Birth: </label> <input type="text" name="dob" 
+							<label class="formLabel">Date of Birth: </label> <input type="text" name="dob" 
 							id="datepicker" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label>Email: </label> <input type="email" name="email" required/><p class = "requiredForm">*</p>
+							<label class="formLabel">Email: </label> <input type="email" name="email" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label>Alternate Email: </label> <input type="text"
+							<label class="formLabel">Alternate Email: </label> <input type="text"
 								name="alt_email"> 
 						</div>
 						<div class="formElement">
-							<label>Username: </label> <input type="text" name="username"
+							<label class="formLabel">Username: </label> <input type="text" name="username"
 								required/><p class = "requiredForm">*</p> 
 						</div>
 						<div class="formElement">
-							<label>Password: </label> <input type="password" name="pass1"
+							<label class="formLabel">Password: </label> <input type="password" name="pass1"
 								required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label>Verify Password: </label> <input type="password"
+							<label class="formLabel">Verify Password: </label> <input type="password"
 								name="pass2" required/><p class = "requiredForm">*</p>
 						</div>
 						<!-- div class="formElement">

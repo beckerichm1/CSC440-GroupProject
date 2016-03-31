@@ -28,7 +28,7 @@
 <body>
     <div id ="homeWrapper">
 	    <div id="homeDiv">
-            <div id="logo">Simil!</div>
+            <div id="logo" class="noselect">Simil!</div>
         </div>
 	    <div class="formBox">
 	       <!-- Changing onsubmit from return login() to just login() -->
@@ -45,7 +45,9 @@
                </div>
 	       </form>
         <div class="link">
-            <a class="homeLink" href="signup.jsp">Sign Up</a>          
+            <a class="homeLink" href="signup.jsp">Sign Up</a> 
+            <br>
+            <a class="homeLink" href="recovery.jsp">Forgot Password?</a>         
         </div>
         </div>
 
