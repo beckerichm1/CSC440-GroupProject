@@ -49,21 +49,31 @@ public class PanelController extends HttpServlet {
 	
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println("Beginning to insert new panel.");
-		String param = request.getParameter("name");
-		String[] array;
-		if(param == null || param == ""){
-			array = request.getParameterValues("panels[]");
-			database.Panel_Account.insertPanelAccounts(
+		String postType = request.getParameter("postType");
+		
+		if(postType.equals("add")){
+			String param = request.getParameter("name");
+			System.out.println("Beginning to insert new panel.");
+		
+			String[] array;
+			if(param == null || param == ""){
+				array = request.getParameterValues("panels[]");
+				database.Panel_Account.insertPanelAccounts(
 					(String) request.getSession().getAttribute("username"), array);
+			}
+			else{
+				String name = request.getParameter("name");
+				String desc = request.getParameter("description");
+				String rel = request.getParameter("related");
+				String mods = request.getParameter("moderators");
+				String creator = request.getParameter((String) request.getSession().getAttribute("username"));
+				database.Panel.insertPanel(name, desc, rel, mods, creator);
+			}
 		}
-		else{
-			String name = request.getParameter("name");
-			String desc = request.getParameter("description");
-			String rel = request.getParameter("related");
-			String mods = request.getParameter("moderators");
-			String creator = request.getParameter((String) request.getSession().getAttribute("username"));
-			database.Panel.insertPanel(name, desc, rel, mods, creator);
+		else if(postType.equals("delete")){
+			String id = request.getParameter("id");
+			System.out.println("Beginning to insert new panel.");
+			database.Panel.deletePanel(id);
 		}
 	}
 	

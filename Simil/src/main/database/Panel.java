@@ -60,11 +60,13 @@ public class Panel {
 
 	// TODO: Pass this all values, or the ID?
 	// TODO: Either delete all Panel_Accounts as well, or delete and update/cascade dependencies
-	public boolean deletePanel() {
+	public static boolean deletePanel(String id) {
 		try {
 			Connection conn = SimilConnection.connect();
-			String query = "DELETE FROM Panel WHERE ....";
+			String query = "DELETE FROM Panel WHERE panelID = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setInt(1, Integer.parseInt(id));
+			System.out.println(stmt);
 			stmt.execute(query);
 			conn.close();
 		} catch (Exception ex) {
