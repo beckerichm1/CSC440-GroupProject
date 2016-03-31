@@ -2,14 +2,10 @@ SIMIL -- Issue Log
 -----------------------------------------
 =================Bugs====================
 -----------------------------------------
-- Min and max restrictions on Date of Birth in signup form.	
-- Adding interests, check to see if already belong to the user.
-	- Unless we only show interests to which the user doesn't yet belong.
-	- For now, we override any preexisting interests.
-- Similar stuff needs to be done for all database inserts.
-	- Check for member panels etc.
-- Location is currently hardcoded, as it's a required foreign key
-- empty interests or panels causes errors in personal page query
+- Location is currently hardcoded, as it's a required foreign key.
+- Need to check user info before resetting password.
+- Need to validate user doesn't exist before creating account.
+- Need to validate any deletes/adds before performing them.
 
 
 -----------------------------------------
