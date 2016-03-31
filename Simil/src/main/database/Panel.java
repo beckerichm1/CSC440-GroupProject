@@ -63,11 +63,11 @@ public class Panel {
 	public static boolean deletePanel(String id) {
 		try {
 			Connection conn = SimilConnection.connect();
-			String query = "DELETE FROM Panel WHERE panelID = ?;";
+			String query = "DELETE FROM Panel WHERE panelID=?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setInt(1, Integer.parseInt(id));
 			System.out.println(stmt);
-			stmt.execute(query);
+			stmt.execute();
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);

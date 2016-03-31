@@ -66,7 +66,7 @@ function login(){
 	    $.ajax({
 	    	type: "POST",
 	        url: url,
-	        data: {"username": username, "password": password},
+	        data: {"param":"login", "username": username, "password": password},
 	        success: function(data){
 	        	//console.log(data);
 	        	window.location = "/Simil/views/Home/UserHome.jsp"

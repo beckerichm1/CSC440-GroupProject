@@ -124,9 +124,10 @@ public class Account {
 			Connection conn = SimilConnection.connect();
 			String query = "UPDATE user SET Password = ? where userName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
-			stmt.setString(1, userName);
-			stmt.setString(2, password);
+			stmt.setString(1, password);
+			stmt.setString(2, userName);
 			stmt.executeUpdate();
+			System.out.println(stmt);
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);

@@ -25,9 +25,9 @@
 		                <div id="headerText">
 		                    <h1>Recover Password</h1>
 		                </div>
-		                <form onsubmit="validateSignUpForm()" method="post">
+		                <form action="javascript:submit()" method="post">
 		                  <div class="formElement">
-		                      <label class="formLabel">Username: </label> <input type="text" name="fName" required/><p class = "requiredForm">*</p>
+		                      <label class="formLabel">Username: </label> <input type="text" name="username" required/><p class = "requiredForm">*</p>
 		                  </div>
 		                  <div class="formElement">
                             <label class="formLabel">Email: </label> <input type="email" name="email" required/><p class = "requiredForm">*</p>
@@ -46,15 +46,26 @@
 </html>
 
 <script>
-function submit(username, email){
+function submit(){
+	var username = document.forms[0].elements[0].value;
+    var email= document.forms[0].elements[1].value;
+
+
 	// Make the ajax call to create account
-	var url = "/Simil/LoginController";
+    var url = "/Simil/LoginController";
 	$.ajax({
 		url: url,
 		type: "POST",
-		data: {param: "recover", "userName": username, "email": email},
-		success: function(){<%response.sendRedirect("/Simil");%>},
+		data: {param: "recover", "username": username, "email": email},
+		success: function(data){ 
+			  var div = $("content");
+			  div.append(data["password"]);
+	           console.log(data["password"]);
+
+			  alert("NEW PASSWORD: " + data["password"]);
+			  window.location="/Simil";},
 		error: function(err){
+			alert("NEW PASSWORD: " + data);
         	console.log(err);
         }
 	});

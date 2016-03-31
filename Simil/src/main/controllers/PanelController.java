@@ -74,6 +74,9 @@ public class PanelController extends HttpServlet {
 			String id = request.getParameter("id");
 			System.out.println("Beginning to insert new panel.");
 			database.Panel.deletePanel(id);
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setContentType("text/plain");
+			response.sendRedirect("/Simil");
 		}
 	}
 	

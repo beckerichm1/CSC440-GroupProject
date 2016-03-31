@@ -222,7 +222,7 @@ tr:nth-of-type(odd) {background-color: #ccaa66;}
 	display:inline-block;
 	float: left;
 	text-align: right;
-	width: 120px;
+	width: 140px;
 	padding-right: 10px;
 }
 
@@ -327,6 +327,7 @@ p.requiredForm{
 	border-radius: 5px;
 }
 .checkDiv{
+	text-align:center;
 	padding-top:10px;
     width:80%;
     margin: auto;
@@ -354,7 +355,7 @@ p.requiredForm{
 	background-color:#A8BCAF;
 }
 .orderedList{
-	margin-left:65px;
+	margin:auto;
 	padding-bottom:20px;   
    /*  columns: 5 30px;
     -moz-columns: 5 30px;

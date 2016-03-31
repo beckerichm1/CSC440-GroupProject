@@ -19,7 +19,9 @@ public class LoginController extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
 			if(request.getParameter("param").equals("recover")){
+				System.out.println("Recovering");
 				String username = request.getParameter("username");
+				System.out.println("USERNAME:" + username);
 				String email = request.getParameter("email");
 				//TODO: Check if username and email exists
 				// make new random password
@@ -30,7 +32,7 @@ public class LoginController extends HttpServlet {
 				database.Account.updatePass(username, password);
 				// invoke the emailer
 				// return the new pass in json for now (since emailer isn't up)
-				JSONObject j = new JSONObject(password);
+				JSONObject j = new JSONObject("{'password':" + newPass + "}");
 				String json = j.toString();
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");

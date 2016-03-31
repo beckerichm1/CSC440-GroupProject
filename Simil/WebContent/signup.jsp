@@ -40,8 +40,7 @@
 							<label class="formLabel">Last Name: </label> <input type="text" name="lName" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
-							<label class="formLabel">Date of Birth: </label> <input type="text" name="dob" 
-							id="datepicker" required/><p class = "requiredForm">*</p>
+							<label class="formLabel">Date of Birth: </label> <input type="date" name="dob" required/><p class = "requiredForm">*</p>
 						</div>
 						<div class="formElement">
 							<label class="formLabel">Email: </label> <input type="email" name="email" required/><p class = "requiredForm">*</p>
