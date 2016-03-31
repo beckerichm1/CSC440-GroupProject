@@ -6,6 +6,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import utility.PHasher;
 
 @SuppressWarnings("serial")
@@ -14,6 +18,26 @@ public class LoginController extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
+			if(request.getParameter("param").equals("recover")){
+				String username = request.getParameter("username");
+				String email = request.getParameter("email");
+				//TODO: Check if username and email exists
+				// make new random password
+				PHasher hash = new PHasher();
+				String newPass = hash.generateRandomPassword();
+				String password = hash.hash(newPass);
+				// insert the new password
+				database.Account.updatePass(username, password);
+				// invoke the emailer
+				// return the new pass in json for now (since emailer isn't up)
+				JSONObject j = new JSONObject(password);
+				String json = j.toString();
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
+				response.getWriter().write(json);
+				return;
+			}
+			
 			String username = request.getParameter("username");
 			String givenPass = request.getParameter("password");
 			// Compare the given pw and pw from db using PHasher methods

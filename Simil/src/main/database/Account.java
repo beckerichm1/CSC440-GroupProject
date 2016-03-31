@@ -118,4 +118,20 @@ public class Account {
 		System.out.println("MY ACCOUNT:" + accountType);
 		return accountType;
 	}
+
+	public static boolean updatePass(String userName, String password) {
+		try {
+			Connection conn = SimilConnection.connect();
+			String query = "UPDATE user SET Password = ? where userName = ?;";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, userName);
+			stmt.setString(2, password);
+			stmt.executeUpdate();
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return false;
+		}
+		return true;
+	}
 }
