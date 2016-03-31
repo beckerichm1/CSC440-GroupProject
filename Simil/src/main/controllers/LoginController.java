@@ -37,38 +37,38 @@ public class LoginController extends HttpServlet {
 				response.setContentType("application/json");
 				response.setCharacterEncoding("UTF-8");
 				response.getWriter().write(json);
-				return;
-			}
-			
-			String username = request.getParameter("username");
-			String givenPass = request.getParameter("password");
-			// Compare the given pw and pw from db using PHasher methods
-			PHasher hash = new PHasher(givenPass);
-			String storedPass = database.Account.getPass(username);
-			if (hash.match(storedPass, givenPass)) {
-				String accountType = database.Account.getAccountType(username);
-				// if((storedPass).equals(givenPass)){
-				// Get the session - if no session exists create one
-				HttpSession session = request.getSession(true);
-				// Set some attribute values to the session
-				session.setAttribute("username", username);
-				session.setAttribute("accountType", accountType);
-				// session.setAttribute("password", password);
-				//response.setHeader("Access-Control-Allow-Origin", "*");
-				//response.setContentType("json");
-				//response.setStatus(response.SC_ACCEPTED);
-				//response.sendRedirect("/Simil/views/Home/UserHome.jsp");
-				
-				System.out.println("I AM DONE HERE");
 			}
 			else{
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-				response.setStatus(400);
-				response.setContentType("text/plain");
-				response.getWriter().print("NOPE");
-				//response.sendRedirect("/Simil");
-				//Need to send invalid password message with it
-				
+				String username = request.getParameter("username");
+				String givenPass = request.getParameter("password");
+				// Compare the given pw and pw from db using PHasher methods
+				PHasher hash = new PHasher(givenPass);
+				String storedPass = database.Account.getPass(username);
+				if (hash.match(storedPass, givenPass)) {
+					String accountType = database.Account.getAccountType(username);
+					// if((storedPass).equals(givenPass)){
+					// Get the session - if no session exists create one
+					HttpSession session = request.getSession(true);
+					// Set some attribute values to the session
+					session.setAttribute("username", username);
+					session.setAttribute("accountType", accountType);
+					// session.setAttribute("password", password);
+					//response.setHeader("Access-Control-Allow-Origin", "*");
+					//response.setContentType("json");
+					//response.setStatus(response.SC_ACCEPTED);
+					//response.sendRedirect("/Simil/views/Home/UserHome.jsp");
+
+					System.out.println("I AM DONE HERE");
+				}
+				else{
+					response.sendError(HttpServletResponse.SC_BAD_REQUEST);
+					response.setStatus(400);
+					response.setContentType("text/plain");
+					response.getWriter().print("NOPE");
+					//response.sendRedirect("/Simil");
+					//Need to send invalid password message with it
+
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
