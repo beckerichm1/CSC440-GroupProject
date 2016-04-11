@@ -17,6 +17,9 @@
 </head>
 <body>
 	<div id="wrapper">
+	    <%@ include file="/supp/html/topNav.jsp" %>
+        <%@ include file="/supp/html/sideMenu.jsp" %>
+	
 		<div id="content">
 			<div class="centerDiv">
 				<div id="headerText">

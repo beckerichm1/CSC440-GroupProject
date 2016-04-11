@@ -1,0 +1,32 @@
+        <div id="sideMenu">
+            <div id="linkContainer">
+                <ul>
+                    <li><div class="menuItem"></div><a href="/Simil/views/Interests/Catalog.jsp">Interests</a></li>
+                    <li><a href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
+                    <%
+                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
+                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
+                    %>
+                     <li><a href="/Simil/views/Dashboard/AdministratorTools.jsp">Administrator Tools</a></li>
+                    <%
+                        }
+                    %>
+                </ul>
+            </div>
+        </div>
+        
+        <script>
+        $(function(){
+            var expanded = false;
+            $('#sideMenu').click(function(){
+                if (!expanded){
+                      $(this).animate({'left' : '0px'}, {duration : 200});
+                      expanded = true;
+                }
+                else{
+                    $(this).animate({'left' : '-145px'}, {duration: 200});
+                    expanded = false;
+                }
+            });
+        });
+        </script>

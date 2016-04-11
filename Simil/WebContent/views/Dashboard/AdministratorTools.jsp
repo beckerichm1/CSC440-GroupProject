@@ -18,29 +18,8 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="nav">
-            <div id="logoDiv">
-                <a id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
-            </div>
-
-        </div>
-        
-        <div id="sideMenu">
-            <div id="linkContainer">
-                <ul>
-                    <li><div class="menuItem"></div><a href="/Simil/views/Interests/Catalog.jsp">Interests</a></li>
-                    <li><a href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
-                    <%
-                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
-                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
-                    %>
-                     <li><a href="/Simil/views/Dashboard/AdministratorTools.jsp">Administrator Tools</a></li>
-                    <%
-                        }
-                    %>
-                </ul>
-            </div>
-        </div>
+        <%@ include file="/supp/html/topNav.jsp" %>
+        <%@ include file="/supp/html/sideMenu.jsp" %>
 
             <div id="content">
                 <h1>ADMINISTRATOR TOOLS</h1>            
