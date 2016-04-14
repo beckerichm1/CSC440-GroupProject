@@ -135,4 +135,22 @@ public class Account {
 		}
 		return true;
 	}
+
+	public static ArrayList<String> getAccountsLike(String id) {
+		ArrayList<String> users = new ArrayList<>();
+		try{
+			Connection conn = SimilConnection.connect();
+			String query = "SELECT userName FROM user where fName LIKE '?%' OR lName LIKE '?%' OR userName LIKE '?%';";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				users.add(rs.getString("userName"));
+			}
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return users;
+	}
 }

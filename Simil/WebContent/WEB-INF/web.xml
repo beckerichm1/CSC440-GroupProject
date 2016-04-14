@@ -34,6 +34,10 @@
     <servlet-name>PanelAccount</servlet-name>
     <servlet-class>main.PanelAccountServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Account</servlet-name>
+    <servlet-class>main.AccountServlet</servlet-class>
+  </servlet>
   
   <filter>
     <filter-name>UrlRewriteFilter</filter-name>
