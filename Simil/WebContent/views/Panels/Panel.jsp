@@ -27,26 +27,50 @@
         <%@ include file="/supp/html/sideMenu.jsp" %>
 
             <div id="content">
-
-                <div id="panelHead">
-                    <%
-                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
-                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
-                    %>
-                     <li><a href="javascript:removePanel()">Delete this Panel</a></li>
-                    <%
-                        }
-                    %>
-                    <div id="panelName"></div>
-                    <div id="panelDescription"></div>
-                </div>
-                <div id="panelMembers">
-                    <h4>Panel Members</h4>
-                    <ul id="memberList"></ul>
-                </div>
-                <form action="/Simil/LogoutController" method="POST">
-                    <button type="submit" value="Logout">Logout</button>
-                </form>
+	            <div id="panelDiv">
+	                <div id="panelHead">
+	                    <%
+	                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
+	                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
+	                    %>
+	                     <li><a href="javascript:removePanel()">Delete this Panel</a></li>
+	                    <%
+	                        }
+	                    %>
+	                    
+	                    <div id="panelName"></div>
+	                    <div id="panelDescription">
+	                       <p># of users (REPLACE)</p>
+	                    </div>
+	                </div>
+	                <div id="panelMembers">
+	                    <h4>Panel Members</h4>
+	                    <ul id="memberList"></ul>
+	                </div>
+                    <div id = "popularPostsDiv">
+                       <h3>Popular Posts</h3>
+                       <ul class="postList">
+                           <li><a href="#">Steamin' hot Post 1</a></li>
+                           <li><a href="#">Steamin' hot Post 2</a></li>
+                           <li><a href="#">Steamin' hot Post 3</a></li>
+                           <li><a href="#">Steamin' hot Post 4</a></li>
+                           <li><a href="#">Steamin' hot Post 5</a></li>
+                       </ul>
+                    </div>
+                    <div id = "postsDiv">
+                       <h3>Panel Posts</h3>
+                       <ul class="postList">
+                           <li><a href="#">Sample Post 1</a></li>
+                           <li><a href="#">Sample Post 2</a></li>
+                           <li><a href="#">Sample Post 3</a></li>
+                           <li><a href="#">Sample Post 4</a></li>
+                           <li><a href="#">Sample Post 5</a></li>
+                       </ul>
+                    </div>
+	                <form action="/Simil/LogoutController" method="POST">
+	                    <button type="submit" value="Logout">Logout</button>
+	                </form>
+	            </div>
             </div>
         
     </div>

@@ -22,52 +22,13 @@
 </head>
 <body>
     <div id="wrapper">
-        <div id="nav">
-            <div id="logoDiv">
-                <a id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
-            </div>
+        <%@ include file="/supp/html/topNav.jsp" %>
+        <%@ include file="/supp/html/sideMenu.jsp" %>
 
-        </div>
-        
-        <div id="sideMenu">
-            <div id="linkContainer">
-                <ul>
-                    <li><div class="menuItem"></div><a href="/Simil/views/Interests/Catalog.jsp">Interests</a></li>
-                    <li><a href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
-                    <%
-                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
-                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
-                    %>
-                     <li><a href="/Simil/views/Dashboard/AdministratorTools.jsp">Administrator Tools</a></li>
-                    <%
-                        }
-                    %>
-                </ul>
-            </div>
-        </div>
 
             <div id="content">
-                <form action="/Simil/LogoutController" method="POST">
-                    <button type="submit" value="Logout">Logout</button>
-                </form>
             </div>
         
     </div>
 </body>
-<script>
-    
-    $(function(){
-        var expanded = false;
-        $('#sideMenu').click(function(){
-            if (!expanded){
-                  $(this).animate({'left' : '0px'}, {duration : 200});
-                  expanded = true;
-            }
-            else{
-                $(this).animate({'left' : '-145px'}, {duration: 200});
-                expanded = false;
-            }
-        });
-    });
-</script>
 </html>

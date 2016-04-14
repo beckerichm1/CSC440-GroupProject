@@ -46,7 +46,6 @@ body {  /* background-image: url(background.gif); */
 	/*color:#F7906D; */
 	/*color:#D04248;*/
 	/*color:#FDCF6C;*/
-	
     font-family: 'Damion';   
     font-size:45px;
 }
@@ -101,7 +100,8 @@ h4{
 	
 }
 #linkContainer{
-	display:inline-block;
+	margin-right:15px;
+	display:block;
 /* 	position:absolute;
 	margin-top:10px; */
 	
@@ -161,11 +161,16 @@ div#logoDiv{
     z-index:1;
     background-color: #bc5a5a;
     box-shadow: 0px -2px 15px #888888;
+    text-align:center;
     
     
 }
 #sideMenu ul{
 	list-style-type:none;
+	padding-left:0px;
+	display:inline-block;
+	width:100%;
+	border-radius:3px;
 }
 #sideMenu a{
     
@@ -173,6 +178,17 @@ div#logoDiv{
 #sideMenu li{
     background-color: gray;
     color: white;
+}
+.menuItem{
+    height:30px;
+    padding-top:10px;
+    display:inline-block;
+    margin:auto;
+    width:100%;
+    background-color:#a95151;
+}
+#sideMenu ul li a:hover{
+    background-color:#f8eeee;
 }
 
 
@@ -394,4 +410,75 @@ h1#panelName{
 }
 p#panelDescription{
 	
+}
+
+#profileDiv{
+	margin-top:25px;
+	text-align: center;
+}
+#userName{
+	font-size:40px;
+	margin:15px;
+}
+#userImage{
+	display:inline-block;
+	height:200px;
+	width:200px;
+	background-color:gray;
+}
+#bioDiv{
+	margin:10px;
+    color:white;
+    display:inline-block;
+    width:70%;
+    background-color:gray;
+    border: 1px solid black;
+}
+#userPanelDiv{
+	text-align:left;
+	margin:10px;
+    color:white;
+    display:inline-block;
+    width:70%;
+    background-color:gray;
+    border: 1px solid black;
+}
+#userBuddiesDiv{
+	margin:10px;
+    color:white;
+    display:inline-block;
+    width:70%;
+    background-color:gray;
+    border: 1px solid black;
+}
+#userInterestDiv{
+	margin:10px;
+    color:white;
+    display:inline-block;
+    width:70%;
+    background-color:gray;
+    border: 1px solid black;
+}
+
+#panelDiv{
+	width:95%;
+	margin:auto;
+
+}
+
+#postsDiv{
+    margin:10px 0px;
+    color:white;
+    display:inline-block;
+    width:100%;
+    background-color:#8ba695;
+    border: 1px solid black;
+}
+#popularPostsDiv{
+    margin:10px 0px;
+    color:white;
+    display:inline-block;
+    width:100%;
+    background-color:#8ba695;
+    border: 1px solid black;
 }
