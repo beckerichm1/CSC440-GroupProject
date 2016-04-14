@@ -111,7 +111,10 @@ div#logoDiv{
 	display:inline-block;
 	padding-left: 10px;
 }
-
+#searchDiv{
+	float: right;
+	max-width: 300px;
+}
 #logoSpan{
 	color:#F0F0D8; 
 }

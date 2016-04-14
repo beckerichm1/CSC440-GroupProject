@@ -4,7 +4,7 @@
 	</div>
 	
 	<div id="searchDiv">
-		<div class="formBox">
+		<div class="searchForm">
 	       <!-- Changing onsubmit from return login() to just login() -->
 	       <form action="javascript:search()">
 	           <div class="inputHolder">
@@ -12,11 +12,12 @@
 	               <button type="submit" value="search" class = "button">Search!</button>
                </div>
 	       </form>
+		</div>
 	</div>
 </div>
 
 <script>
-function login(){
+function search(){
 	    var username = $("#username").val();
 	    var url = "/Simil/AccountServlet";
 	    $.ajax({
