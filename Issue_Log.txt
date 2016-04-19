@@ -6,6 +6,8 @@ SIMIL -- Issue Log
 - Need to check user info before resetting password.
 - Need to validate user doesn't exist before creating account.
 - Need to validate any deletes/adds before performing them.
+- Min and Max in the date portion of signup form.
+
 
 
 -----------------------------------------
@@ -14,3 +16,8 @@ SIMIL -- Issue Log
 - Need to move from client-side to server-side or ajax form validation (required fields)
 - Validate user is not already logged in before visiting the signup page.
 - close all open database connections
+- Redirect after button presses and stuff
+- Button on interest page should be 'submit' instead of 'continue'.
+	- Might want a back button on the interest page
+	- Interest page has no default layout (header, sidebar)
+- Panels page has no default layout (header, sidebar)
