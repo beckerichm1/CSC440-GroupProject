@@ -140,12 +140,16 @@ public class Account {
 		ArrayList<String> users = new ArrayList<>();
 		try{
 			Connection conn = SimilConnection.connect();
-			String query = "SELECT userName FROM user where fName LIKE '?%' OR lName LIKE '?%' OR userName LIKE '?%';";
+			String query = "SELECT userName FROM user where fName LIKE ? OR lName LIKE ? OR userName LIKE ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
-			stmt.setString(1, id);
+			stmt.setString(1, id + "%");
+			stmt.setString(2, id + "%");
+			stmt.setString(3, id + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				users.add(rs.getString("userName"));
+				String sowarm = rs.getString("userName");
+				users.add(sowarm);
+				System.out.println(sowarm);
 			}
 			conn.close();
 		} catch (Exception ex) {

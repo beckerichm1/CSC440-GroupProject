@@ -1,41 +1,37 @@
 <div id="nav">
 	<div id="logoDiv">
-		<a id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
+		<a class="noselect" id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
 	</div>
-
+	<div id="navDiv">
 	<div id="searchDiv">
-		<div class="searchForm">
-			<!-- Changing onsubmit from return login() to just login() -->
-			<form action="javascript:search()">
-				<div class="inputHolder">
-					<input type="text" id="username" name="username"
-						placeholder="Search for users">
-					<button type="submit" value="search" class="button">Search!</button>
-				</div>
-			</form>
+			<div class="searchForm">
+		       <!-- Changing onsubmit from return login() to just login() -->
+		       <form id="search" action="javascript:search()">
+		           <div class="searchInputHolder">
+			           <input id="searchBar" type="text" name="query" placeholder="Search for users">
+		               <a class="noselect" onclick="document.getElementById('search').submit()">
+			               <div class="searchButton">
+			                  <h4>Search!</h4>
+		                   </div>
+	                   </a>
+	               </div>
+		       </form>
+			</div>
 		</div>
-	</div>
+	    <a onclick="document.getElementById('logoutForm').submit()">
+		    <div id="logoutDiv">
+		           <form id="logoutForm" class="noselect" method="POST" action="/Simil/LogoutController">
+		               <span><h4>Log Out</h4></span>
+		           </form>
+		    </div>
+	    </a>
+    </div>
+    
 </div>
 
 <script>
-	function search() {
-		var username = $("#username").val();
-		var url = "/Simil/AccountServlet";
-		$.ajax({
-			type : "GET",
-			url : url,
-			data : {
-				"id" : username
-			},
-			success : function() {
-				// Perform a redirect, data of people found should be in session
-				window.location = "/Simil/views/Dashboard/SearchResults.jsp";
-				//console.log(data);
-				//window.location = "/Simil/views/Home/UserHome.jsp"
-			},
-			error : function(data) {
-				console.log(data);
-			}
-		});
-	}
+function search(){
+	    var query = $("#searchBar").val();
+	    window.location = "/Simil/SearchResults.jsp?search=" + query;
+}
 </script>
