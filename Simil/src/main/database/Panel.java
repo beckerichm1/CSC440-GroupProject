@@ -132,9 +132,11 @@ public class Panel {
 		ArrayList<String[]> panels = new ArrayList<>();
 		try {
 			Connection conn = SimilConnection.connect();
-			String showPanels = "SELECT * FROM Panel WHERE panelID = ?;";
+			// Added the 'or panelName = ?' to end to support querying either ID or name
+			String showPanels = "SELECT * FROM Panel WHERE panelID = ? OR panelName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(showPanels);
 			stmt.setString(1, id);
+			stmt.setString(2, id);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				String[] panel = new String[5];

@@ -77,7 +77,7 @@
 </body>
 <script>
 	$(document).ready(function() {
-		var id = ${param.id};
+		var id = '${param.id}';
 		console.log("This panelID is: " + id);
 		getPanelDetails(id);
 		getPanelMembers(id);
@@ -150,7 +150,7 @@
 <script>
 
     function removePanel(){
-    	var id = ${param.id};
+    	var id = '${param.id}';
     	var url = "/Simil/PanelServlet";
         $.ajax({
             url: url,

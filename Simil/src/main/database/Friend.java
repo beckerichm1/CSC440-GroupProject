@@ -42,7 +42,7 @@ public class Friend {
 		return true;
 	}
 
-	public ArrayList<String> getAllFriends(String userName) {
+	public static ArrayList<String> getAllFriends(String userName) {
 		ArrayList<String> friends = new ArrayList<>();
 		try {
 			Connection conn = SimilConnection.connect();
@@ -50,7 +50,7 @@ public class Friend {
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			stmt.setString(2, userName);
-			ResultSet rs = stmt.executeQuery(query);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				// Get the two user names in each friend entry
 				String user1 = rs.getString("userName1");

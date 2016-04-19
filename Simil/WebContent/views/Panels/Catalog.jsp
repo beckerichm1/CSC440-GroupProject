@@ -67,7 +67,8 @@
 			/* var entry = "<li><input type = 'checkbox' value = '" + id + "'><div>"
 					+ name + "\n" + desc + "</div></li>";
 			 */
-			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + id + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
+			 // This used to be id=id, now is id=name
+			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + name + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
 					
 			/* <div class='checkElement'><input type='checkbox' name='interests' value='" + data[x] + "' id='"+ x +"'/>"+
 		    "<label class='checkLabel' for='" + x +"'>"+ data[x] + "</label></div> */
