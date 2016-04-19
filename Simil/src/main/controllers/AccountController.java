@@ -21,6 +21,7 @@ public class AccountController extends HttpServlet{
 		ArrayList<String> users = database.Account.getAccountsLike(id);
 		JSONArray ar = new JSONArray(users);
 		String json = ar.toString();
+		request.setAttribute("searchFor", id);
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);

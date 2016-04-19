@@ -153,6 +153,7 @@ button#searchButton.button{
 	color:#F0F0D8; 
 }
 #logoutDiv{
+	background-color:#587362;
 	text-align:center;
 	display:inline-block;
 	height:64px;

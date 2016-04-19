@@ -8,40 +8,30 @@
 		       <!-- Changing onsubmit from return login() to just login() -->
 		       <form id="search" action="javascript:search()">
 		           <div class="searchInputHolder">
-			           <input id="searchBar" type="text" id="username" name="username" placeholder="Search for users">
-		               <div class="searchButton">
-		                  <a class="noselect" onclick="document.getElementById('search').submit()"><h4>Search!</h4></a>
-	                   </div>
+			           <input id="searchBar" type="text" name="query" placeholder="Search for users">
+		               <a class="noselect" onclick="document.getElementById('search').submit()">
+			               <div class="searchButton">
+			                  <h4>Search!</h4>
+		                   </div>
+	                   </a>
 	               </div>
 		       </form>
 			</div>
 		</div>
-	    <div id="logoutDiv">
-	           <form id="logoutForm" class="noselect" method="POST" action="/Simil/LogoutController">
-	               <span><a onclick="document.getElementById('logoutForm').submit()"><h4>Log Out</h4></a></span>
-	           </form>
-	    </div>
+	    <a onclick="document.getElementById('logoutForm').submit()">
+		    <div id="logoutDiv">
+		           <form id="logoutForm" class="noselect" method="POST" action="/Simil/LogoutController">
+		               <span><h4>Log Out</h4></span>
+		           </form>
+		    </div>
+	    </a>
     </div>
     
 </div>
 
 <script>
 function search(){
-	    var username = $("#username").val();
-	    var url = "/Simil/AccountServlet";
-	    $.ajax({
-	    	type: "GET",
-	        url: url,
-	        data: {"id": username},
-	        success: function(data){
-	        	// Perform a redirect, passing along the data to show results of people found
-	        	
-	        	//console.log(data);
-	        	//window.location = "/Simil/views/Home/UserHome.jsp"
-	        },
-	        error: function(data){
-				console.log(data);
-	        }
-	});
+	    var query = $("#searchBar").val();
+	    window.location = "/Simil/SearchResults.jsp?search=" + query;
 }
 </script>
