@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	
-<%@ include file="/supp/html/RequiredLoginHeader.jsp" %>
+<%
+	try {
+		if (request.getSession().getAttribute("username") == null) {
 
+			response.sendRedirect("/Simil");
+
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
 <script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>${username} - Simil</title>
+<title>Simil</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -18,7 +26,7 @@
 		<%@ include file="/supp/html/sideMenu.jsp" %>
 
 			<div id="content">
-			<h1>Welcome, ${username}</h1>
+			<h1>Welcome, <%=session.getAttribute("username")%></h1>
 
 				<div class='section'>
 					<h4>My Panels:</h4>
@@ -32,6 +40,9 @@
 						<ul id="interest-list"></ul>
 					</div>
 				</div>
+				<form action="/Simil/LogoutController" method="POST">
+					<button type="submit" value="Logout">Logout</button>
+				</form>
 			</div>
 		
 	</div>

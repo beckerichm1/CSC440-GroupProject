@@ -11,6 +11,11 @@ import java.util.Calendar;
 import utility.SimilConnection;
 
 public class Account {
+
+	private String userName, about, fName, lName, userType, interests, email;
+	private Date birthday, joined;
+
+
 	// friend(user1, user2)
 	public static boolean insertAccount(String userName, String fName, String lName, String email, Date birth,
 			String pw) {
@@ -60,7 +65,7 @@ public class Account {
 			interests = rs.getString("interests");
 			if(interests != null)
 				accountInfo.add(interests);
-			
+
 			//System.out.println(accountInfo);
 
 			// get panels
@@ -75,7 +80,7 @@ public class Account {
 				if(!panel.equals("null"))
 					accountInfo.add(panel);
 			}
-			accountInfo.addAll(Panel.getUserPanels(userName));
+			//accountInfo.addAll(Panel.getUserPanels(userName));
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -155,5 +160,67 @@ public class Account {
 			System.out.println(ex);
 		}
 		return users;
+	}
+	
+	
+	
+	
+	
+	public Account(String userName, String fName, String lName, String about, Date birth, String interests){
+		this.userName = userName;
+		this.fName = fName;
+		this.lName = lName;
+		this.about = about;
+		this.interests = interests;
+	}
+
+	public String getUserName(){
+		return userName;
+	}
+	public String getFName(){
+		return fName;
+	}
+	public String getLName(){
+		return lName;
+	}
+	public String getEmail(){
+		return email;
+	}
+	public Date getBirthday(){
+		return birthday;
+	}
+
+	public void setUserName(String userName){
+		this.userName = userName;
+	}
+	public void setFName(String fName){
+		this.fName = fName;
+	}
+	public void setLName(String lName){
+		this.lName = lName;
+	}
+	public void setEmail(String email){
+		this.email = email;
+	}
+	public void SetBirthday(Date birthday){
+		this.birthday = birthday;
+	}
+
+	public static String getAbout(String id) {
+		String about = "";
+		try {
+			Connection conn = SimilConnection.connect();
+			String query = "SELECT about FROM User WHERE userName = ? ;";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				about = rs.getString("about");
+			}
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return about;
 	}
 }

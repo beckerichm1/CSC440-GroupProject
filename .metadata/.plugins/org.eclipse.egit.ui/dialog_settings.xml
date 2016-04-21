@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
-	<item value="C:\Users\Jarrod\Desktop\School\Spring 2016\CSC 440\Project\Simil\CSC440-GroupProject-Hue_Manatees\.git" key="GitSelectRepositoryPage.lastRepository"/>
-	<section name="GitImportWizard">
-		<item value="true" key="GitProjectsImportPage.STORE_NESTED_PROJECTS"/>
-	</section>
-</section>

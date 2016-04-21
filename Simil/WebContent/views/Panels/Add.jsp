@@ -13,7 +13,7 @@
 <script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
-<title>Panel Add</title>
+<title>Simil</title>
 </head>
 <body>
 	<div id="wrapper">

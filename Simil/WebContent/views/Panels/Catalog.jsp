@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<%@ include file="/supp/html/RequiredLoginHeader.jsp" %>
-
+<%
+	
+%>
+<script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
-<title>Panel Catalog</title>
-<script type="text/javascript" src="/Simil/supp/js/jquery-1.12.1.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
 	<div id="wrapper">
@@ -66,7 +67,8 @@
 			/* var entry = "<li><input type = 'checkbox' value = '" + id + "'><div>"
 					+ name + "\n" + desc + "</div></li>";
 			 */
-			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + id + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
+			 // This used to be id=id, now is id=name
+			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + name + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
 					
 			/* <div class='checkElement'><input type='checkbox' name='interests' value='" + data[x] + "' id='"+ x +"'/>"+
 		    "<label class='checkLabel' for='" + x +"'>"+ data[x] + "</label></div> */

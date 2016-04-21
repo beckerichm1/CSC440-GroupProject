@@ -1,8 +1,17 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
-<%@ include file="/supp/html/RequiredLoginHeader.jsp" %>
+<%
+    try {
+        if (request.getSession().getAttribute("username") == null) {
+
+            response.sendRedirect("/Simil");
+
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -68,7 +77,7 @@
 </body>
 <script>
 	$(document).ready(function() {
-		var id = ${param.id};
+		var id = '${param.id}';
 		console.log("This panelID is: " + id);
 		getPanelDetails(id);
 		getPanelMembers(id);
@@ -141,7 +150,7 @@
 <script>
 
     function removePanel(){
-    	var id = ${param.id};
+    	var id = '${param.id}';
     	var url = "/Simil/PanelServlet";
         $.ajax({
             url: url,

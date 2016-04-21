@@ -70,6 +70,10 @@ public class Panel_Account {
 
 	public static ArrayList<String> getAllAccountsFromPanel(String panelID) {
 		ArrayList<String> accounts = new ArrayList<>();
+		// Check if panelID passed is ID or name
+		if(panelID.matches("-?\\d+(\\.\\d+)?")){
+			panelID = database.Panel.getPanelDetail(panelID).get(0)[0];
+		}
 		try {
 			Connection conn = SimilConnection.connect();
 			String query = "SELECT userName FROM panel_account WHERE panelID = ?;";

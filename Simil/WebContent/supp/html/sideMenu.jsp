@@ -5,7 +5,7 @@
                     <li><a class="menuItem"  href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
                     <%
                         //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
-                        if ((request.getSession().getAttribute("accountType")!=null) && request.getSession().getAttribute("accountType").equals("Administrator")) {
+                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
                     %>
                      <li><a class="menuItem"  href="/Simil/views/Dashboard/AdministratorTools.jsp">Administrator Tools</a></li>
                     <%
