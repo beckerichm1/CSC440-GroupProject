@@ -18,23 +18,35 @@
 
 		<div id="content">
 			<h1>Search Results for ${param.search}</h1>
+			<div id="userSearchResults">
+            </div>
+            <div id="panelSearchResults">
+            </div>
 		</div>
 
 	</div>
 </body>
 <script>
 	$(document).ready(function() {
-		var username = '${param.search}';
+		var user = '${param.search}';
 		var url = "/Simil/AccountServlet";
 		$.ajax({
 			type : "GET",
 			url : url,
 			data : {
-				"id" : username
+				"param": "search",
+				"id" : user
 			},
-			success : function() {
+			success : function(entryData) {
 				// Print the results on page as links to user profiles.
-				alert(username);
+                var $userResultDiv= $('#userSearchResults');
+                var $panelResultDiv= $('#panelSearchResults');
+				var row;
+				
+			    for(var i = 0; i < entryData.length; i++){
+			    	row = "<div id = 'searchResultElement'><a href='/Simil/views/Home/UserPage.jsp?user="+ entryData[i] +"'>" + entryData[i] + "</a><div>"
+			         $userResultDiv.append(row);
+			    }
 			},
 			error : function(data) {
 				console.log(data);
