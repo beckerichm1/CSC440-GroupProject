@@ -1,8 +1,9 @@
-        <div id="sideMenu">
+        <div id="sideMenu" class="noselect">
             <div id="linkContainer">
                 <ul>
                     <li><a class="menuItem" href="/Simil/views/Interests/Catalog.jsp">Interests</a></li>
-                    <li><a class="menuItem"  href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
+                    <li><a class="menuItem" href="/Simil/views/Panels/Catalog.jsp">Panels</a></li>
+                    <li><a class="menuItem" href="/Simil/views/Home/UserPage.jsp?user=<%=session.getAttribute("username")%>">My Page</a>
                     <%
                         //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
                         if (request.getSession().getAttribute("accountType").equals("Administrator")) {

@@ -38,7 +38,10 @@
 	                        }
 	                    %>
 	                    
-	                    <div id="panelName"></div>
+	                    <div id="panelHead">
+	                       <div id="panelName"></div>
+	                       <a id="joinPanelButton" href="#">Join Panel</a>
+	                    </div>
 	                    <div id="panelDescription">
 	                       <p># of users (REPLACE)</p>
 	                    </div>
@@ -67,9 +70,6 @@
                            <li><a href="#">Sample Post 5</a></li>
                        </ul>
                     </div>
-	                <form action="/Simil/LogoutController" method="POST">
-	                    <button type="submit" value="Logout">Logout</button>
-	                </form>
 	            </div>
             </div>
         

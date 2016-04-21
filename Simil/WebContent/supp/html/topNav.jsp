@@ -1,6 +1,6 @@
-<div id="nav">
+<div id="nav" class="noselect">
 	<div id="logoDiv">
-		<a class="noselect" id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
+		<a id="logo" href="/Simil"><span id="logoSpan">Simil!</span></a>
 	</div>
 	<div id="navDiv">
 	<div id="searchDiv">

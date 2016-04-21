@@ -26,7 +26,7 @@
 		<%@ include file="/supp/html/sideMenu.jsp" %>
 
 			<div id="content">
-			<h1>Welcome, <%=session.getAttribute("username")%></h1>
+			<h1>Welcome, <%=session.getAttribute("username")%></h1><a href="/Simil/views/Home/UserPage.jsp?user=<%=session.getAttribute("username")%>">View my page</a>
 
 				<div class='section'>
 					<h4>My Panels:</h4>
