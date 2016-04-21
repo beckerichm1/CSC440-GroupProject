@@ -34,6 +34,7 @@ public class UserHomeController extends HttpServlet {
 			interestsArray = accountInfo.get(0).split("_");	
 			interests = new JSONArray(interestsArray);
 			panels = new JSONArray(accountInfo.subList(1, accountInfo.size()));
+			System.out.println("interests array: " + accountInfo.get(0));
 		}
 		
 

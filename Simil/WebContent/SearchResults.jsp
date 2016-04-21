@@ -29,6 +29,12 @@
 <script>
 	$(document).ready(function() {
 		var user = '${param.search}';
+		getUsers(user);
+		getPanels(user);
+
+	});
+	
+	function getUsers(user){
 		var url = "/Simil/AccountServlet";
 		$.ajax({
 			type : "GET",
@@ -40,11 +46,10 @@
 			success : function(entryData) {
 				// Print the results on page as links to user profiles.
                 var $userResultDiv= $('#userSearchResults');
-                var $panelResultDiv= $('#panelSearchResults');
-				var row;
 				
 			    for(var i = 0; i < entryData.length; i++){
-			    	row = "<div id = 'searchResultElement'><a href='/Simil/views/Home/UserPage.jsp?user="+ entryData[i] +"'>" + entryData[i] + "</a><div>"
+			    	var row = "<div id = 'searchResultElement'><a href='/Simil/views/Home/UserPage.jsp?user="
+			    			+ entryData[i] + "'>" + entryData[i] + "</a><div>";
 			         $userResultDiv.append(row);
 			    }
 			},
@@ -52,7 +57,32 @@
 				console.log(data);
 			}
 		});
-
-	});
+	}
+	
+	function getPanels(panel){
+		var url = "/Simil/PanelServlet";
+		$.ajax({
+			type : "GET",
+			url : url,
+			data : {
+				"param": "search",
+				"id" : panel
+			},
+			success : function(entryData) {
+				console.log(entryData);
+				// Print the results on page as links to panel pages.
+                var $panelResultDiv= $('#panelSearchResults');
+			    for(var i = 0; i < entryData.length; i++){
+			    	// change the anchor tag link
+			    	var row = "<div id = 'searchResultElement'><a href='/Simil/views/Panels/Panel.jsp?id="
+			    			+ entryData[i] + "'>" + entryData[i] + "</a><div>"
+			         $panelResultDiv.append(row);
+			    }
+			},
+			error : function(data) {
+				console.log(data);
+			}
+		});
+	}
 </script>
 </html>

@@ -30,6 +30,9 @@ public class PanelController extends HttpServlet {
 			System.out.println("Returning from getting Panel Details");
 			return;
 		}
+		else if(param.equals("search")){
+			panels = database.Panel.getPanelsLike(request.getParameter("id"));
+		}
 		else if(!param.equals("all"))
 			panels = database.Panel.getNonUserPanels((String) request.getSession().getAttribute("username"));
 		else
