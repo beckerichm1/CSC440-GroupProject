@@ -158,4 +158,24 @@ public class Panel {
 		}
 		return panels;
 	}
+
+	public static ArrayList<String[]> getPanelsLike(String id) {
+		ArrayList<String[]> panels = new ArrayList<>();
+		try{
+			Connection conn = SimilConnection.connect();
+			String query = "SELECT panelName FROM Panel where panelName LIKE ? OR panelDesc LIKE ?;";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, id + "%");
+			stmt.setString(2, id + "%");
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) {
+				String[] name = {rs.getString("panelName")};
+				panels.add(name);
+			}
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return panels;
+	}
 }

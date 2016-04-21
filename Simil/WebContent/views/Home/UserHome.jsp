@@ -50,7 +50,6 @@
 </html>
 <script>
 	$(document).ready(function() {
-
 		$.ajax({
 			type : "GET",
 			url : "/Simil/UserHomeServlet",
@@ -64,7 +63,9 @@
 	function displayInfo(data) {
 		var $interests = $('#interest-list');
 		var $panels = $('#panel-list');
-
+		console.log(data);
+		console.log(data[0]);
+		console.log(data[1]);
 		for (var x = 0; x < data[0].length; x++) {
 			var entry = "<li>" + data[0][x] + "</li>";
 			$interests.append(entry);

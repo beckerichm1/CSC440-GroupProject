@@ -23,7 +23,7 @@ public class Account {
 		Calendar cal = Calendar.getInstance();
 		try {
 			Connection conn = SimilConnection.connect();
-			String query = "INSERT INTO user (userName, fName, lName, email, birthday, joined, userType, password, location)"
+			String query = "INSERT INTO user (userName, fName, lName, email, birthday, joined, userType, password, about)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			// System.out.println("User name: " + userName + " " + fName + " " +
@@ -36,7 +36,7 @@ public class Account {
 			stmt.setString(6, dateFormat.format(cal.getTime()));
 			stmt.setString(7, "Basic");
 			stmt.setString(8, pw);
-			stmt.setInt(9, 1);
+			stmt.setString(9, "Isn't it great being a Manatee?");
 			stmt.executeUpdate();
 			conn.close();
 		} catch (Exception ex) {
@@ -53,7 +53,6 @@ public class Account {
 		ArrayList<String> accountInfo = new ArrayList<String>();
 		try {
 			Connection conn = SimilConnection.connect();
-
 			// get interests
 			String query = "select interests from User where userName = ?";
 			PreparedStatement stmt = conn.prepareStatement(query);
@@ -63,8 +62,10 @@ public class Account {
 			rs.next();
 			// Only get interests once, as they repeat
 			interests = rs.getString("interests");
-			if(interests != null)
-				accountInfo.add(interests);
+			if(interests == null)
+				interests = "";
+			
+			accountInfo.add(interests);
 
 			//System.out.println(accountInfo);
 
