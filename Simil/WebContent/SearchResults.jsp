@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%
-	if ((request.getSession().getAttribute("username") != null)) {
-%>
+	
+<%@ include file="/supp/html/RequiredLoginHeader.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -45,8 +44,3 @@
 	});
 </script>
 </html>
-<%
-	} else {
-		response.sendError(403, "Forbidden");
-	}
-%>

@@ -147,9 +147,8 @@ public class Account {
 			stmt.setString(3, id + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String sowarm = rs.getString("userName");
-				users.add(sowarm);
-				System.out.println(sowarm);
+				String entry = rs.getString("userName");
+				users.add(entry);
 			}
 			conn.close();
 		} catch (Exception ex) {
