@@ -32,14 +32,15 @@ public class Panel_Account {
 		return true;
 	}
 
-	public boolean deletePanel_Account(int panelID, String userName) {
+	public static boolean deletePanel_Account(String panelID, String userName) {
 		try {
 			Connection conn = SimilConnection.connect();
 			String query = "DELETE FROM panel_account where panelID = ? AND userName = ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
-			stmt.setInt(1, panelID);
+			stmt.setString(1, panelID);
 			stmt.setString(2, userName);
-			stmt.executeUpdate(query);
+			stmt.executeUpdate();
+			System.out.println(stmt);
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
@@ -104,6 +105,26 @@ public class Panel_Account {
 				stmt.setString(3, dateFormat.format(cal.getTime()));
 				stmt.executeUpdate(query);
 			}
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return false;
+		}
+		return true;
+	}
+	
+	public static boolean insertPanelAccounts(String username, String panel) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Calendar cal = Calendar.getInstance();
+		try {
+			Connection conn = SimilConnection.connect();
+			String query = "INSERT INTO Panel_Account (panelID, userName, dateJoined)" 
+						+ " VALUES (?, ?, ?);";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, panel);
+			stmt.setString(2, username);
+			stmt.setString(3, dateFormat.format(cal.getTime()));
+			System.out.println(stmt);
+			stmt.executeUpdate();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			return false;

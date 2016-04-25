@@ -27,6 +27,7 @@
         <%@ include file="/supp/html/sideMenu.jsp" %>
 
             <div id="content">
+            <%-- ${sessionScope.panels } --%>
 	            <div id="panelDiv">
 	                <div id="panelHead">
 	                    <%
@@ -40,15 +41,16 @@
 	                    <div id="panelHead">
 	                       <div id="panelName"></div>
 	                       <%
+	                       //System.out.println((java.util.ArrayList<String>)session.getAttribute("panels"));
 	                       java.util.ArrayList<String> panels = (java.util.ArrayList<String>)session.getAttribute("panels");
-	                       if (session!=null && (!panels.contains(request.getParameter("id")))) {
+	                       if (session!=null && (!panels.contains(request.getParameter("name")))) {
 //	                    	   panels.contains(request.getAttribute("panelName");
 	                       %>
-	                           <a id="joinPanelButton" href="#">Join Panel</a>
+	                           <a id="joinPanelButton" href="javascript:joinPanel()">Join Panel</a>
 	                       <% 
 	                       }else{
 	                    	  %> 
-	                    	  <a id="joinPanelButton" href="#">Leave Panel</a>
+	                    	  <a id="joinPanelButton" href="javascript:leavePanel()">Leave Panel</a>
 	                    	  <%
 	                       }%>
 	                       
@@ -194,5 +196,48 @@
             }
         });
     });
+    
+    
+    function joinPanel(){
+        var panelID = '${param.id}';
+        var url = "/Simil/PanelAccountServlet";
+        $.ajax({
+            url: url,
+            datatype : 'json',
+            type: "POST",
+            data : {
+                action:"join",
+                panel : panelID
+            },
+            success : function(data) {
+                console.log("Panel Joined");
+                window.location.reload();
+            },
+            error : function() {
+                alert('Error joining panel...');
+            }
+        })
+    }
+    function leavePanel(){
+        var panelID = '${param.id}';
+        var url = "/Simil/PanelAccountServlet";
+        $.ajax({
+            url: url,
+            datatype : 'json',
+            type: "POST",
+            data : {
+                action:"leave",
+                panel : panelID
+            },
+            success : function(data) {
+                console.log("Left Panel");
+                window.location.reload();
+            },
+            error : function() {
+                alert('Error leaving panel...');
+            }
+        })
+    }
+    
 </script>
 </html>
