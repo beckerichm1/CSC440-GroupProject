@@ -420,6 +420,14 @@ p.requiredForm{
 	background-color: #6f907b;
 	border-radius: 5px;
 }
+.container{
+	padding:5px;
+}
+.postFormText{
+	height:150px;
+	width:400px;
+	resize:none;
+}
 .checkDiv{
 	text-align:center;
 	padding-top:10px;
@@ -564,6 +572,9 @@ p#panelDescription{
 #panelDiv{
 	width:95%;
 	margin:auto;
+
+}
+#newPostButton{
 
 }
 

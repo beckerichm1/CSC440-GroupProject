@@ -63,6 +63,9 @@
 	                    <h4>Panel Members</h4>
 	                    <ul id="memberList"></ul>
 	                </div>
+
+	                <a id="newPostButton" href="javascript:createPost()"><div id="newPostButtonDiv">Create New Post</div></a>
+
                     <div id = "popularPostsDiv">
                        <h3>Popular Posts</h3>
                        <ul class="postList">
@@ -239,5 +242,9 @@
         })
     }
     
+    function createPost(){
+    	window.location = "/Simil/NewPost.jsp?id=${param.id}&name=${param.name}";
+    	
+    }
 </script>
 </html>
