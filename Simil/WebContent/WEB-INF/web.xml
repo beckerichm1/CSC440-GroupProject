@@ -38,6 +38,10 @@
     <servlet-name>Account</servlet-name>
     <servlet-class>main.AccountServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Post</servlet-name>
+    <servlet-class>main.PostServlet</servlet-class>
+  </servlet>
   
   <filter>
     <filter-name>UrlRewriteFilter</filter-name>
@@ -86,6 +90,10 @@
   <servlet-mapping>
     <servlet-name>PanelAccount</servlet-name>
     <url-pattern>/Simil/PanelAccountServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Post</servlet-name>
+    <url-pattern>/Simil/PostServlet</url-pattern>
   </servlet-mapping>
   
   

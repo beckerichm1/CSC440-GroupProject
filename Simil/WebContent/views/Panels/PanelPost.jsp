@@ -53,8 +53,32 @@
 
                 </div>
              </div>
-
-        
     </div>
 </body>
+<script>
+$(document).ready(function() {
+	getPost();
+});
+
+function getPost(){
+	var id = '${param.id}';
+	var url = "/Simil/PostServlet";
+	$.ajax({
+		url : url,
+		datatype : 'json',
+		type: "GET",
+		data : {
+			param: "posts",
+			id : id
+		},
+		success : function(data) {
+			console.log("getPanelPosts succeeded. Returning data.");
+			fillPanelDetails(data);
+		},
+		error : function() {
+			alert('error');
+		}
+	});
+}
+</script>
 </html>
