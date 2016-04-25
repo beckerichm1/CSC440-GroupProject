@@ -560,3 +560,33 @@ p#panelDescription{
     background-color:#8ba695;
     border: 1px solid black;
 }
+#panelPost{
+    margin: 10px 0px;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    background-color: #8ba695;
+    border: 1px solid black;
+}
+#commentDiv{
+	text-align:center;
+    margin: 10px 0px;
+    color: white;
+    display: inline-block;
+    width: 100%;
+    background-color: #8ba695;
+    border: 1px solid black;
+}
+
+.comment{
+	text-align:left;
+    margin: 10px 0px;
+    color: white;
+    display: inline-block;
+    width: 95%;
+    background-color: #8ba695;
+    border: 1px solid black;
+}
+.commentHeader{
+    border: 1px solid white;
+}
