@@ -591,8 +591,13 @@ p#panelDescription{
     background-color: #8ba695;
     border: 1px solid black;
 }
-#commentDiv{
-	text-align:center;
+.post{
+	margin:0px;
+	padding:10px;
+}
+
+#commentSection{
+    text-align:center;
     margin: 10px 0px;
     color: white;
     display: inline-block;
@@ -600,10 +605,20 @@ p#panelDescription{
     background-color: #8ba695;
     border: 1px solid black;
 }
+#commentDiv{
+	background-color:#adc0b4;
+	width:98%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:10px;
+    border: 1px solid black;
+}
 
 .comment{
 	text-align:left;
-    margin: 10px 0px;
+	padding:10px;
+	margin-top:0px;
+    margin-bottom:10px;
     color: white;
     display: inline-block;
     width: 95%;
@@ -611,5 +626,16 @@ p#panelDescription{
     border: 1px solid black;
 }
 .commentHeader{
-    border: 1px solid white;
+	color: #30302b;
+	text-align:left;
+}
+.commenter{
+	display:inline-block;
+	margin: 10px;
+    font-weight:bold;
+}
+.postTime{
+	float:right;
+	display:inline-block;
+    margin: 10px;
 }

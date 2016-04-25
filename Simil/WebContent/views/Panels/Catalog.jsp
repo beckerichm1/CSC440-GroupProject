@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/Simil/supp/css/simil.css">
-<title>Insert title here</title>
+<title>Panels</title>
 </head>
 <body>
 	<div id="wrapper">

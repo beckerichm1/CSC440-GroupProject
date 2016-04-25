@@ -28,19 +28,32 @@
 
             <div id="content">
                 <div id="panelDiv">
-                    <div id="postTitle"><h3>Temp Panel Title</h3></div>
+                    <div id="postTitle"><h3>Panel Name(hyperlink?) -- Post Title</h3></div>
                     <div id="panelPost">
-                       <p>This is an example panel post. Bleep bloop. Ask a question here or make a cool pose or something like that.</p>
+                       <p class="post">This is an example panel post. Bleep bloop. Ask a question here or make a cool pose or something like that.</p>
                     </div>
-                    <div id="commentDiv">
-                        <div class="comment">
-                        <div class="commentHeader"><h4>Commenter: HUGH MANATEE</h4>
-                        <h5>Time of comment: 4:20 Blazit</h5></div>
-                            <p>WTF BRO THIS IS SO COOL!</p>
-                        </div>
-                    </div>
+                    <div id="commentSection">
+                        <div id="commentDiv">
+                            <div class="commentHeader">
+                                <p class="commenter">Commenter: HUGH MANATEE(Hyperlink to user page)</p>
+                                <!-- Probably display inline next to commenter -->
+                                <p class="postTime">Time of comment: 4:20 Blazit</p>
+                            </div>
+                            <p class="comment">WTF BRO THIS IS SO COOL!</p>
+                         </div>
+                        <div id="commentDiv">
+                            <div class="commentHeader">
+                                <p class="commenter">Commenter: Other User 420(Hyperlink to user page)</p>
+                                <!-- Probably display inline next to commenter -->
+                                <p class="postTime">Time of comment: 4:21 Blazit</p>
+                            </div>
+                            <p class="comment">Super Duper COOL!</p>
+                         </div>
+                     </div>
+
                 </div>
-            </div>
+             </div>
+
         
     </div>
 </body>
