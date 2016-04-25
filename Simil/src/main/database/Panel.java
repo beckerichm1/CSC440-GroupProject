@@ -163,13 +163,13 @@ public class Panel {
 		ArrayList<String[]> panels = new ArrayList<>();
 		try{
 			Connection conn = SimilConnection.connect();
-			String query = "SELECT panelName FROM Panel where panelName LIKE ? OR panelDesc LIKE ?;";
+			String query = "SELECT panelName, panelID FROM Panel where panelName LIKE ? OR panelDesc LIKE ?;";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, id + "%");
 			stmt.setString(2, id + "%");
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-				String[] name = {rs.getString("panelName")};
+				String[] name = {rs.getString("panelName"), rs.getString("panelID")};
 				panels.add(name);
 			}
 			conn.close();

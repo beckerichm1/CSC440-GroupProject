@@ -78,23 +78,23 @@
 				var entry = "<p>" + bio + "</p>";
 				$div.append(entry);
 
-				var interests = data[1].split("_");
+				var interests = data[1][0].split("_");
 				$div = $('#userInterestDiv');
 				for ( var x in interests) {
 					entry = "<p>" + interests[x] + "</p>";
 					$div.append(entry);
 				}
 
-				var i = 0;
 				$div = $('#userPanelDiv');
+				var panelName;
+				var panelID;
 				console.log("Data size is " + data.length);
-				for ( var x in data) {
-					if (i > 1) {
-						var panel = data[i];
-						entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + panel + "'>" + panel + "</a></br>";
+				for ( var i = 0; i < data[2].length; i++) {
+					   
+						panelName = data[2][i];
+						panelID = data[3][i];
+						entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName +"'>" + panelName + "</a></br>";
 						$div.append(entry);
-					}
-					i++;
 				}
 			},
 			error : function(data) {

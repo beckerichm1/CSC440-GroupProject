@@ -21,16 +21,17 @@ public class AccountController extends HttpServlet {
 		if (param.equals("info")) {
 			System.out.println("Getting bio and interests for user " + id);
 			String bio = database.Account.getAbout(id);
+			
 			ArrayList<ArrayList<String>> infoPlusId= database.Account.getAccountDetails(id);
-			ArrayList<String> info = new ArrayList<String>();
-			info.addAll(infoPlusId.get(0));
-			info.addAll(infoPlusId.get(1));
+			ArrayList<ArrayList<String>> info = new ArrayList<ArrayList<String>>();
 			// since Account.getAccountDetails returns ArrayList<ArrayList<String>>,
 			// where ArrayList.get(0) is interests, ArrayList.get(1) is panels,
 			// and ArrayList.get(2) is panelIDs.
-			ArrayList<String> allInfo = new ArrayList<>();
+			ArrayList<Object> allInfo = new ArrayList<Object>();
 			allInfo.add(bio);
-			allInfo.addAll(info);
+			allInfo.add(infoPlusId.get(0));
+			allInfo.add(infoPlusId.get(1));
+			allInfo.add(infoPlusId.get(2));
 
 			JSONArray ar = new JSONArray(allInfo);
 			String json = ar.toString();

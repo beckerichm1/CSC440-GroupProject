@@ -17,6 +17,7 @@ public class PanelController extends HttpServlet {
 		// Get the param for all panels
 		String param = request.getParameter("param");
 		ArrayList<String[]> panels = new ArrayList<>();
+		ArrayList<String[]> ids = new ArrayList<>();
 		System.out.println("Getting panel details");
 		if(param.equals("one")){
 			String id = request.getParameter("id");

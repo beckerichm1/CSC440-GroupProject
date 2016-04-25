@@ -17,10 +17,12 @@
 		<%@ include file="/supp/html/sideMenu.jsp"%>
 
 		<div id="content">
-			<h1>Search Results for ${param.search}</h1>
+			<h1>Search Results for "${param.search}"</h1>
 			<div id="userSearchResults">
+                <p>User Results:</p>
             </div>
             <div id="panelSearchResults">
+                <p>Panel Results:</p>
             </div>
 		</div>
 
@@ -72,10 +74,16 @@
 				console.log(entryData);
 				// Print the results on page as links to panel pages.
                 var $panelResultDiv= $('#panelSearchResults');
+				var panelName;
+				var panelID;
+				console.log (entryData[0][0]);
+				console.log (entryData[0][1]);
 			    for(var i = 0; i < entryData.length; i++){
+			    	panelName = entryData[i][0];
+			    	panelID= entryData[i][1];
 			    	// change the anchor tag link
 			    	var row = "<div id = 'searchResultElement'><a href='/Simil/views/Panels/Panel.jsp?id="
-			    			+ entryData[i] + "'>" + entryData[i] + "</a><div>"
+			    			+ panelID + "&name="+ panelName + "'>" + panelName + "</a><div>"
 			         $panelResultDiv.append(row);
 			    }
 			},
