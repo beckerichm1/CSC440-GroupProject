@@ -29,11 +29,13 @@ public class PostController  extends HttpServlet {
 		String content = request.getParameter("content");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
+		String newDate = dateFormat.format(date);
+		System.out.println(newDate);
 		
-		database.PanelPost.insertPost(userName, id, name, title, content, dateFormat.format(date));
+		database.PanelPost.insertPost(userName, id, name, title, content, newDate);
 		
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("text/plain");
-		response.sendRedirect("/Simil/views/Panel?id=" + id + "&name=" + name);
+		response.sendRedirect("/Simil/views/Panels/Panel.jsp?id=" + id + "&name=" + name);
 	}
 }
