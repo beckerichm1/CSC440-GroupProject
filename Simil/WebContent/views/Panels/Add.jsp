@@ -28,13 +28,17 @@
 				<div id="newPanelForm">
 					<form onsubmit="validatePanelForm()" method="post">
 						<div class="formElement">
-							<label>Panel Name: </label> <input type="text" name="name"
+							<label>Panel Name: </label> <input type="text" id="name"
 								required> <br>
 						</div>
-						<div class="formElement">
-							<label>Panel Description: </label> <input type="text"
-								name="description" required> <br>
-						</div>
+                        <div class="formElement">
+                            <label>Panel Description: </label> <input type="text"
+                                id="description" required> <br>
+                        </div>
+                        <div class="formElement">
+                            <label>Moderator: </label> <input type="text"
+                                id="moderator" required> <br>
+                        </div>
 						<!-- Check boxes for related panels and panel moderators -->
 						<div class="formElement">
 							<label>Related Panels: </label>
@@ -60,6 +64,8 @@
 	function addPanel(name, description, related, moderators) {
 		// Make the ajax call to insert a new panel into database
 		var url = "/Simil/PanelServlet";
+		
+		
 		$.ajax({
 			url : url,
 			type : "POST",
@@ -116,18 +122,23 @@
 		$(":checked").each(function() {
 			panels.push($(this).val());
 		}); //name, description, related, moderators
-		addPanel(document.forms[0].elements[0].value,
-				document.forms[0].elements[1].value, panels,
-				document.forms[0].elements[3].value);
+	
+        var name = document.getElementById("name").value;
+        var description = document.getElementById("description").value;
+        var moderator = document.getElementById("moderator").value;
+        //TESTING -- DELETE THIS
+		
+		addPanel(name,description, panels, moderator);
 	}
 
 	function validatePanelForm() {
 		var alertBool = false;
 		var message = "";
-		var name = document.forms[0].elements[0].value;
-		var desc = document.forms[0].elements[1].value;
+		
+		var name = document.getElementById("name").value;
+		var desc = document.getElementById("description").value;
 		//var related = document.forms[0].elements[2].value;
-		var mods = document.forms[0].elements[3].value;
+		var mods = "";
 
 		if (name == null || name == "") {
 			message += "Panel Name is a required field.\n";
