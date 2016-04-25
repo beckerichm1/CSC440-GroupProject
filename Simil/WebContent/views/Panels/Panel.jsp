@@ -30,7 +30,6 @@
 	            <div id="panelDiv">
 	                <div id="panelHead">
 	                    <%
-	                        //System.out.println("Account: " + request.getSession().getAttribute("accountType"));
 	                        if (request.getSession().getAttribute("accountType").equals("Administrator")) {
 	                    %>
 	                     <li><a href="javascript:removePanel()">Delete this Panel</a></li>
@@ -40,7 +39,19 @@
 	                    
 	                    <div id="panelHead">
 	                       <div id="panelName"></div>
-	                       <a id="joinPanelButton" href="#">Join Panel</a>
+	                       <%
+	                       java.util.ArrayList<String> panels = (java.util.ArrayList<String>)session.getAttribute("panels");
+	                       if (session!=null && (!panels.contains(request.getParameter("id")))) {
+//	                    	   panels.contains(request.getAttribute("panelName");
+	                       %>
+	                           <a id="joinPanelButton" href="#">Join Panel</a>
+	                       <% 
+	                       }else{
+	                    	  %> 
+	                    	  <a id="joinPanelButton" href="#">Leave Panel</a>
+	                    	  <%
+	                       }%>
+	                       
 	                    </div>
 	                    <div id="panelDescription">
 	                       <p># of users (REPLACE)</p>

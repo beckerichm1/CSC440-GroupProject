@@ -1,6 +1,8 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,12 +48,15 @@ public class LoginController extends HttpServlet {
 				String storedPass = database.Account.getPass(username);
 				if (hash.match(storedPass, givenPass)) {
 					String accountType = database.Account.getAccountType(username);
+					ArrayList<String> panels = database.Account.getPanels(username);
 					// if((storedPass).equals(givenPass)){
 					// Get the session - if no session exists create one
 					HttpSession session = request.getSession(true);
 					// Set some attribute values to the session
 					session.setAttribute("username", username);
 					session.setAttribute("accountType", accountType);
+					session.setAttribute("panels", panels);
+					//session.setAttribute("panels", panels);
 					// session.setAttribute("password", password);
 					//response.setHeader("Access-Control-Allow-Origin", "*");
 					//response.setContentType("json");

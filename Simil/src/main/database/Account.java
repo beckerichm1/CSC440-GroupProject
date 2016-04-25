@@ -224,4 +224,33 @@ public class Account {
 		}
 		return about;
 	}
+
+	public static ArrayList<String> getPanels(String username){
+		ArrayList<String> panels = new ArrayList<String>();
+		
+		try {
+			Connection conn = SimilConnection.connect();
+			// get interests
+		
+			String query = "select panelName from Panel p JOIN Panel_Account pa where "
+					+ "pa.panelID = p.panelID AND pa.userName = ?";
+			
+			
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, username);
+			ResultSet rs = stmt.executeQuery();
+			String panel;
+			
+			while (rs.next()) {
+				panel = rs.getString("panelName");
+				if(!panel.equals("null"))
+					panels.add(panel);
+			}
+			
+		}
+		catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return panels;
+	}
 }
