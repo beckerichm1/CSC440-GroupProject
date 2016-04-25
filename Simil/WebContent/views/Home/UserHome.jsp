@@ -26,7 +26,7 @@
 		<%@ include file="/supp/html/sideMenu.jsp" %>
 
 			<div id="content">
-			<h1>Welcome, <%=session.getAttribute("username")%></h1><a href="/Simil/views/Home/UserPage.jsp?user=<%=session.getAttribute("username")%>">View my page</a>
+			<h1>Welcome, <%=session.getAttribute("username")%></h1><a class="link1" href="/Simil/views/Home/UserPage.jsp?user=<%=session.getAttribute("username")%>">View my page</a>
 
 				<div class='section'>
 					<h4>My Panels:</h4>
@@ -40,9 +40,6 @@
 						<ul id="interest-list"></ul>
 					</div>
 				</div>
-				<form action="/Simil/LogoutController" method="POST">
-					<button type="submit" value="Logout">Logout</button>
-				</form>
 			</div>
 		
 	</div>
@@ -63,15 +60,21 @@
 	function displayInfo(data) {
 		var $interests = $('#interest-list');
 		var $panels = $('#panel-list');
+		var panelName;
+		var panelID;
 		console.log(data);
 		console.log(data[0]);
 		console.log(data[1]);
+		console.log(data[2]);
+		console.log(data[2][1]);
 		for (var x = 0; x < data[0].length; x++) {
 			var entry = "<li>" + data[0][x] + "</li>";
 			$interests.append(entry);
 		}
 		for (var i = 0; i < data[1].length; i++) {
-			var entry = "<li>" + data[1][i] + "</li>";
+			panelName = data[1][i];
+			panelID = data[2][i];
+			var entry = "<li><a class='link1' href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName +"'>" + panelName+ "</a></li>";
 			$panels.append(entry);
 		}
 	}

@@ -15,9 +15,9 @@ public class UserHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//System.out.println("Beginning the retrieval of user home info.");
-		ArrayList<String> accountInfo = database.Account
+		ArrayList<ArrayList<String>> accountInfo = database.Account
 				.getAccountDetails((String) request.getSession().getAttribute("username"));
-
+		System.out.println("ACCOUNT INFO: " + accountInfo);
 		// The first entry in accountInfo is a string of the user's interests,
 		// underscore delimited
 		// The rest of the entries are the user's panels
@@ -26,15 +26,18 @@ public class UserHomeController extends HttpServlet {
 		JSONArray interests;
 		String[] interestsArray = {};
 		JSONArray panels;
+		JSONArray ids;
 		if (accountInfo.size() <= 0){
 			interests = new JSONArray();
 			panels = new JSONArray();
+			ids = new JSONArray();
 		}
 		else{
-			interestsArray = accountInfo.get(0).split("_");	
+			interestsArray = accountInfo.get(0).get(0).split("_");	
 			interests = new JSONArray(interestsArray);
-			panels = new JSONArray(accountInfo.subList(1, accountInfo.size()));
-			System.out.println("interests array: " + accountInfo.get(0));
+			panels = new JSONArray(accountInfo.get(1));
+			System.out.println("interests array: " + accountInfo.get(0).get(0));
+			ids = new JSONArray(accountInfo.get(2));
 		}
 		
 
@@ -44,6 +47,8 @@ public class UserHomeController extends HttpServlet {
 		ar.put(interests);
 		
 		ar.put(panels);
+		
+		ar.put(ids);
 
 		String json = ar.toString();
 		// System.out.println(json);

@@ -66,21 +66,21 @@
                     <div id = "popularPostsDiv">
                        <h3>Popular Posts</h3>
                        <ul class="postList">
-                           <li><a href="#">Steamin' hot Post 1</a></li>
-                           <li><a href="#">Steamin' hot Post 2</a></li>
-                           <li><a href="#">Steamin' hot Post 3</a></li>
-                           <li><a href="#">Steamin' hot Post 4</a></li>
-                           <li><a href="#">Steamin' hot Post 5</a></li>
+                           <li><a class="link3" href="#">Steamin' hot Post 1</a></li>
+                           <li><a class="link3" href="#1">Steamin' hot Post 2</a></li>
+                           <li><a class="link3" href="#2">Steamin' hot Post 3</a></li>
+                           <li><a class="link3" href="#3">Steamin' hot Post 4</a></li>
+                           <li><a class="link3" href="#4">Steamin' hot Post 5</a></li>
                        </ul>
                     </div>
                     <div id = "postsDiv">
                        <h3>Panel Posts</h3>
                        <ul class="postList">
-                           <li><a href="#">Sample Post 1</a></li>
-                           <li><a href="#">Sample Post 2</a></li>
-                           <li><a href="#">Sample Post 3</a></li>
-                           <li><a href="#">Sample Post 4</a></li>
-                           <li><a href="#">Sample Post 5</a></li>
+                           <li><a class="link3" href="#5">Sample Post 1</a></li>
+                           <li><a class="link3" href="#6">Sample Post 2</a></li>
+                           <li><a class="link3" href="#7">Sample Post 3</a></li>
+                           <li><a class="link3" href="#8">Sample Post 4</a></li>
+                           <li><a class="link3" href="#9">Sample Post 5</a></li>
                        </ul>
                     </div>
 	            </div>

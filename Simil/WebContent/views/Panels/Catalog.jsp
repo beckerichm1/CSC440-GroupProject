@@ -68,7 +68,7 @@
 					+ name + "\n" + desc + "</div></li>";
 			 */
 			 // This used to be id=id, now is id=name
-			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + id + "&name=" + name + "'><div class='checkElement'><label class='checkLabel' for='" + id +"'>"+ name + "</label></div></a>";
+			var entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + id + "&name=" + name + "'><div class='checkElement'><label class='checkLabel panelLink' for='" + id +"'>"+ name + "</label></div></a>";
 					
 			/* <div class='checkElement'><input type='checkbox' name='interests' value='" + data[x] + "' id='"+ x +"'/>"+
 		    "<label class='checkLabel' for='" + x +"'>"+ data[x] + "</label></div> */

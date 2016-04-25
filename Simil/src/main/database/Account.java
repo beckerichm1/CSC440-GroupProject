@@ -49,8 +49,8 @@ public class Account {
 	// Returns an arraylist of string with the first entry being a string of
 	// interests
 	// and the rest of the entries being the user's panels
-	public static ArrayList<String> getAccountDetails(String userName) {
-		ArrayList<String> accountInfo = new ArrayList<String>();
+	public static ArrayList<ArrayList<String>> getAccountDetails(String userName) {
+		ArrayList<ArrayList<String>> accountInfo = new ArrayList<ArrayList<String>>();
 		try {
 			Connection conn = SimilConnection.connect();
 			// get interests
@@ -59,28 +59,41 @@ public class Account {
 			stmt.setString(1, userName);
 			ResultSet rs = stmt.executeQuery();
 			String interests = "";
+			ArrayList<String> interestsList = new ArrayList<String>();
+			
 			rs.next();
 			// Only get interests once, as they repeat
 			interests = rs.getString("interests");
 			if(interests == null)
 				interests = "";
 			
-			accountInfo.add(interests);
+			interestsList.add(interests);
+			accountInfo.add(interestsList);
 
 			//System.out.println(accountInfo);
 
 			// get panels
-			query = "select panelName from Panel p JOIN Panel_Account pa where "
+			query = "select panelName, pa.panelID from Panel p JOIN Panel_Account pa where "
 					+ "pa.panelID = p.panelID AND pa.userName = ?";
 			stmt = conn.prepareStatement(query);
 			stmt.setString(1, userName);
 			rs = stmt.executeQuery();
 			String panel;
+			String panelID;
+			ArrayList<String> panelsList = new ArrayList<String>();
+			ArrayList<String> idList = new ArrayList<String>();
 			while (rs.next()) {
 				panel = rs.getString("panelName");
+				panelID = rs.getString("pa.panelID");
 				if(!panel.equals("null"))
-					accountInfo.add(panel);
+					panelsList.add(panel);
+					idList.add(panelID);
+					//accountInfo.add(panel);
 			}
+			
+			accountInfo.add(panelsList);
+			accountInfo.add(idList);
+			
 			//accountInfo.addAll(Panel.getUserPanels(userName));
 		} catch (Exception ex) {
 			ex.printStackTrace();

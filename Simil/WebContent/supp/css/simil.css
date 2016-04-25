@@ -49,6 +49,22 @@ body {  /* background-image: url(background.gif); */
     font-family: 'Damion';   
     font-size:45px;
 }
+
+.homeLink{
+	color: #587362;
+}
+.link1{
+   color: #6f907b;
+}
+.link1:visited{
+    color: #6f907b;
+}
+.link3{
+   color: white;
+}
+.link3:visited{
+    color: #F0F0D8;
+}
 #header{
 	background-color: #3b5998;
 	color:#000000;
@@ -59,7 +75,7 @@ body {  /* background-image: url(background.gif); */
 #headerText{
 	text-align:center;
 }
-	
+
 label.error{
 	display:none;
 	float: none;
@@ -451,6 +467,13 @@ p.requiredForm{
     
    
   /*   border:1px solid black; */
+}
+.checkLabel:hover{
+	background-color: #505a54;
+	
+}
+.panelLink{
+	color:#F0F0D8;
 }
 
 #interestList{
