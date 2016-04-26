@@ -27,12 +27,16 @@ public class PostController  extends HttpServlet {
 			JSONArray ar = new JSONArray(post);
 			json = ar.toString();
 		}
+		else if(param.equals("posts")){
+			ArrayList<String[]> posts = database.PanelPost.getPanelPosts(id);
+			JSONArray ar = new JSONArray(posts);
+			json = ar.toString();
+		}
 		else if(param.equals("comments")){
 			ArrayList<String[]> comments = database.PanelPost.getComments(id);
 			JSONArray ar = new JSONArray(comments);
 			json = ar.toString();
 		}
-		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write(json);
