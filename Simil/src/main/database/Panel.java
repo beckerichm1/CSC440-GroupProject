@@ -203,6 +203,7 @@ public class Panel {
 			ResultSet rs = stmt.executeQuery();
 			rs.next();
 			mods = rs.getString("panelModerators");
+			System.out.println(mods);
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);

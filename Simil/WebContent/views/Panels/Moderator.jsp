@@ -30,7 +30,7 @@
                     <form onsubmit="validatePanelForm()" method="post">
                         <div class="formElement">
                             <label>Panel: </label>
-                            <select name="panel" id="panels">
+                            <select name="panel" id="panels" onchange="getMods()">
                                 
                             </select>
                         </div>
@@ -56,7 +56,10 @@
         getPanels();
     });
 
-    function getMods(id){
+    function getMods(){
+    	//document.newPanelForm.panels.options[document.newPanelForm.panels.selectedIndex].value;
+    	var id = $("#panels option:selected").attr("id")
+    	//var id = document.getElementById("panels").value;
     	console.log("Getting moderators for panelID " + id);
     	var url = "/Simil/PanelServlet";
     	$.ajax({
@@ -109,7 +112,7 @@
                 "param" : 'all'
             },
             success : function(data) {
-                populatePanels(data)
+                populatePanels(data);
             },
             error : function() {
                 alert('error');
@@ -121,19 +124,17 @@
         var $div = $('#panels');
         var first = true;
         for(var i in data) {
-        	if(first){
-        		getMods(data[i][0]);
-        		first = false;
-        	}
         	if(data[i] != null){
 	            var id = data[i][0];
 	            var name = data[i][1];
+	            var x = parseInt(i) + 1;
 	            //var desc = data[i][2];
-	            var entry = "<option value='" + (i+1) + "' id='" + id +"' onChange='getMods(" 
+	            var entry = "<option value='" + x + "' id='" + id +"' onChange='getMods(" 
 	            		+ id + ")'>" + name + "</option>";
 	            $div.append(entry);
         	}
         }
+        getMods();
     }
 
     function validatePanelForm() {
@@ -143,7 +144,7 @@
         
         //var name = document.getElementById("name").value;
         var elt =  document.getElementById("panels");
-        var id = elt.options[elt.selectedIndex].id;
+        var id = elt.options[elt.selectedIndex].value;
         var mods = "";
 		
         var moderator = document.getElementById("moderator").value;

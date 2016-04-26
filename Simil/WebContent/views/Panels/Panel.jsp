@@ -56,7 +56,7 @@
 	                       
 	                    </div>
 	                    <div id="panelDescription">
-	                       <p># of users (REPLACE)</p>
+	                       <!-- <p># of users (REPLACE)</p> -->
 	                    </div>
 	                </div>
 	                <div id="panelMembers">
