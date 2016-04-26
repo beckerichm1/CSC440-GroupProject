@@ -74,6 +74,11 @@ public class PanelController extends HttpServlet {
 				database.Panel.insertPanel(name, desc, rel, mods, creator);
 			}
 		}
+		else if(postType.equals("addMod")){
+			String id = request.getParameter("id");
+			String mods = request.getParameter("moderators");
+			database.Panel.addMod(id, mods);
+		}
 		else if(postType.equals("delete")){
 			String id = request.getParameter("id");
 			System.out.println("Beginning to insert new panel.");

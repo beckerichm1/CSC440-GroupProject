@@ -107,6 +107,7 @@
 
 	function populatePanels(data) {
 		console.log("populating panels");
+		console.log(data);
 		var $div = $('#related');
 		for (var i = 0; i < data.length; i++) {
 			var id = data[i][0]
