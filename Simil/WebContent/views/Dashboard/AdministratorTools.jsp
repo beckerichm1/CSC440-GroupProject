@@ -22,8 +22,12 @@
         <%@ include file="/supp/html/sideMenu.jsp" %>
 
             <div id="content">
-                <h1>ADMINISTRATOR TOOLS</h1>            
-                <a class="link1" href='/Simil/views/Panels/Add.jsp'>Create Panel</a>
+                <h1>ADMINISTRATOR TOOLS</h1>    
+                <ul>
+	                <li><a class="link1" href='/Simil/views/Panels/Add.jsp'>Create Panel</a></li>
+	                <li><a class="link1" href='/Simil/views/Panels/AddModerator.jsp'>Add Panel Moderator</a></li>
+	                <li><a class="link1" href='/Simil/views/Panels/RemoveModerator.jsp'>Remove Panel Moderator</a></li>
+                </ul>        
             </div>
         
     </div>

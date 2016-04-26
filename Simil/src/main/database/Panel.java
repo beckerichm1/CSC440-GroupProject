@@ -178,4 +178,18 @@ public class Panel {
 		}
 		return panels;
 	}
+
+	public static void addMod(String name, String mods) {
+		try{
+			Connection conn = SimilConnection.connect();
+			String query = "UPDATE panel SET panelModerator = ? WHERE panelName = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, mods);
+			stmt.setString(2, name);
+			ResultSet rs = stmt.executeQuery();
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+	}
 }
