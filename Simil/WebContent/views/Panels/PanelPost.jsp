@@ -35,22 +35,7 @@
                        
                     </div>
                     <div id="commentSection">
-                        <div id="commentDiv">
-                            <div class="commentHeader">
-                                <p class="commenter">Commenter: HUGH MANATEE(Hyperlink to user page)</p>
-                                <!-- Probably display inline next to commenter -->
-                                <p class="postTime">Time of comment: 4:20 Blazit</p>
-                            </div>
-                            <p class="comment">WTF BRO THIS IS SO COOL!</p>
-                         </div>
-                        <div id="commentDiv">
-                            <div class="commentHeader">
-                                <p class="commenter">Commenter: Other User 420(Hyperlink to user page)</p>
-                                <!-- Probably display inline next to commenter -->
-                                <p class="postTime">Time of comment: 4:21 Blazit</p>
-                            </div>
-                            <p class="comment">Super Duper COOL!</p>
-                         </div>
+                        
                      </div>
 
                 </div>
@@ -63,6 +48,7 @@ var id = '${param.id}';
 
 $(document).ready(function() {
 	getPost();
+	getComments();
 });
 
 function getPost(){
@@ -99,14 +85,37 @@ function getComments(){
         },
         success : function(data) {
             console.log("getPanelPosts succeeded. Returning data.");
-            fillPanelDetails(data);
+            fillCommentDetails(data);
         },
         error : function() {
             alert('error');
         }
     });
 }
+/*     
 
+<div id="commentDiv">
+<div class="commentHeader">
+    <p class="commenter">Commenter: HUGH MANATEE(Hyperlink to user page)</p>
+    <!-- Probably display inline next to commenter -->
+    <p class="postTime">Time of comment: 4:20 Blazit</p>
+</div>
+<p class="comment">WTF BRO THIS IS SO COOL!</p>
+</div>
+ */
+ function fillCommentDetails(data){
+	 console.log(data);
+	 var $comments = $('#commentSection');
+	 for(var i in data){
+		 var comment = data[i];
+		 var el = "<div id='commentDiv'><div class='commentHeader'><a class='link1' "
+		 		 + "href='/Simil/views/Home/UserPage.jsp?user=" 
+				 + comment[1] + "'>" + "<p class='commenter'>" + comment[1] + 
+				 "</p></a><p class='postTime'>Time of comment: " + comment[2] + 
+				 "</p></div><p class='comment'>" + comment[3] + "</p></div>";
+		$comments.append(el);
+	 }
+ }
 
 function fillPostDetails(data){
 	console.log(data);
@@ -126,7 +135,7 @@ function fillPostDetails(data){
 
 	//titleDiv.append(postTitle);
 	
-	var entry ="<div id='postTitle'><h3><a class='link1' href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName + "'>" + panelName + "</a>  -- "+ postTitle + "</h3></div>"
+	var entry ="<div id='postTitle'><h3><a class='link3' href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName + "'>" + panelName + "</a>  -- "+ postTitle + "</h3></div>"
     $postHeader.append(entry);
 	
 	entry="<p class='poster'>By: <a class='link1' href='/Simil/views/Home/UserPage.jsp?user="+ originalPoster + "'>" + originalPoster + "</a></p>"+
@@ -135,20 +144,6 @@ function fillPostDetails(data){
     
     entry = "<p class='post'>"+ postContent +"</p>";
     $panelPost.append(entry);
-/*     
-	
-    <div id="commentDiv">
-    <div class="commentHeader">
-        <p class="commenter">Commenter: HUGH MANATEE(Hyperlink to user page)</p>
-        <!-- Probably display inline next to commenter -->
-        <p class="postTime">Time of comment: 4:20 Blazit</p>
-    </div>
-    <p class="comment">WTF BRO THIS IS SO COOL!</p>
- </div>
-	 */
-	
-	
-	
 }
 </script>
 </html>
