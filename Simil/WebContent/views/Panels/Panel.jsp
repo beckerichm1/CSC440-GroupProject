@@ -167,7 +167,8 @@
 		console.log(data);
 		for(var i in data){
 			var item = data[i];
-			var el = "<a href=\"/Simil/views/Panels/PanelPost.jsp?id=" + item[0] + "\"><li>" + item[2] + "</li>"
+			var el = "<a class='link3' href='/Simil/views/Panels/PanelPost.jsp?id=" 
+					+ item[0] + "'><li>" + item[2] + "</li>"
 			postDiv.append(el);
 		}
 	}

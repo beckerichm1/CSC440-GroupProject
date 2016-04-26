@@ -77,7 +77,6 @@ public class PanelPost {
 
 	public static ArrayList<String[]> getComments(String id) {
 		ArrayList<String[]> comments = new ArrayList<>();
-		String[] comment = new String[4];
 		try{
 			Connection conn = SimilConnection.connect();
 			String query = "select * from comment where postID = ?;";
@@ -85,6 +84,7 @@ public class PanelPost {
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
+				String[] comment = new String[4];
 				comment[0] = "" + rs.getInt("commentID");
 				comment[1] = rs.getString("userName");
 				comment[2] = rs.getString("time");

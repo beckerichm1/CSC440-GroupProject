@@ -93,7 +93,8 @@
 					   
 						panelName = data[2][i];
 						panelID = data[3][i];
-						entry = "<a href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName +"'>" + panelName + "</a></br>";
+						entry = "<a class='link3' href='/Simil/views/Panels/Panel.jsp?id=" 
+								+ panelID + "&name=" + panelName +"'>" + panelName + "</a></br>";
 						$div.append(entry);
 				}
 			},
@@ -114,7 +115,7 @@
 				var $div = $('#userBuddiesDiv');
 				for(var x in data){
 					var friend = data[x];
-					$div.append("<a href='/Simil/views/Home/UserPage.jsp?user=" + friend + "'>" 
+					$div.append("<a class='link3' href='/Simil/views/Home/UserPage.jsp?user=" + friend + "'>" 
 							+ friend + "</a></br>");
 				}
 			},
