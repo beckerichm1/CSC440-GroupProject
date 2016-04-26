@@ -24,19 +24,19 @@
             <div class="centerDiv">
             <div class="container">
                 <div id="headerText">
-                    <h1>Add Panel Moderator</h1>
+                    <h1>Edit Moderators</h1>
                 </div>
                 <div id="newPanelForm">
                     <form onsubmit="validatePanelForm()" method="post">
                         <div class="formElement">
                             <label>Panel: </label>
-                            <select name="panel" id="panels" >
+                            <select name="panel" id="panels">
                                 
                             </select>
                         </div>
                         <div class="formElement">
-                            <label>Moderator: </label> <input type="text"
-                                id="moderator" required> <br>
+                            <label>Moderator: </label> <textarea
+                                id="moderator" required> </textarea><br>
                         </div>
 
                         <input type="submit">
@@ -56,10 +56,30 @@
         getPanels();
     });
 
+    function getMods(id){
+    	console.log("Getting moderators for panelID " + id);
+    	var url = "/Simil/PanelServlet";
+    	$.ajax({
+            url : url,
+            type : "GET",
+            data : {
+            	"param" : "mods",
+                "id" : id
+            },
+            success : function(data) {
+            	console.log(data);
+            	document.getElementById("moderator").value = data[0];
+            },
+            error : function(err) {
+                console.log(err);
+            }
+        });
+    }
+    
     function addMod(id, moderators) {
+    	console.log("addMod hit");
         // Make the ajax call to insert a new panel into database
         var url = "/Simil/PanelServlet";
-        
         $.ajax({
             url : url,
             type : "POST",
@@ -70,7 +90,7 @@
             },
             success : function() {
                 //TODO: Redirect to admin tools, needs to be tested
-                response.sendRedirect("/Simil/Dashboard/AdministratorTools")
+                window.location = "/Simil/views/Dashboard/AdministratorTools.jsp";
             },
             error : function(err) {
                 console.log(err);
@@ -99,24 +119,35 @@
 
     function populatePanels(data) {
         var $div = $('#panels');
-        for (var i = 0; i < data.length; i++) {
-            var id = data[i][0]
-            var name = data[i][1];
-            //var desc = data[i][2];
-            var entry = "<option value='" + (i+1) + "' id='" + id +"'>'" + name + "</option>";
-            $div.append(entry);
+        var first = true;
+        for(var i in data) {
+        	if(first){
+        		getMods(data[i][0]);
+        		first = false;
+        	}
+        	if(data[i] != null){
+	            var id = data[i][0];
+	            var name = data[i][1];
+	            //var desc = data[i][2];
+	            var entry = "<option value='" + (i+1) + "' id='" + id +"' onChange='getMods(" 
+	            		+ id + ")'>" + name + "</option>";
+	            $div.append(entry);
+        	}
         }
     }
 
     function validatePanelForm() {
+    	console.log("ValidatePanelForm hit");
         var alertBool = false;
         var message = "";
         
         //var name = document.getElementById("name").value;
         var elt =  document.getElementById("panels");
-        var id= elt.options[elt.selectedIndex].value;
+        var id = elt.options[elt.selectedIndex].id;
         var mods = "";
-
+		
+        var moderator = document.getElementById("moderator").value;
+        console.log(moderator);
         if (mods == null || mods == "") {
             // Set current user as default mod if none selected
             // Might have to do something different here, to make mods an array?
@@ -126,8 +157,9 @@
             alert(message);
             return alertBool;
         }
+    	console.log("Calling addMod...");
         addMod(id, moderator);
-
+		
     }
 </script>
 

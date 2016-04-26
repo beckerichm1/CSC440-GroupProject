@@ -34,6 +34,17 @@ public class PanelController extends HttpServlet {
 		else if(param.equals("search")){
 			panels = database.Panel.getPanelsLike(request.getParameter("id"));
 		}
+		else if(param.equals("mods")){
+			String id = request.getParameter("id");
+			String moderators = database.Panel.getModerators(id);
+			JSONArray ar = new JSONArray(new String[]{moderators});
+			String json = ar.toString();
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+			System.out.println("Returning from getting Panel moderators " + json);
+			return;
+		}
 		else if(!param.equals("all"))
 			panels = database.Panel.getNonUserPanels((String) request.getSession().getAttribute("username"));
 		else
@@ -75,8 +86,10 @@ public class PanelController extends HttpServlet {
 			}
 		}
 		else if(postType.equals("addMod")){
+			System.out.println("setting moderators");
 			String id = request.getParameter("id");
 			String mods = request.getParameter("moderators");
+			System.out.println("setting moderators with id " + id + "and mods " + mods);
 			database.Panel.addMod(id, mods);
 		}
 		else if(postType.equals("delete")){

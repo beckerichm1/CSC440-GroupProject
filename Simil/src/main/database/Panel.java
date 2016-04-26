@@ -179,17 +179,34 @@ public class Panel {
 		return panels;
 	}
 
-	public static void addMod(String name, String mods) {
+	public static void addMod(String id, String mods) {
 		try{
 			Connection conn = SimilConnection.connect();
-			String query = "UPDATE panel SET panelModerator = ? WHERE panelName = ?";
+			String query = "UPDATE panel SET panelModerators = ? WHERE panelID = ?";
 			PreparedStatement stmt = conn.prepareStatement(query);
 			stmt.setString(1, mods);
-			stmt.setString(2, name);
-			ResultSet rs = stmt.executeQuery();
+			stmt.setString(2, id);
+			stmt.executeUpdate();
 			conn.close();
 		} catch (Exception ex) {
 			System.out.println(ex);
 		}
+	}
+
+	public static String getModerators(String id) {
+		String mods = "";
+		try{
+			Connection conn = SimilConnection.connect();
+			String query = "SELECT panelModerators FROM Panel WHERE panelID = ?";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, id);
+			ResultSet rs = stmt.executeQuery();
+			rs.next();
+			mods = rs.getString("panelModerators");
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return mods;
 	}
 }
