@@ -284,9 +284,10 @@ button#searchButton.button{
     width:100%
 	}
 #content{
+	
 	margin-top: 20px;
-	overflow:hidden;
-	position:relative;
+/* 	overflow:hidden;
+ */	position:relative;
     padding: 74px 20px 30px 20px;
     margin:auto;
 	width:90%;
@@ -570,6 +571,7 @@ p#panelDescription{
 }
 
 #panelDiv{
+	min-width:700px;
 	width:95%;
 	margin:auto;
 
@@ -595,7 +597,7 @@ p#panelDescription{
     border: 1px solid black;
 }
 #panelPost{
-    margin: 10px 0px;
+    margin: 0px 0px 10px;
     color: white;
     display: inline-block;
     width: 100%;
@@ -605,6 +607,12 @@ p#panelDescription{
 .post{
 	margin:0px;
 	padding:10px;
+}
+
+.poster{
+	display:inline-block;
+    margin: 10px;
+    font-weight:bold;
 }
 
 #commentSection{

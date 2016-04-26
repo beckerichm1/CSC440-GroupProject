@@ -28,9 +28,11 @@
 
             <div id="content">
                 <div id="panelDiv">
-                    <div id="postTitle"><h3>Panel Name(hyperlink?) -- Post Title</h3></div>
+	                <div id="postHeader">
+
+	                </div>
                     <div id="panelPost">
-                       <p class="post">This is an example panel post. Bleep bloop. Ask a question here or make a cool pose or something like that.</p>
+                       
                     </div>
                     <div id="commentSection">
                         <div id="commentDiv">
@@ -56,29 +58,97 @@
     </div>
 </body>
 <script>
+
+var id = '${param.id}';
+
 $(document).ready(function() {
 	getPost();
 });
 
 function getPost(){
-	var id = '${param.id}';
-	var url = "/Simil/PostServlet";
-	$.ajax({
-		url : url,
-		datatype : 'json',
-		type: "GET",
-		data : {
-			param: "posts",
-			id : id
-		},
-		success : function(data) {
-			console.log("getPanelPosts succeeded. Returning data.");
-			fillPanelDetails(data);
-		},
-		error : function() {
-			alert('error');
-		}
-	});
+    
+    var url = "/Simil/PostServlet";
+    $.ajax({
+        url : url,
+        datatype : 'json',
+        type: "GET",
+        data : {
+            param: "post",
+            id : id
+        },
+        success : function(data) {
+            console.log("getPanelPosts succeeded. Returning data.");
+            fillPostDetails(data);
+        },
+        error : function() {
+            alert('error');
+        }
+    });
+}
+
+function getComments(){
+    
+    var url = "/Simil/PostServlet";
+    $.ajax({
+        url : url,
+        datatype : 'json',
+        type: "GET",
+        data : {
+            param: "comments",
+            id : id
+        },
+        success : function(data) {
+            console.log("getPanelPosts succeeded. Returning data.");
+            fillPanelDetails(data);
+        },
+        error : function() {
+            alert('error');
+        }
+    });
+}
+
+
+function fillPostDetails(data){
+	console.log(data);
+	var $postHeader = $('#postHeader');
+	var $panelPost = $('#panelPost');
+	var titleDiv = document.getElementById("postTitle");
+	var panelPostDiv = document.getElementById("panelPost");
+	var commentSection = document.getElementById("commentSection");
+	//var time = document.getElementsByClass()
+    var originalPoster = data[0];
+    var panelID = data[1];
+    var panelName = data[2];
+	var postTitle = data[3];
+	var postTime = data[4];
+	var postContent = data[5];
+	console.log(postTitle);
+
+	//titleDiv.append(postTitle);
+	
+	var entry ="<div id='postTitle'><h3><a class='link1' href='/Simil/views/Panels/Panel.jsp?id=" + panelID + "&name=" + panelName + "'>" + panelName + "</a>  -- "+ postTitle + "</h3></div>"
+    $postHeader.append(entry);
+	
+	entry="<p class='poster'>By: <a class='link1' href='/Simil/views/Home/UserPage.jsp?user="+ originalPoster + "'>" + originalPoster + "</a></p>"+
+	"<p class='postTime'>Posted: " + postTime + "</p>";
+    $postHeader.append(entry);
+    
+    entry = "<p class='post'>"+ postContent +"</p>";
+    $panelPost.append(entry);
+/*     
+	
+    <div id="commentDiv">
+    <div class="commentHeader">
+        <p class="commenter">Commenter: HUGH MANATEE(Hyperlink to user page)</p>
+        <!-- Probably display inline next to commenter -->
+        <p class="postTime">Time of comment: 4:20 Blazit</p>
+    </div>
+    <p class="comment">WTF BRO THIS IS SO COOL!</p>
+ </div>
+	 */
+	
+	
+	
 }
 </script>
 </html>

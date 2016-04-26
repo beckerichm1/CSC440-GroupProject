@@ -39,7 +39,7 @@
                             <p class="requiredForm">*</p>
                         </div>
                         <div class="formElement">
-                            <label class="formLabel">Post Title: </label> <textarea class="postFormText" name="postText" id="postFormText" required></textarea>
+                            <label class="formLabel">Post Text: </label> <textarea class="postFormText" name="postText" id="postFormText" required></textarea>
                             <p class="requiredForm">*</p>
                         </div>
                         <button>Create Post</button>
@@ -68,11 +68,11 @@
 	                name : panelName,
 	                id : panelID,
 	                title : title,
-	                text : text
+	                content : text
 	            },
 	            success : function(data) {
 	                console.log("Post Made");
-	                window.location = "/Simil/views/Panel.jsp?id=${param.id}&name=${param.name}";
+	                window.location = "/Simil/views/Panels/Panel.jsp?id=${param.id}&name=${param.name}";
 	            },
 	            error : function() {
 	                alert('Error creating post...');
