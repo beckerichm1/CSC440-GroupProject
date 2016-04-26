@@ -34,6 +34,8 @@
                     <div id="panelPost">
                        
                     </div>
+                    <a class="link1" href="/Simil/NewComment.jsp?id=${param.id}">
+                    <p>Comment!</p></a>
                     <div id="commentSection">
                         
                      </div>

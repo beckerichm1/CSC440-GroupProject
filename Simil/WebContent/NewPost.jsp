@@ -68,7 +68,8 @@
 	                name : panelName,
 	                id : panelID,
 	                title : title,
-	                content : text
+	                content : text,
+	                param: "post"
 	            },
 	            success : function(data) {
 	                console.log("Post Made");

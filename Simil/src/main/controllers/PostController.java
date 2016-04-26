@@ -44,20 +44,27 @@ public class PostController  extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String param = request.getParameter("param");
 		String userName = (String) request.getSession().getAttribute("username");
-		String id = request.getParameter("id");
-		String name = request.getParameter("name");
-		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		String id = request.getParameter("id");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date date = new Date();
 		String newDate = dateFormat.format(date);
 		System.out.println(newDate);
-		
-		database.PanelPost.insertPost(userName, id, name, title, content, newDate);
+
 		
 		response.setHeader("Access-Control-Allow-Origin", "*");
 		response.setContentType("text/plain");
-		response.sendRedirect("/Simil/views/Panels/Panel.jsp?id=" + id + "&name=" + name);
+		if(param.equals("post")){
+			String title = request.getParameter("title");
+			String name = request.getParameter("name");
+			database.PanelPost.insertPost(userName, id, name, title, content, newDate);
+			response.sendRedirect("/Simil/views/Panels/Panel.jsp?id=" + id + "&name=" + name);
+		}
+		else{
+			database.PanelPost.insertComment(id, userName, newDate, content);
+			response.sendRedirect("/Simil/views/Panels/PanelPost.jsp?id=" + id);
+		}
 	}
 }

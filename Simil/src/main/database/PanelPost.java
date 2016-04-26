@@ -96,4 +96,24 @@ public class PanelPost {
 		}
 		return comments;
 	}
+	public static boolean insertComment(String id, String userName, String newDate, String content) {
+		try {
+			// TODO: Check to see if panel exists before inserting, or catch the exception...
+			Connection conn = SimilConnection.connect();
+			String query = "INSERT INTO Comment "
+					+ "(postID, userName, time, commentContent)"
+					+ " VALUES(?, ?, ?, ?);";
+			PreparedStatement stmt = conn.prepareStatement(query);
+			stmt.setString(1, id);
+			stmt.setString(2, userName);
+			stmt.setString(3, newDate);
+			stmt.setString(4, content);
+			stmt.execute();
+			conn.close();
+		} catch (Exception ex) {
+			System.out.println(ex);
+			return false;
+		}
+		return true;
+	}
 }
