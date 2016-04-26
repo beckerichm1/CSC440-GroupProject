@@ -65,25 +65,11 @@
 	                </div>
 
 	                <a id="newPostButton" href="javascript:createPost()"><div id="newPostButtonDiv">Create New Post</div></a>
-
-                    <div id = "popularPostsDiv">
-                       <h3>Popular Posts</h3>
-                       <ul class="postList">
-                           <li><a class="link3" href="#">Steamin' hot Post 1</a></li>
-                           <li><a class="link3" href="#1">Steamin' hot Post 2</a></li>
-                           <li><a class="link3" href="#2">Steamin' hot Post 3</a></li>
-                           <li><a class="link3" href="#3">Steamin' hot Post 4</a></li>
-                           <li><a class="link3" href="#4">Steamin' hot Post 5</a></li>
-                       </ul>
-                    </div>
+					
                     <div id = "postsDiv">
                        <h3>Panel Posts</h3>
-                       <ul class="postList">
-                           <li><a class="link3" href="#5">Sample Post 1</a></li>
-                           <li><a class="link3" href="#6">Sample Post 2</a></li>
-                           <li><a class="link3" href="#7">Sample Post 3</a></li>
-                           <li><a class="link3" href="#8">Sample Post 4</a></li>
-                           <li><a class="link3" href="#9">Sample Post 5</a></li>
+                       <ul id="postList">
+                           
                        </ul>
                     </div>
 	            </div>
@@ -97,8 +83,29 @@
 		console.log("This panelID is: " + id);
 		getPanelDetails(id);
 		getPanelMembers(id);
+		getPanelPosts(id);
 	});
-
+	
+	function getPanelPosts(id){
+		var url = "/Simil/PostServlet";
+		$.ajax({
+			url : url,
+			datatype : 'json',
+			type: "GET",
+			data : {
+				param: "posts",
+				id : id
+			},
+			success : function(data) {
+				console.log("getPanelPosts succeeded. Returning data.");
+				showPanelPosts(data);
+			},
+			error : function() {
+				alert('error');
+			}
+		});
+	}
+	
 	function getPanelDetails(id) {
 		var url = "/Simil/PanelServlet";
 		$.ajax({
@@ -150,9 +157,18 @@
 	function fillPanelMembers(data){
 	    var membersDiv = $('#memberList');
 		console.log("PanelMembers Data is: " + data);
-		
 		for (var i = 0; i < data.length; i++){
 			membersDiv.append("<li>"+ data[i] +"</li>")
+		}
+	}
+	
+	function showPanelPosts(data){
+		var postDiv = $('#postList');
+		console.log(data);
+		for(var i in data){
+			var item = data[i];
+			var el = "<a href=\"/Simil/views/Panels/PanelPost.jsp?id=" + item[0] + "\"><li>" + item[2] + "</li>"
+			postDiv.append(el);
 		}
 	}
 	

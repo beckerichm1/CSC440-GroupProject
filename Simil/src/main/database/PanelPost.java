@@ -34,7 +34,6 @@ public class PanelPost {
 	}
 	public static ArrayList<String[]> getPanelPosts(String id){
 		ArrayList<String[]> posts = new ArrayList<>();
-		String[] post = new String[5];
 		try{
 			Connection conn = SimilConnection.connect();
 			String query = "select * from post where panelID = ?;";
@@ -42,6 +41,7 @@ public class PanelPost {
 			stmt.setString(1, id);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
+				String[] post = new String[5];
 				post[0] = "" + rs.getInt("postID");
 				post[1] = rs.getString("userName");
 				post[2] = rs.getString("title");
